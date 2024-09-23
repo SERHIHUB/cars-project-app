@@ -1,0 +1,43 @@
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  position: relative;
+}
+
+.input {
+  height: 32px;
+  border-radius: 12px;
+  padding-left: 8px;
+}
+
+.eyeBtn {
+  position: absolute;
+  top: 40px;
+  right: 16px;
+  background-color: inherit;
+  border: none;
+}
+
+.submit {
+  height: 32px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.errorField {
+  color: #ff0000;
+}
+
+.inputError {
+  color: #ff0000;
+  border-color: #ff0000;
+}
