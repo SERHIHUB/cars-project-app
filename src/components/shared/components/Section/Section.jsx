@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import css from "./Section.module.css";
 
-function Section({ children, className }) {
+export const Section = ({ children, className }) => {
   return (
     <div className={clsx(css.section, { [className]: className })}>
       {children}
@@ -9,4 +9,4 @@ function Section({ children, className }) {
   );
 }
 
-export default Section;
+// export default Section;
