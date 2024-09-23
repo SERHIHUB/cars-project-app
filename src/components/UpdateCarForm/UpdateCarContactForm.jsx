@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import clsx from "clsx";
 import css from "./UpdateCarForm.module.css";
-// import { updateUserNameFormSchema } from "../../validationSchemas/updateUserFormSchema";
+import { updateCarContactFormSchema } from "../../validationSchemas/updateCarFormSchema";
 
 export const UpdateCarContactForm = () => {
   const {
@@ -12,8 +12,8 @@ export const UpdateCarContactForm = () => {
     reset,
     formState: { errors },
   } = useForm({
-    // resolver: yupResolver(updateUserNameFormSchema),
-    // mode: "onBlur",
+    resolver: yupResolver(updateCarContactFormSchema),
+    mode: "onBlur",
   });
 
   const onSubmit = (data) => {

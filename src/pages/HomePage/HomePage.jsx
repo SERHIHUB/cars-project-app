@@ -1,4 +1,12 @@
 import { Section } from "../../components/shared/components/Section/Section";
+import { UpdateCarContactForm } from "../../components/UpdateCarForm/UpdateCarContactForm";
+import { UpdateCarForm } from "../../components/UpdateCarForm/UpdateCarForm";
+import { UpdateCarModelForm } from "../../components/UpdateCarForm/UpdateCarModelForm";
+import { UpdateCarNumberForm } from "../../components/UpdateCarForm/UpdateCarNumberForm";
+import { UpdateCarPaymentDateForm } from "../../components/UpdateCarForm/UpdateCarPaymentDateForm";
+import { UpdateCarPhotoForm } from "../../components/UpdateCarForm/UpdateCarPhotoForm";
+import { UpdateCarPriceForm } from "../../components/UpdateCarForm/UpdateCarPriceForm";
+import { UpdateContactForm } from "../../components/UpdateContactForm/UpdateContactForm";
 import { UpdateUserAvatarForm } from "../../components/UpdateUserForm/UpdateUserAvatarForm";
 import { UpdateUserEmailForm } from "../../components/UpdateUserForm/UpdateUserEmailForm";
 import { UpdateUserNameForm } from "../../components/UpdateUserForm/UpdateUserNameForm";
@@ -15,6 +23,17 @@ export const HomePage = () => {
       <UpdateUserAvatarForm />
       <UpdateUserPasswordForm />
       <UpdateUserRoleForm /> */}
+
+      {/* <UpdateCarContactForm />
+      <UpdateCarPriceForm />
+      <UpdateCarModelForm />
+      <UpdateCarNumberForm />
+      <UpdateCarPaymentDateForm />
+      <UpdateCarPhotoForm /> */}
+
+      {/* <UpdateCarForm /> */}
+
+      <UpdateContactForm />
     </Section>
   );
 };
