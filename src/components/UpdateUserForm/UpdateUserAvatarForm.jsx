@@ -24,15 +24,19 @@ export const UpdateUserAvatarForm = () => {
   return (
     <Container>
       <form className={css.updateUserForm} onSubmit={handleSubmit(onSubmit)}>
-        <label className={clsx(css.field, { [css.errorField]: errors.avatar })}>
+        <label
+          className={clsx(css.field, { [css.errorField]: errors.avatarURL })}
+        >
           Avatar
           <input
-            className={clsx(css.input, { [css.inputError]: errors.avatar })}
+            className={clsx(css.input, { [css.inputError]: errors.avatarURL })}
             placeholder="Select avatar"
-            {...register("avatar")}
+            {...register("avatarURL")}
           />
-          {errors.ownerEmail && (
-            <span className={css.errorsMessage}>{errors.avatar.message}</span>
+          {errors.avatarURL && (
+            <span className={css.errorsMessage}>
+              {errors.avatarURL.message}
+            </span>
           )}
         </label>
 

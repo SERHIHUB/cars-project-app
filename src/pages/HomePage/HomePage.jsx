@@ -1,3 +1,5 @@
+import { CreateContactForm } from "../../components/CreateContactForm/CreateContactForm";
+import { CreateCarForm } from "../../components/CreateCarForm/CreateCarForm";
 import { Section } from "../../components/shared/components/Section/Section";
 import { UpdateCarContactForm } from "../../components/UpdateCarForm/UpdateCarContactForm";
 import { UpdateCarForm } from "../../components/UpdateCarForm/UpdateCarForm";
@@ -13,6 +15,7 @@ import { UpdateUserNameForm } from "../../components/UpdateUserForm/UpdateUserNa
 import { UpdateUserPasswordForm } from "../../components/UpdateUserForm/UpdateUserPasswordForm";
 import { UpdateUserRoleForm } from "../../components/UpdateUserForm/UpdateUserRoleForm";
 import css from "./HomePage.module.css";
+import { CarsList } from "../../components/CarsList/CarsList";
 
 export const HomePage = () => {
   return (
@@ -32,8 +35,19 @@ export const HomePage = () => {
       <UpdateCarPhotoForm /> */}
 
       {/* <UpdateCarForm /> */}
+      {
+        "*****************************************************************************"
+      }
+      {/* <CreateCarForm /> */}
 
-      <UpdateContactForm />
+      {/* <CreateContactForm /> */}
+      {/* <UpdateContactForm /> */}
+
+      {
+        "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+      }
+
+      <CarsList />
     </Section>
   );
 };

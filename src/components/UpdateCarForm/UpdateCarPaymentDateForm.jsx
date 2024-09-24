@@ -25,16 +25,20 @@ export const UpdateCarPaymentDateForm = () => {
     <Container>
       <form className={css.updateCarForm} onSubmit={handleSubmit(onSubmit)}>
         <label
-          className={clsx(css.field, { [css.errorField]: errors.payment })}
+          className={clsx(css.field, { [css.errorField]: errors.paymentDate })}
         >
           Payment date
           <input
-            className={clsx(css.input, { [css.inputError]: errors.payment })}
+            className={clsx(css.input, {
+              [css.inputError]: errors.paymentDate,
+            })}
             placeholder="Enter payment date"
-            {...register("payment", { required: true })}
+            {...register("paymentDate", { required: true })}
           />
-          {errors.payment && (
-            <span className={css.errorsMessage}>{errors.payment.message}</span>
+          {errors.paymentDate && (
+            <span className={css.errorsMessage}>
+              {errors.paymentDate.message}
+            </span>
           )}
         </label>
 
