@@ -24,15 +24,17 @@ export const UpdateCarModelForm = () => {
   return (
     <Container>
       <form className={css.updateCarForm} onSubmit={handleSubmit(onSubmit)}>
-        <label className={clsx(css.field, { [css.errorField]: errors.model })}>
+        <label
+          className={clsx(css.field, { [css.errorField]: errors.carModel })}
+        >
           Model
           <input
-            className={clsx(css.input, { [css.inputError]: errors.model })}
+            className={clsx(css.input, { [css.inputError]: errors.carModel })}
             placeholder="Enter model"
-            {...register("model", { required: true })}
+            {...register("carModel", { required: true })}
           />
-          {errors.model && (
-            <span className={css.errorsMessage}>{errors.model.message}</span>
+          {errors.carModel && (
+            <span className={css.errorsMessage}>{errors.carModel.message}</span>
           )}
         </label>
 

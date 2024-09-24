@@ -24,15 +24,21 @@ export const UpdateCarPhotoForm = () => {
   return (
     <Container>
       <form className={css.updateCarForm} onSubmit={handleSubmit(onSubmit)}>
-        <label className={clsx(css.field, { [css.errorField]: errors.photo })}>
+        <label
+          className={clsx(css.field, { [css.errorField]: errors.carPhotoURL })}
+        >
           Photo
           <input
-            className={clsx(css.input, { [css.inputError]: errors.photo })}
+            className={clsx(css.input, {
+              [css.inputError]: errors.carPhotoURL,
+            })}
             placeholder="Select photo"
-            {...register("photo", { required: true })}
+            {...register("carPhotoURL", { required: true })}
           />
-          {errors.photo && (
-            <span className={css.errorsMessage}>{errors.photo.message}</span>
+          {errors.carPhotoURL && (
+            <span className={css.errorsMessage}>
+              {errors.carPhotoURL.message}
+            </span>
           )}
         </label>
 

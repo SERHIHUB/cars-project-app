@@ -2,17 +2,17 @@ import { Container } from "../shared/components/Container/Container";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import clsx from "clsx";
-import css from "./UpdateContactForm.module.css";
-import { updateContactFormSchema } from "../../validationSchemas/updateContactForm";
+import css from "./CreateContactForm.module.css";
+import { createContactFormSchema } from "../../validationSchemas/createContactFormSchema";
 
-export const UpdateContactForm = () => {
+export const CreateContactForm = () => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(updateContactFormSchema),
+    resolver: yupResolver(createContactFormSchema),
     mode: "onBlur",
   });
 
@@ -23,7 +23,7 @@ export const UpdateContactForm = () => {
 
   return (
     <Container>
-      <form className={css.updateContactForm} onSubmit={handleSubmit(onSubmit)}>
+      <form className={css.createContactForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={clsx(css.field, { [css.errorField]: errors.name })}>
           Name
           <input

@@ -2,28 +2,29 @@ import { Container } from "../shared/components/Container/Container";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import clsx from "clsx";
-import css from "./UpdateCarForm.module.css";
-import { updateCarFormSchema } from "../../validationSchemas/updateCarFormSchema";
+import css from "./CreateCarForm.module.css";
+import { createCarFormSchema } from "../../validationSchemas/createCarFormSchema";
 
-export const UpdateCarForm = () => {
+export const CreateCarForm = () => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(updateCarFormSchema),
+    resolver: yupResolver(createCarFormSchema),
     mode: "onBlur",
   });
 
   const onSubmit = (data) => {
+    console.log("data");
     console.log(data);
     reset();
   };
 
   return (
     <Container>
-      <form className={css.updateCarForm} onSubmit={handleSubmit(onSubmit)}>
+      <form className={css.createCarForm} onSubmit={handleSubmit(onSubmit)}>
         <label
           className={clsx(css.field, { [css.errorField]: errors.carModel })}
         >

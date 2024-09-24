@@ -24,17 +24,15 @@ export const UpdateUserNameForm = () => {
   return (
     <Container>
       <form className={css.updateUserForm} onSubmit={handleSubmit(onSubmit)}>
-        <label
-          className={clsx(css.field, { [css.errorField]: errors.userName })}
-        >
+        <label className={clsx(css.field, { [css.errorField]: errors.name })}>
           Name
           <input
-            className={clsx(css.input, { [css.inputError]: errors.userName })}
+            className={clsx(css.input, { [css.inputError]: errors.name })}
             placeholder="Enter your name"
-            {...register("userName", { required: true })}
+            {...register("name", { required: true })}
           />
-          {errors.userName && (
-            <span className={css.errorsMessage}>{errors.userName.message}</span>
+          {errors.name && (
+            <span className={css.errorsMessage}>{errors.name.message}</span>
           )}
         </label>
 
