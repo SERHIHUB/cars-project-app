@@ -28,12 +28,18 @@ export const RegisterForm = () => {
   const onSubmit = (data) => {
     const { userName, ownerEmail, email, password } = data;
 
-    const newData = {
-      name: userName.toLowerCase(),
-      email: email.toLowerCase(),
-      owner: ownerEmail.toLowerCase(),
-      password,
-    };
+    const newData = ownerEmail
+      ? {
+          name: userName.toLowerCase(),
+          email: email.toLowerCase(),
+          owner: ownerEmail.toLowerCase(),
+          password,
+        }
+      : {
+          name: userName.toLowerCase(),
+          email: email.toLowerCase(),
+          password,
+        };
     dispatch(registerUser(newData));
 
     console.log(newData);

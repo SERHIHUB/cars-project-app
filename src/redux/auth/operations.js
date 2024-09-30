@@ -16,13 +16,14 @@ const clearAuthHeader = () => {
 export const registerUser = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
-    console.log(credentials);
+    const { email, password } = credentials;
     try {
       const response = await instanse.post("auth/register", credentials);
 
       // деструктурувати credentials, взяти email та password
-      // const response = await instanse.post("auth/login", credentials);
+      // const response = await instanse.post("auth/login", { email, password });
       // setAuthHeader(response.data.token);
+      console.log(response);
 
       return response.data;
     } catch (error) {
