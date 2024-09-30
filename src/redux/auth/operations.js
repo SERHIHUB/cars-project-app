@@ -2,8 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const instanse = axios.create({
-  // URL car-project-db
-  baseURL: "URL",
+  baseURL: "https://car-project-db.onrender.com/",
 });
 
 const setAuthHeader = (token) => {
@@ -17,11 +16,13 @@ const clearAuthHeader = () => {
 export const registerUser = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
+    console.log(credentials);
     try {
-      await instanse.post("auth/register", credentials);
+      const response = await instanse.post("auth/register", credentials);
+
       // деструктурувати credentials, взяти email та password
-      const response = await instanse.post("auth/login", credentials);
-      setAuthHeader(response.data.token);
+      // const response = await instanse.post("auth/login", credentials);
+      // setAuthHeader(response.data.token);
 
       return response.data;
     } catch (error) {

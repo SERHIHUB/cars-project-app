@@ -8,8 +8,11 @@ import clsx from "clsx";
 import css from "./RegisterForm.module.css";
 import { Button } from "../shared/components/Button/Button";
 import { signUpFormSchema } from "../../validationSchemas/authFormSchemas";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/auth/operations";
 
 export const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -23,9 +26,25 @@ export const RegisterForm = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    const { userName, ownerEmail, email, password } = data;
+
+    const newData = {
+      name: userName.toLowerCase(),
+      email: email.toLowerCase(),
+      owner: ownerEmail.toLowerCase(),
+      password,
+    };
+    dispatch(registerUser(newData));
+
+    console.log(newData);
     reset();
   };
+
+  // confirmPassword: "1234";
+  // email: "egor@email.com";
+  // ownerEmail: "serhii@email.com";
+  // password: "1234";
+  // userName: "fdfdfd";
 
   const handleShowPasswordBtn = () => {
     setShowPassword(!showPassword);
