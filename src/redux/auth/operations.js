@@ -18,11 +18,12 @@ export const registerUser = createAsyncThunk(
   async (credentials, thunkAPI) => {
     const { email, password } = credentials;
     try {
+      console.log("response");
       const response = await instanse.post("auth/register", credentials);
 
       // деструктурувати credentials, взяти email та password
       // const response = await instanse.post("auth/login", { email, password });
-      // setAuthHeader(response.data.token);
+      // setAuthHeader(response.data.data.token);
       console.log(response);
 
       return response.data;
@@ -37,8 +38,9 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await instanse.post("auth/login", credentials);
-      setAuthHeader(response.data.token);
-      return response.data;
+      setAuthHeader(response.data.data.token);
+      console.log(response.data);
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

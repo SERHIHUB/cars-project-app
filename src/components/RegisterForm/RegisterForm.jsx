@@ -25,10 +25,8 @@ export const RegisterForm = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data) => {
-    const { userName, ownerEmail, email, password } = data;
-
-    const newData = ownerEmail
+  const onSubmit = ({ userName, ownerEmail, email, password }) => {
+    const data = ownerEmail
       ? {
           name: userName.toLowerCase(),
           email: email.toLowerCase(),
@@ -40,9 +38,9 @@ export const RegisterForm = () => {
           email: email.toLowerCase(),
           password,
         };
-    dispatch(registerUser(newData));
+    dispatch(registerUser(data));
 
-    console.log(newData);
+    console.log(data);
     reset();
   };
 
