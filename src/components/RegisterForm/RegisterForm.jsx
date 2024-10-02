@@ -8,9 +8,14 @@ import clsx from "clsx";
 import css from "./RegisterForm.module.css";
 import { Button } from "../shared/components/Button/Button";
 import { signUpFormSchema } from "../../validationSchemas/authFormSchemas";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../redux/auth/operations";
+import { selectStatus } from "../../redux/auth/selectors";
 
 export const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const registerStatus = useSelector(selectStatus);
 
   const {
     register,
@@ -22,10 +27,30 @@ export const RegisterForm = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = ({ userName, ownerEmail, email, password }) => {
+    const data = ownerEmail
+      ? {
+          name: userName.toLowerCase(),
+          email: email.toLowerCase(),
+          owner: ownerEmail.toLowerCase(),
+          password,
+        }
+      : {
+          name: userName.toLowerCase(),
+          email: email.toLowerCase(),
+          password,
+        };
+    dispatch(registerUser(data));
+
+    // console.log(data);
     reset();
   };
+
+  // confirmPassword: "1234";
+  // email: "egor@email.com";
+  // ownerEmail: "serhii@email.com";
+  // password: "1234";
+  // userName: "fdfdfd";
 
   const handleShowPasswordBtn = () => {
     setShowPassword(!showPassword);
@@ -33,6 +58,12 @@ export const RegisterForm = () => {
 
   return (
     <Container>
+      {/* Зробити модалку для повідомлення */}
+      {registerStatus == 200 && (
+        <div>
+          <h2>Підтвердіть вашу пошту.</h2>
+        </div>
+      )}
       <form className={css.registerForm} onSubmit={handleSubmit(onSubmit)}>
         <label
           className={clsx(css.field, { [css.errorField]: errors.userName })}

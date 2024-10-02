@@ -16,37 +16,40 @@ import { UpdateUserPasswordForm } from "../../components/UpdateUserForm/UpdateUs
 import { UpdateUserRoleForm } from "../../components/UpdateUserForm/UpdateUserRoleForm";
 import css from "./HomePage.module.css";
 import { CarsList } from "../../components/CarsList/CarsList";
+import { LogOutComponent } from "../../components/LogOutComponent/LogOutComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 export const HomePage = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  console.log(isLoggedIn);
+
   return (
     <Section>
       <h1>HomePage</h1>
+      {isLoggedIn && <LogOutComponent />}
       {/* <UpdateUserNameForm />
       <UpdateUserEmailForm />
       <UpdateUserAvatarForm />
       <UpdateUserPasswordForm />
       <UpdateUserRoleForm /> */}
-
       {/* <UpdateCarContactForm />
       <UpdateCarPriceForm />
       <UpdateCarModelForm />
       <UpdateCarNumberForm />
       <UpdateCarPaymentDateForm />
       <UpdateCarPhotoForm /> */}
-
       {/* <UpdateCarForm /> */}
       {
         "*****************************************************************************"
       }
       {/* <CreateCarForm /> */}
-
       {/* <CreateContactForm /> */}
       {/* <UpdateContactForm /> */}
-
       {
         "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
       }
-
       <CarsList />
     </Section>
   );

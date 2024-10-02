@@ -8,8 +8,11 @@ import clsx from "clsx";
 import css from "./LoginForm.module.css";
 import { Button } from "../shared/components/Button/Button";
 import { signInFormSchema } from "../../validationSchemas/authFormSchemas";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/operations";
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -22,8 +25,13 @@ export const LoginForm = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = ({ email, password }) => {
+    const data = {
+      email: email.toLowerCase(),
+      password,
+    };
     console.log(data);
+    dispatch(logIn(data));
     reset();
   };
 
