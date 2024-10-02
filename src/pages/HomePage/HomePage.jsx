@@ -16,11 +16,13 @@ import { UpdateUserPasswordForm } from "../../components/UpdateUserForm/UpdateUs
 import { UpdateUserRoleForm } from "../../components/UpdateUserForm/UpdateUserRoleForm";
 import css from "./HomePage.module.css";
 import { CarsList } from "../../components/CarsList/CarsList";
+import { LogOutComponent } from "../../components/LogOutComponent/LogOutComponent";
 
 export const HomePage = () => {
   return (
     <Section>
       <h1>HomePage</h1>
+      <LogOutComponent />
       {/* <UpdateUserNameForm />
       <UpdateUserEmailForm />
       <UpdateUserAvatarForm />

@@ -10,14 +10,17 @@ export const Navigation = () => {
       <NavLink to="/" className={linkActive}>
         Welcome
       </NavLink>
-      <NavLink to="/home" className={linkActive}>
+      {/* <NavLink to="/home" className={linkActive}>
         Home
-      </NavLink>
+      </NavLink> */}
       <NavLink to="/register" className={linkActive}>
         SignUp
       </NavLink>
       <NavLink to="/login" className={linkActive}>
         SignIn
+      </NavLink>
+      <NavLink to="/reset-password" className={linkActive}>
+        Reset password
       </NavLink>
     </nav>
   );

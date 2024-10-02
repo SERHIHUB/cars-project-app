@@ -38,6 +38,7 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await instanse.post("auth/login", credentials);
+      // setAuthHeader(response.data.data.token);
       setAuthHeader(response.data.data.token);
       console.log(response.data);
       return response.data.data;
@@ -50,6 +51,7 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk("auth/logout", async (id, thunkAPI) => {
   try {
     await instanse.post("auth/logout", id);
+    // setAuthHeader(response.data.data.token);
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -102,5 +104,24 @@ export const verifyToken = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (userId, thunkAPI) => {
+    const {
+      auth: { token },
+    } = thunkAPI.getState();
+    setAuthHeader(token);
+    const response = await instanse.get(`/users/${userId}`);
+    return response.data;
+  },
+  {
+    condition: (_, { getState }) => {
+      const reduxState = getState();
+      const savedToken = reduxState.auth.token;
+      return savedToken !== null;
+    },
   }
 );
