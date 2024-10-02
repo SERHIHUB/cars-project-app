@@ -6,11 +6,11 @@ const instanse = axios.create({
 });
 
 const setAuthHeader = (token) => {
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  instanse.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
 const clearAuthHeader = () => {
-  axios.defaults.headers.common["Authorization"] = "";
+  instanse.defaults.headers.common["Authorization"] = "";
 };
 
 export const registerUser = createAsyncThunk(
@@ -107,21 +107,21 @@ export const verifyToken = createAsyncThunk(
   }
 );
 
-export const refreshUser = createAsyncThunk(
-  "auth/refresh",
-  async (userId, thunkAPI) => {
-    const {
-      auth: { token },
-    } = thunkAPI.getState();
-    setAuthHeader(token);
-    const response = await instanse.get(`/users/${userId}`);
-    return response.data;
-  },
-  {
-    condition: (_, { getState }) => {
-      const reduxState = getState();
-      const savedToken = reduxState.auth.token;
-      return savedToken !== null;
-    },
-  }
-);
+// export const refreshUser = createAsyncThunk(
+//   "auth/refresh",
+//   async (userId, thunkAPI) => {
+//     const {
+//       auth: { token },
+//     } = thunkAPI.getState();
+//     setAuthHeader(token);
+//     const response = await instanse.get(`/users/${userId}`);
+//     return response.data;
+//   },
+//   {
+//     condition: (_, { getState }) => {
+//       const reduxState = getState();
+//       const savedToken = reduxState.auth.token;
+//       return savedToken !== null;
+//     },
+//   }
+// );
