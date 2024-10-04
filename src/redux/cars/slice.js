@@ -23,7 +23,8 @@ const carSlice = createSlice({
       })
       .addCase(createCar.fulfilled, (state, action) => {
         state.loading = false;
-        state.items.push(action.payload);
+        // state.items.push(action.payload);
+        console.log(action.payload);
       })
       .addCase(createCar.rejected, (state) => {
         state.loading = false;
@@ -35,7 +36,7 @@ const carSlice = createSlice({
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.items = action.payload.cars;
       })
       .addCase(fetchCars.rejected, (state) => {
         state.loading = false;

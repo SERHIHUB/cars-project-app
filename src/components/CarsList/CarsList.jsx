@@ -6,6 +6,7 @@ import { selectAllCars } from "../../redux/cars/selectors";
 import { CarItem } from "../CarItem/CarItem";
 import { Container } from "../shared/components/Container/Container";
 import css from "./CarsList.module.css";
+import { CreateCarForm } from "../CreateCarForm/CreateCarForm";
 
 // const cars = [
 //   {
@@ -41,6 +42,8 @@ export const CarsList = () => {
   // const dispatch = useDispatch();
   const cars = useSelector(selectAllCars);
 
+  console.log(cars);
+
   // useEffect(() => {
   //   dispatch(fetchCars());
   // }, [dispatch]);
@@ -48,14 +51,16 @@ export const CarsList = () => {
   return (
     <Container>
       <ul className={css.carsList}>
-        {/* {cars.map((item) => {
+        {cars.map((item) => {
           return (
             <li className={css.carItem} key={nanoid()}>
               <CarItem car={item} />
             </li>
           );
-        })} */}
+        })}
       </ul>
+      {"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"}
+      <CreateCarForm />
     </Container>
   );
 };
