@@ -67,7 +67,7 @@ export const passwordResetRequest = createAsyncThunk(
         userEmail
       );
 
-      return response;
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -107,21 +107,22 @@ export const verifyToken = createAsyncThunk(
   }
 );
 
-// export const refreshUser = createAsyncThunk(
-//   "auth/refresh",
-//   async (_, thunkAPI) => {
-//     const {
-//       auth: { token },
-//     } = thunkAPI.getState();
-//     setAuthHeader(token);
-//     const response = await instanse.get(`/users/user`);
-//     return response.data;
-//   },
-//   {
-//     condition: (_, { getState }) => {
-//       const reduxState = getState();
-//       const savedToken = reduxState.auth.token;
-//       return savedToken !== null;
-//     },
-//   }
-// );
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    const {
+      auth: { token },
+    } = thunkAPI.getState();
+    setAuthHeader(token);
+    const response = await instanse.get(`/users/current`);
+    console.log(response.data);
+    return response.data;
+  },
+  {
+    condition: (_, { getState }) => {
+      const reduxState = getState();
+      const savedToken = reduxState.auth.token;
+      return savedToken !== null;
+    },
+  }
+);

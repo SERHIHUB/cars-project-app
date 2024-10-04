@@ -20,17 +20,17 @@ import { LogOutComponent } from "../../components/LogOutComponent/LogOutComponen
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { useEffect } from "react";
-import { getUser } from "../../redux/users/operations";
+// import { getUser } from "../../redux/users/operations";
 
 export const HomePage = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getUser());
+  // }, [dispatch]);
 
   return (
     <Section>

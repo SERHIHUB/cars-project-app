@@ -18,6 +18,7 @@ import { selectIsLoggedIn } from "./redux/auth/selectors";
 import { Layout } from "./components/Layout/Layout";
 import { useEffect } from "react";
 import { refreshUser } from "./redux/auth/operations";
+import { PrivateRoute } from "./PrivateRoute";
 
 // const WelcomePage = lazy(() => import("./pages/WelcomePage/WelcomePage"));
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -29,9 +30,9 @@ function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  // useEffect(() => {
-  //   dispatch(refreshUser);
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
     <>
@@ -42,14 +43,14 @@ function App() {
           <Route
             path="/abonements"
             element={
-              <RestrictedRoute component={<AbonementsPage />} redirectTo="/" />
+              <PrivateRoute component={<AbonementsPage />} redirectTo="/" />
             }
           />
 
           <Route
             path="/contacts"
             element={
-              <RestrictedRoute component={<ContactsPage />} redirectTo="/" />
+              <PrivateRoute component={<ContactsPage />} redirectTo="/" />
             }
           />
 
