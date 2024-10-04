@@ -2,5 +2,12 @@ import css from "./CarItem.module.css";
 
 export const CarItem = ({ car }) => {
   console.log(car);
-  return <div className={css.wrapper}>car</div>;
+  return (
+    <div className={css.wrapper}>
+      <h3>{car.carModel}</h3>
+      <p>{car.carNumber}</p>
+      <p>{car.price}</p>
+      <p>{car.paymentDate}</p>
+    </div>
+  );
 };

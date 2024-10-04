@@ -19,10 +19,10 @@ export const fetchCars = createAsyncThunk(
   "cars/fetchAllCars",
   async (_, thunkAPI) => {
     try {
-      const allCars = await instanse.get("cars");
-      console.log(response.data);
+      const response = await instanse.get("cars");
+      console.log(response.data.data);
 
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
