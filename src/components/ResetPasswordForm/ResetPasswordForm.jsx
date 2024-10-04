@@ -1,11 +1,18 @@
 import { updateUserEmailFormSchema } from "../../validationSchemas/updateUserFormSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSelector, useDispatch } from "react-redux";
 import clsx from "clsx";
 import { Container } from "../shared/components/Container/Container";
 import css from "./ResetPasswordForm.module.css";
+import {
+  passwordReset,
+  passwordResetRequest,
+} from "../../redux/auth/operations";
 
 export const ResetPasswordForm = () => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -18,6 +25,8 @@ export const ResetPasswordForm = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    dispatch(passwordResetRequest(data));
+    // Лист з посиланням для скидання паролю успішно доходить, після деплою треба додати хост в db
     reset();
   };
 
@@ -36,7 +45,7 @@ export const ResetPasswordForm = () => {
           )}
         </label>
 
-        <input className={css.submit} type="submit" value="Update" />
+        <input className={css.submit} type="submit" value="Send" />
       </form>
     </Container>
   );

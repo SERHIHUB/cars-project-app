@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const instanse = axios.create({
+export const instanse = axios.create({
   baseURL: "https://car-project-db.onrender.com/",
 });
 
@@ -48,9 +48,9 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk("auth/logout", async (id, thunkAPI) => {
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    await instanse.post("auth/logout", id);
+    await instanse.post("auth/logout");
     // setAuthHeader(response.data.data.token);
     clearAuthHeader();
   } catch (error) {
@@ -67,7 +67,7 @@ export const passwordResetRequest = createAsyncThunk(
         userEmail
       );
 
-      return response;
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -107,21 +107,22 @@ export const verifyToken = createAsyncThunk(
   }
 );
 
-// export const refreshUser = createAsyncThunk(
-//   "auth/refresh",
-//   async (userId, thunkAPI) => {
-//     const {
-//       auth: { token },
-//     } = thunkAPI.getState();
-//     setAuthHeader(token);
-//     const response = await instanse.get(`/users/${userId}`);
-//     return response.data;
-//   },
-//   {
-//     condition: (_, { getState }) => {
-//       const reduxState = getState();
-//       const savedToken = reduxState.auth.token;
-//       return savedToken !== null;
-//     },
-//   }
-// );
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    const {
+      auth: { token },
+    } = thunkAPI.getState();
+    setAuthHeader(token);
+    const response = await instanse.get(`/users/current`);
+    console.log(response.data);
+    return response.data;
+  },
+  {
+    condition: (_, { getState }) => {
+      const reduxState = getState();
+      const savedToken = reduxState.auth.token;
+      return savedToken !== null;
+    },
+  }
+);

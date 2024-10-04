@@ -4,6 +4,7 @@ import {
   logOut,
   passwordReset,
   passwordResetRequest,
+  refreshUser,
   registerUser,
   verifyToken,
 } from "./operations";
@@ -28,6 +29,7 @@ const authSlice = createSlice({
     thema: "light",
     isLoggedIn: false,
     isRefreshing: false,
+    // requestResetStatus: null,
     resetStatus: null,
     loading: false,
     error: false,
@@ -40,9 +42,10 @@ const authSlice = createSlice({
         state.error = false;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
+        state.loading = false;
         state.status = action.payload.status;
-        console.log(state.status);
-        console.log(action.payload);
+        // console.log(state.status);
+        // console.log(action.payload);
       })
       .addCase(registerUser.rejected, (state) => {
         state.loading = false;
@@ -53,6 +56,7 @@ const authSlice = createSlice({
         state.error = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
+        state.loading = false;
         state.token = action.payload.token;
         state.isLoggedIn = true;
         // console.log(action.payload.token);
@@ -69,9 +73,18 @@ const authSlice = createSlice({
         state.status = null;
         state.resetStatus = null;
       })
-      .addCase(passwordResetRequest.fulfilled, (state) => {
-        console.log(state);
+      .addCase(passwordResetRequest.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(passwordResetRequest.fulfilled, (state, action) => {
+        state.requestResetStatus = action.payload.status;
+        console.log(state.requestResetStatus);
         console.log(action.payload);
+      })
+      .addCase(passwordResetRequest.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
       })
       .addCase(passwordReset.fulfilled, (state) => {
         console.log(state);
@@ -80,6 +93,16 @@ const authSlice = createSlice({
       .addCase(verifyToken.fulfilled, (state) => {
         console.log(state);
         // console.log(action.payload);
+      })
+      .addCase(refreshUser.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+        state.token = action.payload.data.token;
+        // console.log(action.payload);
+        // console.log(state.token);
       }),
 });
 

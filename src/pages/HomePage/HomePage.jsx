@@ -19,16 +19,22 @@ import { CarsList } from "../../components/CarsList/CarsList";
 import { LogOutComponent } from "../../components/LogOutComponent/LogOutComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { useEffect } from "react";
+// import { getUser } from "../../redux/users/operations";
 
 export const HomePage = () => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
+
+  // useEffect(() => {
+  //   dispatch(getUser());
+  // }, [dispatch]);
 
   return (
     <Section>
       <h1>HomePage</h1>
-      {isLoggedIn && <LogOutComponent />}
       {/* <UpdateUserNameForm />
       <UpdateUserEmailForm />
       <UpdateUserAvatarForm />
@@ -50,7 +56,7 @@ export const HomePage = () => {
       {
         "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
       }
-      <CarsList />
+      {/* <CarsList /> */}
     </Section>
   );
 };

@@ -72,7 +72,7 @@ export const LoginForm = () => {
           )}
         </label>
 
-        <input className={css.submit} type="submit" value="Sign Up" />
+        <input className={css.submit} type="submit" value="Sign In" />
       </form>
     </Container>
   );

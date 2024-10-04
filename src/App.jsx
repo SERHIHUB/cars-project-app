@@ -13,8 +13,12 @@ import { ContactsPage } from "./pages/ContactsPage/ContactsPage";
 import { Navigation } from "./components/Navigation/Navigation";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { UpdatePasswordPage } from "./pages/UpdatePasswordPage/UpdatePasswordPage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "./redux/auth/selectors";
+import { Layout } from "./components/Layout/Layout";
+import { useEffect } from "react";
+import { refreshUser } from "./redux/auth/operations";
+import { PrivateRoute } from "./PrivateRoute";
 
 // const WelcomePage = lazy(() => import("./pages/WelcomePage/WelcomePage"));
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -23,56 +27,52 @@ import { selectIsLoggedIn } from "./redux/auth/selectors";
 // const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 function App() {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
     <>
-      {/* <Suspense fallback={null}> */}
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
 
-      <Routes>
-        <Route path="/home" element={<HomePage />} />
+          <Route
+            path="/abonements"
+            element={
+              <PrivateRoute component={<AbonementsPage />} redirectTo="/" />
+            }
+          />
 
-        <Route
-          path="/abonements"
-          element={
-            <RestrictedRoute
-              component={<AbonementsPage />}
-              redirectTo="/home"
-            />
-          }
-        />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute component={<ContactsPage />} redirectTo="/" />
+            }
+          />
 
-        <Route
-          path="/contacts"
-          element={
-            <RestrictedRoute component={<ContactsPage />} redirectTo="/home" />
-          }
-        />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
+            }
+          />
 
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute component={<RegisterPage />} redirectTo="/home" />
-          }
-        />
-        {/* <Route path="/register" element={<RegisterPage />} /> */}
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute component={<LoginPage />} redirectTo="/home" />
-          }
-        />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute component={<LoginPage />} redirectTo="/" />
+            }
+          />
 
-        {/* <Route path="/login" element={<LoginPage />} /> */}
-        {/* <Route
-          path="/reset-password"
-          element={<RestrictedRoute component={<UpdatePasswordPage />} />}
-        /> */}
-        <Route path="/reset-password" element={<UpdatePasswordPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+          <Route path="/reset-password" element={<UpdatePasswordPage />} />
 
-      {/* </Suspense> */}
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Layout>
     </>
   );
 }
