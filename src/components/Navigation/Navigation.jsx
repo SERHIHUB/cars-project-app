@@ -11,7 +11,7 @@ export const Navigation = () => {
 
   return (
     <nav className={css.navList}>
-      <NavLink to="/home" className={linkActive}>
+      <NavLink to="/" className={linkActive}>
         Home
       </NavLink>
       {isLoggedIn && (

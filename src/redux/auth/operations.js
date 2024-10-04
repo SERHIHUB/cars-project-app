@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const instanse = axios.create({
+export const instanse = axios.create({
   baseURL: "https://car-project-db.onrender.com/",
 });
 
@@ -48,9 +48,9 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk("auth/logout", async (id, thunkAPI) => {
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    await instanse.post("auth/logout", id);
+    await instanse.post("auth/logout");
     // setAuthHeader(response.data.data.token);
     clearAuthHeader();
   } catch (error) {
@@ -109,12 +109,12 @@ export const verifyToken = createAsyncThunk(
 
 // export const refreshUser = createAsyncThunk(
 //   "auth/refresh",
-//   async (userId, thunkAPI) => {
+//   async (_, thunkAPI) => {
 //     const {
 //       auth: { token },
 //     } = thunkAPI.getState();
 //     setAuthHeader(token);
-//     const response = await instanse.get(`/users/${userId}`);
+//     const response = await instanse.get(`/users/user`);
 //     return response.data;
 //   },
 //   {

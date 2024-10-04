@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import css from "./AuthNav.module.css";
 
 export const AuthNav = () => {
-  retrun(
+  return (
     <div>
       <NavLink className={css.link} to="/register">
         Sign Up
