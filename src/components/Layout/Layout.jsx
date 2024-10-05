@@ -1,7 +1,16 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getCurrentUser } from "../../redux/users/operations";
 import { AppBar } from "../AppBar/AppBar";
 import css from "./Layout.module.css";
 
 export const Layout = ({ children }) => {
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getCurrentUser());
+  // }, [dispatch]);
+
   return (
     <>
       <AppBar />

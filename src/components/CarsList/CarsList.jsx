@@ -7,6 +7,7 @@ import { CarItem } from "../CarItem/CarItem";
 import { Container } from "../shared/components/Container/Container";
 import css from "./CarsList.module.css";
 import { CreateCarForm } from "../CreateCarForm/CreateCarForm";
+import { Button } from "../shared/components/Button/Button";
 
 // const cars = [
 //   {
@@ -42,7 +43,7 @@ export const CarsList = () => {
   // const dispatch = useDispatch();
   const cars = useSelector(selectAllCars);
 
-  console.log(cars);
+  // console.log(cars);
 
   // useEffect(() => {
   //   dispatch(fetchCars());
@@ -59,8 +60,14 @@ export const CarsList = () => {
           );
         })}
       </ul>
-      {"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"}
-      <CreateCarForm />
+      <div className={css.paginationWrapper}>
+        <Button></Button>
+        <ul className={css.paginationList}>
+          <li></li>
+        </ul>
+        <Button></Button>
+      </div>
+      {/* <CreateCarForm /> */}
     </Container>
   );
 };

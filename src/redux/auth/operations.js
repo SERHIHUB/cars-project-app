@@ -24,7 +24,6 @@ export const registerUser = createAsyncThunk(
       // деструктурувати credentials, взяти email та password
       // const response = await instanse.post("auth/login", { email, password });
       // setAuthHeader(response.data.data.token);
-      console.log(response);
 
       return response.data;
     } catch (error) {
@@ -40,7 +39,6 @@ export const logIn = createAsyncThunk(
       const response = await instanse.post("auth/login", credentials);
       // setAuthHeader(response.data.data.token);
       setAuthHeader(response.data.data.token);
-      console.log(response.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -114,7 +112,7 @@ export const refreshUser = createAsyncThunk(
       auth: { token },
     } = thunkAPI.getState();
     setAuthHeader(token);
-    const response = await instanse.get(`/users/current`);
+    const response = await instanse.get(`users/current`);
     // console.log(response.data);
     return response.data;
   },

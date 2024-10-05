@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser } from "./operations";
+import { getCurrentUser } from "./operations";
 
 const userSlice = createSlice({
   name: "users",
@@ -11,16 +11,15 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(getUser.pending, (state) => {
+      .addCase(getCurrentUser.pending, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addCase(getUser.fulfilled, (state, action) => {
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
-        console.log(state.user);
       })
-      .addCase(getUser.rejected, (state) => {
+      .addCase(getCurrentUser.rejected, (state) => {
         state.loading = false;
         state.error = true;
       }),
