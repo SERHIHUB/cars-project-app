@@ -17,10 +17,15 @@ export const createCar = createAsyncThunk(
 
 export const fetchCars = createAsyncThunk(
   "cars/fetchAllCars",
-  async (_, thunkAPI) => {
+  async ({ page, perPage }, thunkAPI) => {
     try {
-      const response = await instanse.get("cars");
-      console.log(response.data.data);
+      const response = await instanse.get("cars", {
+        params: {
+          page,
+          perPage,
+        },
+      });
+      // console.log(response.data.data);
 
       return response.data.data;
     } catch (error) {
@@ -34,9 +39,9 @@ export const getOneCar = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await instanse.get(`cars/${id}`);
-      console.log(response.data);
+      // console.log(response.data);
 
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

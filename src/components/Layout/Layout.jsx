@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getCurrentUser } from "../../redux/users/operations";
 import { AppBar } from "../AppBar/AppBar";
 import css from "./Layout.module.css";
 

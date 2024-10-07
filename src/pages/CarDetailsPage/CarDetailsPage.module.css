@@ -1,0 +1,9 @@
+.detailsButtonsList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detailsBtn {
+  width: 120px;
+  font-size: 18px;
+}

@@ -2,52 +2,54 @@ import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars } from "../../redux/cars/operations";
-import { selectAllCars } from "../../redux/cars/selectors";
+import {
+  selectAllCars,
+  selectPaginationInfo,
+} from "../../redux/cars/selectors";
 import { CarItem } from "../CarItem/CarItem";
 import { Container } from "../shared/components/Container/Container";
 import css from "./CarsList.module.css";
-import { CreateCarForm } from "../CreateCarForm/CreateCarForm";
 import { Button } from "../shared/components/Button/Button";
-
-// const cars = [
-//   {
-//     _id: "66e84a1d11685b54705a38fc",
-//     carModel: "Audi",
-//     carNumber: "AA1770KP",
-//     carPhotoURL: "http://localhost:3000/upload/1726608234303-jeep.jpg",
-//     price: "500",
-//     paymentDate: "1",
-//     contact: null,
-//     owner: "66d618878180a277354cbfd6",
-//     author: "66e847a71e97dc3f3cf10f80",
-//     createdAt: "2024-09-16T15:09:17.593+00:00",
-//     updatedAt: "2024-09-17T21:23:54.425+00:00",
-//   },
-//   {
-//     _id: "66e84d1748c1bf7d26e60b2f",
-//     carModel: "Acura",
-//     carNumber: "AA1990KP",
-//     carPhotoURL:
-//       "http://localhost:3000/upload/1726597866328-pexels-pixabay-159515.jpg",
-//     price: "500",
-//     paymentDate: "1",
-//     contact: null,
-//     owner: "66d618878180a277354cbfd6",
-//     author: "66e847a71e97dc3f3cf10f80",
-//     createdAt: "2024-09-16T15:21:59.492+00:00",
-//     updatedAt: "2024-09-17T18:31:06.893+00:00",
-//   },
-// ];
+import { PaginationComponent } from "../PaginationComponent/PaginationComponent";
+import { useState } from "react";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 export const CarsList = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const cars = useSelector(selectAllCars);
+  const paginationInfo = useSelector(selectPaginationInfo);
+  const [page, setPage] = useState(1);
+  const location = useLocation();
+  const [params, setParams] = useSearchParams();
+  const currentPage = params.get("page") ?? page;
 
-  // console.log(cars);
+  const perPage = 3;
 
-  // useEffect(() => {
-  //   dispatch(fetchCars());
-  // }, [dispatch]);
+  const changePage = (newPage) => {
+    params.set("page", newPage);
+    setParams(params);
+  };
+
+  const prevClick = () => {
+    changePage(page - 1);
+    setPage(page - 1);
+  };
+
+  const nextClick = () => {
+    changePage(page + 1);
+    setPage(page + 1);
+  };
+
+  const handleNumberClick = (itemNumber) => {
+    changePage(itemNumber);
+    setPage(itemNumber);
+  };
+
+  // const newPaginationInfo = { ...paginationInfo, page: page };
+
+  useEffect(() => {
+    dispatch(fetchCars({ page: currentPage, perPage: perPage }));
+  }, [dispatch, page]);
 
   return (
     <Container>
@@ -56,18 +58,26 @@ export const CarsList = () => {
           return (
             <li className={css.carItem} key={nanoid()}>
               <CarItem car={item} />
+              {/* <Link to={`/abonements/${item._id}`} state={location}>
+                {"Details"}
+              </Link> */}
+              <Button>
+                <Link to={`/abonements/${item._id}`} state={location}>
+                  {"Details"}
+                </Link>
+              </Button>
             </li>
           );
         })}
       </ul>
       <div className={css.paginationWrapper}>
-        <Button></Button>
-        <ul className={css.paginationList}>
-          <li></li>
-        </ul>
-        <Button></Button>
+        <PaginationComponent
+          pagination={paginationInfo}
+          handlePrevClick={prevClick}
+          handleNextClick={nextClick}
+          handleNumberClick={handleNumberClick}
+        />
       </div>
-      {/* <CreateCarForm /> */}
     </Container>
   );
 };

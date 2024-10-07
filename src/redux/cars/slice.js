@@ -11,7 +11,8 @@ const carSlice = createSlice({
   name: "cars",
   initialState: {
     items: [],
-    item: null,
+    item: {},
+    paginationInfo: {},
     loading: false,
     error: false,
   },
@@ -36,8 +37,10 @@ const carSlice = createSlice({
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
+
         state.items = action.payload.cars;
+        state.paginationInfo = action.payload.paginationInformation;
+        // console.log(state.paginationInfo);
       })
       .addCase(fetchCars.rejected, (state) => {
         state.loading = false;

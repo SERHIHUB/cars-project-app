@@ -16,6 +16,12 @@ export const UpdateUserForm = () => {
   });
 
   const onSubmit = (data) => {
+    for (const key in data) {
+      if (data[key] === "") {
+        delete data[key];
+      }
+    }
+
     console.log(data);
     reset();
   };

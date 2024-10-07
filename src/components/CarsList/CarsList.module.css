@@ -5,3 +5,12 @@
   justify-content: space-between;
   padding: 8px;
 }
+
+.arrowBtn {
+  border: none;
+  background-color: inherit;
+}
+
+.arrowIcon {
+  fill: blue;
+}

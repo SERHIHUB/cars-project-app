@@ -39,6 +39,7 @@ export const logIn = createAsyncThunk(
       const response = await instanse.post("auth/login", credentials);
       // setAuthHeader(response.data.data.token);
       setAuthHeader(response.data.data.token);
+      console.log("Login:", response.data.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -124,3 +125,29 @@ export const refreshUser = createAsyncThunk(
     },
   }
 );
+
+// export const getCurrentUser = createAsyncThunk(
+//   "users/getOneUser",
+//   async (userId, thunkAPI) => {
+//     try {
+//       const response = await instanse.get(`users/${userId}`);
+
+//       return response.data.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// );
+
+// export const getCurrentUser = createAsyncThunk(
+//   "users/getOneUser",
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await instanse.get(`users/current`);
+
+//       return response.data.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// );
