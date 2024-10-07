@@ -1,13 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instanse } from "../auth/operations";
 
-export const getUser = createAsyncThunk(
+// export const getCurrentUser = createAsyncThunk(
+//   "users/getOneUser",
+//   async (id, thunkAPI) => {
+//     try {
+//       const response = await instanse.get(`users/current/${id}`);
+
+//       return response.data.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// );
+export const getCurrentUser = createAsyncThunk(
   "users/getOneUser",
   async (_, thunkAPI) => {
     try {
-      const response = await instanse.get("users/user");
+      const response = await instanse.get(`users/current`);
 
-      console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

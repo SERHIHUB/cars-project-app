@@ -9,6 +9,7 @@ import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 import { AbonementsPage } from "./pages/AbonementsPage/AbonementsPage";
 import { ContactsPage } from "./pages/ContactsPage/ContactsPage";
+import { CarDetailsPage } from "./pages/CarDetailsPage/CarDetailsPage";
 
 import { Navigation } from "./components/Navigation/Navigation";
 import { RestrictedRoute } from "./RestrictedRoute";
@@ -44,6 +45,13 @@ function App() {
             path="/abonements"
             element={
               <PrivateRoute component={<AbonementsPage />} redirectTo="/" />
+            }
+          />
+
+          <Route
+            path="/abonements/:carId"
+            element={
+              <PrivateRoute component={<CarDetailsPage />} redirectTo="/" />
             }
           />
 

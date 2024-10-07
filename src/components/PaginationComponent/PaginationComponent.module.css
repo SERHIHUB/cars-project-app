@@ -1,0 +1,50 @@
+.paginationWrapper {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  column-gap: 16px;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.paginationList {
+  display: flex;
+  column-gap: 8px;
+  color: rgb(0, 85, 255);
+}
+
+.paginationItem {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.currentNumber {
+  background-color: #a49f9f;
+  width: 32px;
+  height: 32px;
+}
+
+.arrowIcon {
+  fill: rgb(0, 85, 255);
+}
+
+.greyArrow {
+  fill: rgb(181, 175, 175);
+}
+
+.numberAtive {
+  font-size: 24px;
+  background-color: inherit;
+}
+
+.btn {
+  border: none;
+  background-color: inherit;
+}

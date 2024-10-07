@@ -12,18 +12,7 @@ import {
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: {
-      // _id: null,
-      // name: null,
-      // email: null,
-      //   token: null,
-      // role: null,
-      // thema: null,
-      // owner: null,
-      // verify: false,
-      // verifyToken: null,
-      // avatarURL: null,
-    },
+    user: {},
     status: null,
     token: null,
     thema: "light",
@@ -44,8 +33,6 @@ const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.status = action.payload.status;
-        // console.log(state.status);
-        // console.log(action.payload);
       })
       .addCase(registerUser.rejected, (state) => {
         state.loading = false;
@@ -59,9 +46,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        // console.log(action.payload.token);
-        // console.log(state.token);
-        // console.log(state.user);
       })
       .addCase(logIn.rejected, (state) => {
         state.loading = false;
@@ -79,19 +63,17 @@ const authSlice = createSlice({
       })
       .addCase(passwordResetRequest.fulfilled, (state, action) => {
         state.requestResetStatus = action.payload.status;
-        console.log(state.requestResetStatus);
-        console.log(action.payload);
       })
       .addCase(passwordResetRequest.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
       .addCase(passwordReset.fulfilled, (state) => {
-        console.log(state);
+        // console.log(state);
         // console.log(action.payload);
       })
       .addCase(verifyToken.fulfilled, (state) => {
-        console.log(state);
+        // console.log(state);
         // console.log(action.payload);
       })
       .addCase(refreshUser.pending, (state) => {
@@ -101,8 +83,7 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
         state.token = action.payload.data.token;
-        // console.log(action.payload);
-        // console.log(state.token);
+        state.user = action.payload.data;
       }),
 });
 

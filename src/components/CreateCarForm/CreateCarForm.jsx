@@ -4,8 +4,22 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import clsx from "clsx";
 import css from "./CreateCarForm.module.css";
 import { createCarFormSchema } from "../../validationSchemas/createCarFormSchema";
+import { useDispatch } from "react-redux";
+import { createCar } from "../../redux/cars/operations";
+
+const deleteProperty = (obj) => {
+  const objLength = obj.length;
+
+  for (let i = 0; i <= objLength; i++) {
+    if (obj[i] === "") {
+      delete obj[i];
+    }
+  }
+};
 
 export const CreateCarForm = () => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -16,9 +30,23 @@ export const CreateCarForm = () => {
     mode: "onBlur",
   });
 
+  // carModel,
+  //   carNumber,
+  //   carPhotoURL,
+  //   contact,
+  //   paymentDate,
+  //   price,
+
   const onSubmit = (data) => {
-    console.log("data");
-    console.log(data);
+    // console.log(data);
+
+    for (const key in data) {
+      if (data[key] === "") {
+        delete data[key];
+      }
+    }
+    // console.log(data);
+    dispatch(createCar(data));
     reset();
   };
 

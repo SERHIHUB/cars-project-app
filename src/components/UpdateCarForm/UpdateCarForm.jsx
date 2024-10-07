@@ -5,7 +5,7 @@ import clsx from "clsx";
 import css from "./UpdateCarForm.module.css";
 import { updateCarFormSchema } from "../../validationSchemas/updateCarFormSchema";
 
-export const UpdateCarForm = () => {
+export const UpdateCarForm = ({ onCloseModal }) => {
   const {
     register,
     handleSubmit,
@@ -17,8 +17,15 @@ export const UpdateCarForm = () => {
   });
 
   const onSubmit = (data) => {
+    for (const key in data) {
+      if (data[key] === "") {
+        delete data[key];
+      }
+    }
+
     console.log(data);
     reset();
+    onCloseModal();
   };
 
   return (
