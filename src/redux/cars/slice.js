@@ -64,8 +64,9 @@ const carSlice = createSlice({
       })
       .addCase(updateCar.fulfilled, (state, action) => {
         state.loading = false;
+        console.log(action.payload);
         const carIndex = state.items.findIndex(
-          (item) => item.id === action.payload._id
+          (item) => item._id === action.payload._id
         );
         if (carIndex === -1) {
           // Додати тост
