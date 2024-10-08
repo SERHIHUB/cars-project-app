@@ -50,8 +50,16 @@ export const getOneCar = createAsyncThunk(
 
 export const updateCar = createAsyncThunk(
   "cars/editCar",
-  async (body, thunkAPI) => {
-    console.log(body);
+  async ({ carId, payload }, thunkAPI) => {
+    console.log(payload);
+    try {
+      const response = await instanse.patch(`cars/${carId}`, payload);
+      console.log(response.data);
+
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 

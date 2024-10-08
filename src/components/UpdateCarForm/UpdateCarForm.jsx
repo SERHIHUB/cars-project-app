@@ -23,7 +23,6 @@ export const UpdateCarForm = ({ onCloseModal }) => {
       }
     }
 
-    console.log(data);
     reset();
     onCloseModal();
   };

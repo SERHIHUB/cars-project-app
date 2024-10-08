@@ -10,6 +10,7 @@ import { Button } from "../../components/shared/components/Button/Button";
 import { ModalComponent } from "../../components/shared/components/ModalComponent/ModalComponent";
 import { UpdateCarForm } from "../../components/UpdateCarForm/UpdateCarForm";
 import { selectName } from "../../redux/users/selectors";
+import { UpdataPaymentForm } from "../../components/UpdatePaymentForm/UpdatePaymentForm";
 
 export const CarDetailsPage = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export const CarDetailsPage = () => {
 
   // @@@@@@@@@@@@@@@@     Модалка    @@@@@@@@@@@@@@@@@@@@@
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [openPaymentModal, setOpenPaymentModal] = useState(false);
 
   function openModal() {
     setModalIsOpen(true);
@@ -31,6 +33,18 @@ export const CarDetailsPage = () => {
 
   function onCloseModal() {
     setModalIsOpen(false);
+  }
+
+  function openPayment() {
+    setOpenPaymentModal(true);
+  }
+
+  const handleClickpayment = () => {
+    openPayment();
+  };
+
+  function closePayment() {
+    setOpenPaymentModal(false);
   }
   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -63,6 +77,10 @@ export const CarDetailsPage = () => {
             <p>{car.contact}</p>
           </li>
           <li className={css.detailsItem}>
+            <p>Оплачено:</p>
+            <p>{car.isPaid ? "Так" : "Ні"}</p>
+          </li>
+          <li className={css.detailsItem}>
             <p>Оплату відзначив:</p>
             <p>{userName}</p>
           </li>
@@ -71,12 +89,22 @@ export const CarDetailsPage = () => {
       <ModalComponent closeModal={onCloseModal} modalIsOpen={modalIsOpen}>
         <UpdateCarForm car={car} onCloseModal={onCloseModal} />
       </ModalComponent>
+      <ModalComponent closeModal={closePayment} modalIsOpen={openPaymentModal}>
+        <UpdataPaymentForm
+          lastPaidDate={car.lastPaidDate}
+          carId={car._id}
+          onCloseModal={closePayment}
+        />
+      </ModalComponent>
       <div className={css.detailsButtonsList}>
         <Button className={css.detailsBtn}>
           <Link to={location.state}>{"Go back"}</Link>
         </Button>
         <Button className={css.detailsBtn} onClick={handleClickItem}>
           UPDATE
+        </Button>
+        <Button className={css.payment} onClick={handleClickpayment}>
+          ADD PAYMENT
         </Button>
       </div>
     </Container>
