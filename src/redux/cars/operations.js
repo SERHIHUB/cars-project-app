@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instanse } from "../auth/operations";
+import toast from "react-hot-toast";
 
 export const createCar = createAsyncThunk(
   "cars/create",
@@ -51,13 +52,14 @@ export const getOneCar = createAsyncThunk(
 export const updateCar = createAsyncThunk(
   "cars/editCar",
   async ({ carId, payload }, thunkAPI) => {
-    console.log(payload);
+    // console.log(payload);
     try {
       const response = await instanse.patch(`cars/${carId}`, payload);
       console.log(response.data);
 
       return response.data.data;
     } catch (error) {
+      toast.error(error.status == 409 && "Цей автомобіль оплачений!");
       return thunkAPI.rejectWithValue(error);
     }
   }

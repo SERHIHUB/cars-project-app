@@ -21,6 +21,8 @@ import { useEffect } from "react";
 import { refreshUser } from "./redux/auth/operations";
 import { PrivateRoute } from "./PrivateRoute";
 
+import { Toaster } from "react-hot-toast";
+
 // const WelcomePage = lazy(() => import("./pages/WelcomePage/WelcomePage"));
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 // const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
@@ -80,6 +82,7 @@ function App() {
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <Toaster />
       </Layout>
     </>
   );

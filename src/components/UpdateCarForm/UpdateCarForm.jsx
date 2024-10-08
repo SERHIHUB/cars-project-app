@@ -1,16 +1,33 @@
 import { Container } from "../shared/components/Container/Container";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import clsx from "clsx";
 import css from "./UpdateCarForm.module.css";
 import { updateCarFormSchema } from "../../validationSchemas/updateCarFormSchema";
+import { updateCar } from "../../redux/cars/operations";
+import { Picture } from "../Picture/Picture";
 
-export const UpdateCarForm = ({ onCloseModal }) => {
+export const UpdateCarForm = ({ onCloseModal, car }) => {
+  const dispatch = useDispatch();
+
+  let fileUrl;
+  // ------------------------------
+  const onChange = (event) => {
+    console.log(event.target.files[0]);
+    // fileUrl = URL.createObjectURL(event.target.files[0]);
+    fileUrl = event.target.files[0];
+
+    return fileUrl;
+  };
+  // ------------------------------
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
+    control,
   } = useForm({
     resolver: yupResolver(updateCarFormSchema),
     mode: "onBlur",
@@ -22,6 +39,31 @@ export const UpdateCarForm = ({ onCloseModal }) => {
         delete data[key];
       }
     }
+
+    let newData = Object.fromEntries(
+      Object.entries(data).map((entry) => [
+        entry[0],
+        entry[1].toLowerCase().trim(),
+      ])
+    );
+
+    const payloadObj = {
+      body: newData,
+      file: fileUrl,
+    };
+
+    // console.log(data.carPhotoURL[0]);
+
+    const updateObj = {
+      carId: car._id,
+      payload: payloadObj,
+    };
+
+    // picUrl = URL.createObjectURL(data.carPhotoURL[0]);
+
+    dispatch(updateCar(updateObj));
+
+    console.log(updateObj);
 
     reset();
     onCloseModal();
@@ -94,13 +136,36 @@ export const UpdateCarForm = ({ onCloseModal }) => {
           className={clsx(css.field, { [css.errorField]: errors.carPhotoURL })}
         >
           Photo
-          <input
+          {/* <input
             className={clsx(css.input, {
               [css.inputError]: errors.carPhotoURL,
             })}
+            type="file"
             placeholder="Select photo"
-            {...register("carPhotoURL", { required: true })}
+            {...register("carPhotoURL")}
+          /> */}
+          {/* -------------------------------- */}
+          <Controller
+            control={control}
+            name={"carPhotoURL"}
+            rules={{ required: "Recipe picture is required" }}
+            render={({ field: { value, ...field } }) => {
+              return (
+                <input
+                  {...field}
+                  value={value?.fileName}
+                  // onChange={(event) => {
+                  //   onChange(event.target.files[0]);
+                  // }}
+                  onChange={onChange}
+                  type="file"
+                  id="picture"
+                  accept="image/*,.jpg,.png,"
+                />
+              );
+            }}
           />
+          {/* ---------------------------------- */}
           {errors.carPhotoURL && (
             <span className={css.errorsMessage}>
               {errors.carPhotoURL.message}
@@ -115,7 +180,7 @@ export const UpdateCarForm = ({ onCloseModal }) => {
           <input
             className={clsx(css.input, { [css.inputError]: errors.contact })}
             placeholder="Enter contact"
-            {...register("contact", { required: true })}
+            {...register("contact")}
           />
           {errors.contact && (
             <span className={css.errorsMessage}>{errors.contact.message}</span>
