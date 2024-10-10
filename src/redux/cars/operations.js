@@ -51,10 +51,10 @@ export const getOneCar = createAsyncThunk(
 
 export const updateCar = createAsyncThunk(
   "cars/editCar",
-  async ({ carId, payload }, thunkAPI) => {
-    // console.log(payload);
+  async ({ carId, carPhoto, body }, thunkAPI) => {
+    console.log(body);
     try {
-      const response = await instanse.patch(`cars/${carId}`, payload);
+      const response = await instanse.patch(`cars/${carId}`, carPhoto, body);
       console.log(response.data);
 
       return response.data.data;

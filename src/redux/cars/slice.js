@@ -77,7 +77,6 @@ const carSlice = createSlice({
         state.items[carIndex] = action.payload;
       })
       .addCase(updateCar.rejected, (state) => {
-        console.log(updateCar.rejected);
         state.loading = false;
         state.error = true;
       })

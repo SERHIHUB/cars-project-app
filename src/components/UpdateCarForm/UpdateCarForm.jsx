@@ -7,18 +7,17 @@ import css from "./UpdateCarForm.module.css";
 import { updateCarFormSchema } from "../../validationSchemas/updateCarFormSchema";
 import { updateCar } from "../../redux/cars/operations";
 import { Picture } from "../Picture/Picture";
+import { useState } from "react";
 
 export const UpdateCarForm = ({ onCloseModal, car }) => {
   const dispatch = useDispatch();
+  const [selectedFile, setSelectedFile] = useState(null);
 
-  let fileUrl;
   // ------------------------------
   const onChange = (event) => {
-    console.log(event.target.files[0]);
-    // fileUrl = URL.createObjectURL(event.target.files[0]);
-    fileUrl = event.target.files[0];
+    // console.log(event.target.files[0]);
 
-    return fileUrl;
+    setSelectedFile(event.target.files[0]);
   };
   // ------------------------------
 
@@ -35,10 +34,11 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
 
   const onSubmit = (data) => {
     for (const key in data) {
-      if (data[key] === "") {
+      if (data[key] === "" || data[key] === undefined) {
         delete data[key];
       }
     }
+    // console.log(data);
 
     let newData = Object.fromEntries(
       Object.entries(data).map((entry) => [
@@ -47,23 +47,30 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
       ])
     );
 
+    const formData = new FormData();
+
+    formData.append("file", selectedFile);
+
+    // console.log(formData);
+
     const payloadObj = {
       body: newData,
-      file: fileUrl,
+      carPhoto: formData,
     };
 
-    // console.log(data.carPhotoURL[0]);
+    // console.log(payloadObj);
 
     const updateObj = {
       carId: car._id,
-      payload: payloadObj,
+      carPhoto: formData,
+      body: newData,
     };
 
     // picUrl = URL.createObjectURL(data.carPhotoURL[0]);
 
     dispatch(updateCar(updateObj));
 
-    console.log(updateObj);
+    // console.log(updateObj);
 
     reset();
     onCloseModal();
@@ -133,7 +140,7 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
         </label>
 
         <label
-          className={clsx(css.field, { [css.errorField]: errors.carPhotoURL })}
+          className={clsx(css.field, { [css.errorField]: errors.carPhoto })}
         >
           Photo
           {/* <input
@@ -147,7 +154,7 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
           {/* -------------------------------- */}
           <Controller
             control={control}
-            name={"carPhotoURL"}
+            name={"carPhoto"}
             rules={{ required: "Recipe picture is required" }}
             render={({ field: { value, ...field } }) => {
               return (
@@ -166,10 +173,8 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
             }}
           />
           {/* ---------------------------------- */}
-          {errors.carPhotoURL && (
-            <span className={css.errorsMessage}>
-              {errors.carPhotoURL.message}
-            </span>
+          {errors.carPhoto && (
+            <span className={css.errorsMessage}>{errors.carPhoto.message}</span>
           )}
         </label>
 
