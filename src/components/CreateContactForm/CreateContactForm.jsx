@@ -1,11 +1,15 @@
 import { Container } from "../shared/components/Container/Container";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import clsx from "clsx";
 import css from "./CreateContactForm.module.css";
 import { createContactFormSchema } from "../../validationSchemas/createContactFormSchema";
+import { createContact } from "../../redux/contacts/operations";
 
 export const CreateContactForm = () => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -18,6 +22,8 @@ export const CreateContactForm = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    dispatch(createContact(data));
+
     reset();
   };
 
