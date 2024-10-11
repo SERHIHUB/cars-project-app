@@ -49,13 +49,29 @@ export const getOneCar = createAsyncThunk(
   }
 );
 
+// ========== працює оплата ===============================================
+// export const updateCar = createAsyncThunk(
+//   "cars/editCar",
+//   async ({ carId, body }, thunkAPI) => {
+//     console.log(body);
+//     try {
+//       const response = await instanse.patch(`cars/${carId}`, body);
+//       console.log(response.data);
+
+//       return response.data.data;
+//     } catch (error) {
+//       toast.error(error.status == 409 && "Цей автомобіль оплачений!");
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// );
+// =========================================================================
+
 export const updateCar = createAsyncThunk(
   "cars/editCar",
-  async ({ carId, carPhoto, body }, thunkAPI) => {
-    console.log(body);
+  async ({ carId, body }, thunkAPI) => {
     try {
-      const response = await instanse.patch(`cars/${carId}`, carPhoto, body);
-      console.log(response.data);
+      const response = await instanse.patch(`cars/${carId}`, body);
 
       return response.data.data;
     } catch (error) {

@@ -39,7 +39,7 @@ export const logIn = createAsyncThunk(
       const response = await instanse.post("auth/login", credentials);
       // setAuthHeader(response.data.data.token);
       setAuthHeader(response.data.data.token);
-      console.log("Login:", response.data.data);
+      // console.log("Login:", response.data.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
