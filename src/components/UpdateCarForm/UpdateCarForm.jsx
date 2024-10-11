@@ -1,16 +1,31 @@
 import { Container } from "../shared/components/Container/Container";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import clsx from "clsx";
 import css from "./UpdateCarForm.module.css";
 import { updateCarFormSchema } from "../../validationSchemas/updateCarFormSchema";
+import { updateCar } from "../../redux/cars/operations";
+import { useState } from "react";
 
-export const UpdateCarForm = ({ onCloseModal }) => {
+export const UpdateCarForm = ({ onCloseModal, car }) => {
+  const dispatch = useDispatch();
+  // const [selectedFile, setSelectedFile] = useState(null);
+
+  // ------------------------------
+  // const onChange = (event) => {
+  //   event.preventDefault();
+
+  //   setSelectedFile(event.target.files[0]);
+  // };
+  // ------------------------------
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
+    // control,
   } = useForm({
     resolver: yupResolver(updateCarFormSchema),
     mode: "onBlur",
@@ -18,17 +33,48 @@ export const UpdateCarForm = ({ onCloseModal }) => {
 
   const onSubmit = (data) => {
     for (const key in data) {
-      if (data[key] === "") {
+      if (data[key] === "" || data[key] === undefined) {
         delete data[key];
       }
     }
+
+    let newData = Object.fromEntries(
+      Object.entries(data).map((entry) => [
+        entry[0],
+        entry[1].toLowerCase().trim(),
+      ])
+    );
+
+    // const formData = new FormData();
+
+    // formData.append("carPhoto", selectedFile);
+
+    // ========= працює зміна властивостей ============
+    // const payload = {
+    //   carPhoto: formData,
+    // };
+
+    // const updateObj = {
+    //   carId: car._id,
+    //   body: newData,
+    // };
+    // =================================================
+
+    const updateObj = {
+      carId: car._id,
+      body: newData,
+    };
+
+    console.log(updateObj);
+
+    dispatch(updateCar(updateObj));
 
     reset();
     onCloseModal();
   };
 
   return (
-    <Container>
+    <div>
       <form className={css.updateCarForm} onSubmit={handleSubmit(onSubmit)}>
         <label
           className={clsx(css.field, { [css.errorField]: errors.carModel })}
@@ -90,23 +136,33 @@ export const UpdateCarForm = ({ onCloseModal }) => {
           )}
         </label>
 
-        <label
-          className={clsx(css.field, { [css.errorField]: errors.carPhotoURL })}
+        {/* <label
+          className={clsx(css.field, { [css.errorField]: errors.carPhoto })}
         >
           Photo
-          <input
-            className={clsx(css.input, {
-              [css.inputError]: errors.carPhotoURL,
-            })}
-            placeholder="Select photo"
-            {...register("carPhotoURL", { required: true })}
+          
+          <Controller
+            control={control}
+            name={"carPhoto"}
+            rules={{ required: "Recipe picture is required" }}
+            render={({ field: { value, ...field } }) => {
+              return (
+                <input
+                  {...field}
+                  value={value?.fileName}
+                  onChange={onChange}
+                  type="file"
+                  id="picture"
+                  accept="image/*"
+                />
+              );
+            }}
           />
-          {errors.carPhotoURL && (
-            <span className={css.errorsMessage}>
-              {errors.carPhotoURL.message}
-            </span>
+          
+          {errors.carPhoto && (
+            <span className={css.errorsMessage}>{errors.carPhoto.message}</span>
           )}
-        </label>
+        </label> */}
 
         <label
           className={clsx(css.field, { [css.errorField]: errors.contact })}
@@ -115,7 +171,7 @@ export const UpdateCarForm = ({ onCloseModal }) => {
           <input
             className={clsx(css.input, { [css.inputError]: errors.contact })}
             placeholder="Enter contact"
-            {...register("contact", { required: true })}
+            {...register("contact")}
           />
           {errors.contact && (
             <span className={css.errorsMessage}>{errors.contact.message}</span>
@@ -124,6 +180,6 @@ export const UpdateCarForm = ({ onCloseModal }) => {
 
         <input className={css.submit} type="submit" value="Select" />
       </form>
-    </Container>
+    </div>
   );
 };

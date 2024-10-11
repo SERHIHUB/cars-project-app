@@ -19,7 +19,7 @@ export const UpdataPaymentForm = ({ onCloseModal, carId, lastPaidDate }) => {
     const updateObject = {
       carId: carId,
       // isPaid: true,
-      payload,
+      body: payload,
     };
     dispatch(updateCar(updateObject));
 
