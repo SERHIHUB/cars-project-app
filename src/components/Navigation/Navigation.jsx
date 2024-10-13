@@ -24,6 +24,11 @@ export const Navigation = () => {
           Contacts
         </NavLink>
       )}
+      {isLoggedIn && (
+        <NavLink to="/my-profile" className={linkActive}>
+          Profile
+        </NavLink>
+      )}
     </nav>
   );
 };

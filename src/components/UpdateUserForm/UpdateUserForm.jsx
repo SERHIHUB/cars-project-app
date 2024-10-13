@@ -53,7 +53,7 @@ export const UpdateUserForm = () => {
           )}
         </label>
 
-        <label
+        {/* <label
           className={clsx(css.field, { [css.errorField]: errors.avatarURL })}
         >
           Avatar
@@ -67,7 +67,7 @@ export const UpdateUserForm = () => {
               {errors.avatarURL.message}
             </span>
           )}
-        </label>
+        </label> */}
 
         <label
           className={clsx(css.field, { [css.errorField]: errors.password })}

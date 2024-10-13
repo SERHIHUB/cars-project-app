@@ -4,13 +4,10 @@ import { instanse } from "../auth/operations";
 export const createContact = createAsyncThunk(
   "contacts/addContact",
   async (body, thunkAPI) => {
-    console.log(body);
     try {
       const response = await instanse.post("contacts", body);
 
-      console.log(response.data);
-
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -22,6 +19,19 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await instanse.get("contacts");
+
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const updateContact = createAsyncThunk(
+  "contacts/edit",
+  async (payload, thunkAPI) => {
+    try {
+      const response = await instanse.patch("contacts", payload);
       console.log(response.data);
 
       return response.data.data;

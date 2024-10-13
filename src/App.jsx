@@ -22,6 +22,7 @@ import { refreshUser } from "./redux/auth/operations";
 import { PrivateRoute } from "./PrivateRoute";
 
 import { Toaster } from "react-hot-toast";
+import { UserProfilePage } from "./pages/UserProfilePage/UserProfilePage";
 
 // const WelcomePage = lazy(() => import("./pages/WelcomePage/WelcomePage"));
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -61,6 +62,13 @@ function App() {
             path="/contacts"
             element={
               <PrivateRoute component={<ContactsPage />} redirectTo="/" />
+            }
+          />
+
+          <Route
+            path="/my-profile"
+            element={
+              <PrivateRoute component={<UserProfilePage />} redirectTo="/" />
             }
           />
 

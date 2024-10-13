@@ -32,12 +32,19 @@ export const CreateCarForm = ({ onCloseModal }) => {
 
   const onSubmit = (data) => {
     for (const key in data) {
-      if (data[key] === "") {
+      if (data[key] === "" || data[key] === undefined) {
         delete data[key];
       }
     }
-    // console.log(data);
-    dispatch(createCar(data));
+
+    let newData = Object.fromEntries(
+      Object.entries(data).map((entry) => [
+        entry[0],
+        entry[1].toLowerCase().trim(),
+      ])
+    );
+
+    dispatch(createCar(newData));
 
     reset();
     onCloseModal();

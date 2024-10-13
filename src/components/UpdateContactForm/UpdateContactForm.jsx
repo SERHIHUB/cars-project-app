@@ -4,8 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import clsx from "clsx";
 import css from "./UpdateContactForm.module.css";
 import { updateContactFormSchema } from "../../validationSchemas/updateContactForm";
+import { useDispatch } from "react-redux";
+import { updateContact } from "../../redux/contacts/operations";
 
 export const UpdateContactForm = () => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -18,12 +22,20 @@ export const UpdateContactForm = () => {
 
   const onSubmit = (data) => {
     for (const key in data) {
-      if (data[key] === "") {
+      if (data[key] === "" || data[key] === undefined) {
         delete data[key];
       }
     }
 
-    console.log(data);
+    let newData = Object.fromEntries(
+      Object.entries(data).map((entry) => [
+        entry[0],
+        entry[1].toLowerCase().trim(),
+      ])
+    );
+
+    console.log(newData);
+    dispatch(updateContact(newData));
     reset();
   };
 

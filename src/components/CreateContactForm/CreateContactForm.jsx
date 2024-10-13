@@ -21,8 +21,20 @@ export const CreateContactForm = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
-    dispatch(createContact(data));
+    for (const key in data) {
+      if (data[key] === "" || data[key] === undefined) {
+        delete data[key];
+      }
+    }
+
+    let newData = Object.fromEntries(
+      Object.entries(data).map((entry) => [
+        entry[0],
+        entry[1].toLowerCase().trim(),
+      ])
+    );
+
+    dispatch(createContact(newData));
 
     reset();
   };

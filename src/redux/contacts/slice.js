@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchContacts, createContact } from "./operations";
+import toast from "react-hot-toast";
+import { fetchContacts, createContact, updateContact } from "./operations";
 
 const contactSlice = createSlice({
   name: "contacts",
@@ -17,7 +18,6 @@ const contactSlice = createSlice({
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.loading = false;
 
-        console.log(action.payload);
         state.items = action.payload;
       })
       .addCase(fetchContacts.rejected, (state) => {
@@ -31,10 +31,29 @@ const contactSlice = createSlice({
       .addCase(createContact.fulfilled, (state, action) => {
         state.loading = false;
 
-        console.log(action.payload);
-        state.items = state.items.push(action.payload);
+        state.items.push(action.payload);
       })
       .addCase(createContact.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(updateContact.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(updateContact.fulfilled, (state, action) => {
+        state.loading = false;
+
+        const contactIndex = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+
+        if (contactIndex === -1) {
+          return toast.error("Contact not found.", { duration: 2000 });
+        }
+        state.items[contactIndex] = action.payload;
+      })
+      .addCase(updateContact.rejected, (state) => {
         state.loading = false;
         state.error = true;
       }),
