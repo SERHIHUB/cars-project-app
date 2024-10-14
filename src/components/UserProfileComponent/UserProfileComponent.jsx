@@ -14,17 +14,15 @@ export const UserProfileComponent = () => {
         {/* {currentUser.avatar && <img src={currentUser.avatar} />} */}
 
         {/* <img
-          src={`https://CAR-PROJECT-DB.onrender.com/upload/1728670281047-audi.jpg`}
+          src={`https://car-project-db.onrender.com/upload/1728670281047-audi.jpg`}
         /> */}
-        <img
-          src={`https://localhost:3000.com/upload/1728817120436-dodge.jpg`}
-        />
+        <img src={`http://localhost:3000/upload/1728822613843-dodge.jpg`} />
       </div>
       <p>{`name: ${currentUser.name}`}</p>
       <p>{`email: ${currentUser.email}`}</p>
       <p>{`status: ${currentUser.role}`}</p>
       <p>{`thema: ${currentUser.thema}`}</p>
-      <p>{`avatar: ${currentUser.avatar}`}</p>
+      <p>{`avatar: ${currentUser.avatarURL}`}</p>
     </Container>
   );
 };
