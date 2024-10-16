@@ -6,6 +6,10 @@
   padding: 8px;
 }
 
+.carItem {
+  padding: 4px;
+}
+
 .arrowBtn {
   border: none;
   background-color: inherit;

@@ -83,9 +83,9 @@ export const updateCar = createAsyncThunk(
 
 export const deleteCar = createAsyncThunk(
   "cars/deleteCar",
-  async (id, thunkAPI) => {
+  async (carId, thunkAPI) => {
     try {
-      const response = await instanse.delete(`cars/${id}`);
+      const response = await instanse.delete(`cars/${carId}`);
       console.log(response);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
