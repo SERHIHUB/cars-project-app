@@ -3,21 +3,30 @@ import { ModalComponent } from "../shared/components/ModalComponent/ModalCompone
 import { UpdateContactForm } from "../UpdateContactForm/UpdateContactForm";
 import { useState } from "react";
 import css from "./ContactItem.module.css";
+import { DeleteContact } from "../DeleteContact/DeleteContact";
 
 export const ContactItem = ({ contact }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [optionsModalIsOpen, setOptionsModalIsOpen] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
-  function openEditModal() {
-    setModalIsOpen(true);
-  }
+  // function openEditModal() {
+  //   setModalIsOpen(true);
+  // }
 
   const handleClickEditModal = () => {
-    openEditModal();
+    setModalIsOpen(true);
   };
 
   function onCloseEditModal() {
     setModalIsOpen(false);
+  }
+
+  const handleClickDeleteModal = () => {
+    setDeleteModalIsOpen(true);
+  };
+
+  function onCloseDeleteModal() {
+    setDeleteModalIsOpen(false);
   }
 
   // const openOptionsModal = () => {
@@ -40,19 +49,21 @@ export const ContactItem = ({ contact }) => {
     <div className={css.contactWrapper}>
       <p>{`name: ${contact.name}`}</p>
       <p>{`number: ${contact.number}`}</p>
-      {/* <Button onClick={handleClickOptionModal}>Options</Button> */}
-      <Button onClick={handleClickEditModal}>Update</Button>
 
-      {/* <ModalComponent
-        closeModal={closeOptionsModal}
-        modalIsOpen={optionsModalIsOpen}
-      >
+      <div>
         <Button onClick={handleClickEditModal}>Update</Button>
-        <Button onClick={handleClickDeleteContact}>Delete</Button>
-      </ModalComponent> */}
+        <Button onClick={handleClickDeleteModal}>Delete</Button>
+      </div>
 
       <ModalComponent closeModal={onCloseEditModal} modalIsOpen={modalIsOpen}>
         <UpdateContactForm contact={contact} onCloseModal={onCloseEditModal} />
+      </ModalComponent>
+
+      <ModalComponent
+        closeModal={onCloseDeleteModal}
+        modalIsOpen={deleteModalIsOpen}
+      >
+        <DeleteContact contact={contact} closeModal={onCloseDeleteModal} />
       </ModalComponent>
     </div>
   );

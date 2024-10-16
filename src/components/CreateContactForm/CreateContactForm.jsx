@@ -7,7 +7,7 @@ import css from "./CreateContactForm.module.css";
 import { createContactFormSchema } from "../../validationSchemas/createContactFormSchema";
 import { createContact } from "../../redux/contacts/operations";
 
-export const CreateContactForm = () => {
+export const CreateContactForm = ({ onCloseModal }) => {
   const dispatch = useDispatch();
 
   const {
@@ -21,11 +21,11 @@ export const CreateContactForm = () => {
   });
 
   const onSubmit = (data) => {
-    for (const key in data) {
-      if (data[key] === "" || data[key] === undefined) {
-        delete data[key];
-      }
-    }
+    // for (const key in data) {
+    //   if (data[key] === "" || data[key] === undefined) {
+    //     delete data[key];
+    //   }
+    // }
 
     let newData = Object.fromEntries(
       Object.entries(data).map((entry) => [
@@ -37,6 +37,7 @@ export const CreateContactForm = () => {
     dispatch(createContact(newData));
 
     reset();
+    onCloseModal();
   };
 
   return (
@@ -74,7 +75,7 @@ export const CreateContactForm = () => {
           )}
         </label>
 
-        <label
+        {/* <label
           className={clsx(css.field, { [css.errorField]: errors.department })}
         >
           Department
@@ -88,7 +89,7 @@ export const CreateContactForm = () => {
               {errors.department.message}
             </span>
           )}
-        </label>
+        </label> */}
 
         <input className={css.submit} type="submit" value="Select" />
       </form>

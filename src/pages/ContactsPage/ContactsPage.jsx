@@ -8,12 +8,8 @@ import css from "./ContactsPage.module.css";
 export const ContactsPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  function openModal() {
-    setModalIsOpen(true);
-  }
-
   const handleClickModal = () => {
-    openModal();
+    setModalIsOpen(true);
   };
 
   function onCloseModal() {

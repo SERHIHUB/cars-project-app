@@ -9,20 +9,11 @@ export const UserProfileComponent = () => {
 
   return (
     <Container>
-      {/* ???????????????????????????????????????????????????? */}
-      <div>
-        {/* {currentUser.avatar && <img src={currentUser.avatar} />} */}
-
-        {/* <img
-          src={`https://car-project-db.onrender.com/upload/1728670281047-audi.jpg`}
-        /> */}
-        <img src={`http://localhost:3000/upload/1728822613843-dodge.jpg`} />
-      </div>
+      <div>{currentUser.avatarURL && <img src={currentUser.avatarURL} />}</div>
       <p>{`name: ${currentUser.name}`}</p>
       <p>{`email: ${currentUser.email}`}</p>
       <p>{`status: ${currentUser.role}`}</p>
       <p>{`thema: ${currentUser.thema}`}</p>
-      <p>{`avatar: ${currentUser.avatarURL}`}</p>
     </Container>
   );
 };
