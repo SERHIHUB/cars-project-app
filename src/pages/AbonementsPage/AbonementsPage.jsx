@@ -14,12 +14,13 @@ export const AbonementsPage = () => {
   // @@@@@@@@@@@@@@@@     Модалка    @@@@@@@@@@@@@@@@@@@@@
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  function openModal() {
-    setModalIsOpen(true);
-  }
+  // function openModal() {
+  //   setModalIsOpen(true);
+  // }
 
   const handleClickModal = () => {
-    openModal();
+    setModalIsOpen(true);
+    // openModal();
   };
 
   function onCloseModal() {
@@ -27,9 +28,9 @@ export const AbonementsPage = () => {
   }
   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-  useEffect(() => {
-    dispatch(getCurrentUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getCurrentUser());
+  // }, [dispatch]);
 
   return (
     <div>

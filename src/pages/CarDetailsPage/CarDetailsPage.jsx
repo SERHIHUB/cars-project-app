@@ -25,36 +25,39 @@ export const CarDetailsPage = () => {
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
   const [openPictureModal, setOpenPictureModal] = useState(false);
 
-  function openModal() {
-    setModalIsOpen(true);
-  }
+  // function openModal() {
+  //   setModalIsOpen(true);
+  // }
 
   const handleClickItem = () => {
-    openModal();
+    setModalIsOpen(true);
+    // openModal();
   };
 
   function onCloseModal() {
     setModalIsOpen(false);
   }
 
-  function openPayment() {
-    setOpenPaymentModal(true);
-  }
+  // function openPayment() {
+  //   setOpenPaymentModal(true);
+  // }
 
   const handleClickPayment = () => {
-    openPayment();
+    setOpenPaymentModal(true);
+    // openPayment();
   };
 
   function closePayment() {
     setOpenPaymentModal(false);
   }
 
-  function pictureModalOpen() {
-    setOpenPictureModal(true);
-  }
+  // function pictureModalOpen() {
+  //   setOpenPictureModal(true);
+  // }
 
   const handleClickPicture = () => {
-    pictureModalOpen();
+    setOpenPictureModal(true);
+    // pictureModalOpen();
   };
 
   function onClosePictureModal() {
