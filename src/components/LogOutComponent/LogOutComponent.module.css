@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  column-gap: 24px;
+  align-items: center;
+}
+
+.btn {
+  padding: 4px 16px;
+  background-image: linear-gradient(
+    120deg,
+    rgba(2, 6, 14, 0.3),
+    rgba(41, 4, 252, 0.3)
+  );
+  border: none;
+  border-radius: 8px;
+}

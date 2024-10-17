@@ -1,31 +1,35 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
-import css from "./Navigation.module.css";
+import css from "./NavigationBurger.module.css";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 const linkActive = ({ isActive }) => clsx(css.nav, { [css.active]: isActive });
 
-export const Navigation = ({ className }) => {
+export const NavigationBurger = ({ onCloseModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
+  const handleClick = () => {
+    onCloseModal();
+  };
+
   return (
-    <nav className={clsx(css.navList, { [className]: className })}>
-      <NavLink to="/" className={linkActive}>
+    <nav className={css.navList}>
+      <NavLink to="/" className={linkActive} onClick={handleClick}>
         Home
       </NavLink>
       {isLoggedIn && (
-        <NavLink to="/abonements" className={linkActive}>
+        <NavLink to="/abonements" className={linkActive} onClick={handleClick}>
           Abonements
         </NavLink>
       )}
       {isLoggedIn && (
-        <NavLink to="/contacts" className={linkActive}>
+        <NavLink to="/contacts" className={linkActive} onClick={handleClick}>
           Contacts
         </NavLink>
       )}
       {isLoggedIn && (
-        <NavLink to="/my-profile" className={linkActive}>
+        <NavLink to="/my-profile" className={linkActive} onClick={handleClick}>
           Profile
         </NavLink>
       )}
