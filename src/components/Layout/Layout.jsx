@@ -11,9 +11,9 @@ export const Layout = ({ children }) => {
   // }, [dispatch]);
 
   return (
-    <>
+    <div className={css.wrapper}>
       <AppBar />
       {children}
-    </>
+    </div>
   );
 };

@@ -7,7 +7,6 @@ export const createCar = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const response = await instanse.post("cars", body);
-      console.log(response.data);
 
       return response.data;
     } catch (error) {
@@ -86,7 +85,6 @@ export const deleteCar = createAsyncThunk(
   async (carId, thunkAPI) => {
     try {
       const response = await instanse.delete(`cars/${carId}`);
-      console.log(response);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

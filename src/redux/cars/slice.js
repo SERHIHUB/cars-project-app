@@ -24,8 +24,8 @@ const carSlice = createSlice({
       })
       .addCase(createCar.fulfilled, (state, action) => {
         state.loading = false;
-        state.items.push(action.payload);
         console.log(action.payload);
+        state.items.push(action.payload.data);
       })
       .addCase(createCar.rejected, (state) => {
         state.loading = false;
@@ -86,9 +86,10 @@ const carSlice = createSlice({
       })
       .addCase(deleteCar.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = state.items.filter(
-          (item) => item._id !== action.payload.id
-        );
+        console.log(action.payload);
+        // state.items = state.items.filter(
+        //   (item) => item._id !== action.payload.id
+        // );
       })
       .addCase(deleteCar.rejected, (state) => {
         state.loading = false;

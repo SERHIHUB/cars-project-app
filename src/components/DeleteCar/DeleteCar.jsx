@@ -8,7 +8,6 @@ export const DeleteCar = ({ car, closeModal }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    console.log(car._id);
     dispatch(deleteCar(car._id));
     closeModal();
   };
