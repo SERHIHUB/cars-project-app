@@ -45,7 +45,7 @@ img {
 }
 
 body {
-  background: var(--background);
+  /* background: var(--background); */
   height: 100vh;
   overflow: hidden;
   overflow-y: auto;

@@ -2,3 +2,8 @@
   border: 1px solid #000;
   padding: 8px;
 }
+
+.btnContainer {
+  display: flex;
+  justify-content: space-between;
+}
