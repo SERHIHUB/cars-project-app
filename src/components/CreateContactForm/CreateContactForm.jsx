@@ -41,7 +41,7 @@ export const CreateContactForm = ({ onCloseModal }) => {
   };
 
   return (
-    <Container>
+    <Container className={css.container}>
       <form className={css.createContactForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={clsx(css.field, { [css.errorField]: errors.name })}>
           Name

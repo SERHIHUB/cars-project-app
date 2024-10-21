@@ -6,6 +6,7 @@ import {
   getOneCar,
   updateCar,
 } from "./operations";
+import toast from "react-hot-toast";
 
 const carSlice = createSlice({
   name: "cars",
@@ -64,13 +65,13 @@ const carSlice = createSlice({
       })
       .addCase(updateCar.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
+        // console.log(action.payload);
         const carIndex = state.items.findIndex(
           (item) => item._id === action.payload._id
         );
         if (carIndex === -1) {
           // Додати тост
-          console.log("Car was not found!!!");
+          toast.error("Автомобіль не знайдено!");
           return;
         }
 

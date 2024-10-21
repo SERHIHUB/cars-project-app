@@ -57,13 +57,14 @@ export const RegisterForm = () => {
   };
 
   return (
-    <Container>
+    <Container className={css.registerContainer}>
       {/* Зробити модалку для повідомлення */}
       {registerStatus == 200 && (
         <div>
           <h2>Підтвердіть вашу пошту.</h2>
         </div>
       )}
+      <h2>Зараєструватися</h2>
       <form className={css.registerForm} onSubmit={handleSubmit(onSubmit)}>
         <label
           className={clsx(css.field, { [css.errorField]: errors.userName })}

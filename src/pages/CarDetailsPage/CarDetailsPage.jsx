@@ -12,6 +12,10 @@ import { UpdateCarForm } from "../../components/UpdateCarForm/UpdateCarForm";
 import { selectName } from "../../redux/users/selectors";
 import { UpdataPaymentForm } from "../../components/UpdatePaymentForm/UpdatePaymentForm";
 import { UpdateCarPictureForm } from "../../components/UpdateCarPictureForm/UpdateCarPictureForm";
+import { RiArrowGoBackLine } from "react-icons/ri";
+import { BsCashCoin } from "react-icons/bs";
+import { IoImageOutline } from "react-icons/io5";
+import { MdEdit } from "react-icons/md";
 
 export const CarDetailsPage = () => {
   const dispatch = useDispatch();
@@ -25,39 +29,24 @@ export const CarDetailsPage = () => {
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
   const [openPictureModal, setOpenPictureModal] = useState(false);
 
-  // function openModal() {
-  //   setModalIsOpen(true);
-  // }
-
   const handleClickItem = () => {
     setModalIsOpen(true);
-    // openModal();
   };
 
   function onCloseModal() {
     setModalIsOpen(false);
   }
 
-  // function openPayment() {
-  //   setOpenPaymentModal(true);
-  // }
-
   const handleClickPayment = () => {
     setOpenPaymentModal(true);
-    // openPayment();
   };
 
   function closePayment() {
     setOpenPaymentModal(false);
   }
 
-  // function pictureModalOpen() {
-  //   setOpenPictureModal(true);
-  // }
-
   const handleClickPicture = () => {
     setOpenPictureModal(true);
-    // pictureModalOpen();
   };
 
   function onClosePictureModal() {
@@ -72,6 +61,7 @@ export const CarDetailsPage = () => {
   return (
     <Container>
       <div>
+        <div className={css.carImag}></div>
         <ul className={css.detailsList}>
           <li className={css.detailsItem}>
             <p>Модель:</p>
@@ -123,17 +113,22 @@ export const CarDetailsPage = () => {
       </ModalComponent>
 
       <div className={css.detailsButtonsList}>
-        <Button className={css.detailsBtn}>
-          <Link to={location.state}>{"Go back"}</Link>
-        </Button>
         <Button className={css.detailsBtn} onClick={handleClickPicture}>
-          UPDATE PICTURE
+          <IoImageOutline />
         </Button>
+
         <Button className={css.detailsBtn} onClick={handleClickItem}>
-          UPDATE
+          <MdEdit />
         </Button>
+
         <Button className={css.payment} onClick={handleClickPayment}>
-          ADD PAYMENT
+          <BsCashCoin />
+        </Button>
+
+        <Button className={css.detailsBtn}>
+          <Link to={location.state}>
+            <RiArrowGoBackLine />
+          </Link>
         </Button>
       </div>
     </Container>

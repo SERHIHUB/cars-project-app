@@ -51,7 +51,7 @@ export const CreateCarForm = ({ onCloseModal }) => {
   };
 
   return (
-    <Container>
+    <Container className={css.container}>
       <form className={css.createCarForm} onSubmit={handleSubmit(onSubmit)}>
         <label
           className={clsx(css.field, { [css.errorField]: errors.carModel })}

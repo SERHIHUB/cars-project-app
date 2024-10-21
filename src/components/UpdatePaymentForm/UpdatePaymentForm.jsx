@@ -27,36 +27,10 @@ export const UpdataPaymentForm = ({ onCloseModal, carId, lastPaidDate }) => {
   };
 
   return (
-    <Container>
-      <Button onClick={onSubmit}>Confirm payment</Button>
+    <Container className={css.paymentContainer}>
+      <Button onClick={onSubmit} className={css.paymentBtn}>
+        Confirm payment
+      </Button>
     </Container>
   );
 };
-
-// ----------------------
-// "carModel":
-// "dewoo",
-// "carNumber":
-// "ai3003hk",
-// "carPhotoURL":
-// null,
-// "price":
-// "500",
-// "paymentDate":
-// "1",
-// "contact":
-// null,
-// "isPaid":
-// false,
-// "owner":
-// "66fae2ba38f66f094801a5eb",
-// "author":
-// "66fae2ba38f66f094801a5eb",
-// "lastPaidDate":
-// "Mon Oct 07 2024 15:12:20 GMT+0000 (Coordinated Universal Time)"
-// "isPaidMonth":
-// "10",
-// "createdAt":
-// 2024-10-07T17:54:53.807+00:00,
-// "updatedAt":
-// 2024-10-07T17:54:53.807+00:00,

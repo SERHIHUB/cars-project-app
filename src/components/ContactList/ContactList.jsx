@@ -38,17 +38,7 @@ export const ContactList = () => {
           contacts.map((item) => {
             return (
               <li className={css.contactItem} key={nanoid()}>
-                <ContactItem contact={item} />
-                {/* <Button onClick={handleClickEditModal}>Options</Button>
-                <ModalComponent
-                  closeModal={onCloseEditModal}
-                  modalIsOpen={modalIsOpen}
-                >
-                  <UpdateContactForm
-                    contact={item}
-                    onCloseModal={onCloseEditModal}
-                  />
-                </ModalComponent> */}
+                <ContactItem className={css.contactComponent} contact={item} />
               </li>
             );
           })}

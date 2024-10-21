@@ -1,6 +1,8 @@
 import css from "./ModalComponent.module.css";
 import Modal from "react-modal";
 import clsx from "clsx";
+import { GrClose } from "react-icons/gr";
+import { Button } from "../Button/Button";
 
 Modal.setAppElement("#root");
 
@@ -23,22 +25,26 @@ export const ModalComponent = ({
 
   let subtitle;
 
-  function afterOpenModal() {
-    subtitle.style.color = "#f00";
-  }
+  // function afterOpenModal() {
+  //   subtitle.style.color = "#f00";
+  // }
 
   return (
     <div className={clsx(css.container, { [className]: className })}>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
+        // onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
+        <div className={css.btnContainer}>
+          <Button onClick={closeModal} className={css.closeBtn}>
+            <GrClose />
+          </Button>
+        </div>
         {children}
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>Close</button>
+        {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
       </Modal>
     </div>
   );

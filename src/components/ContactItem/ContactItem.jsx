@@ -4,6 +4,9 @@ import { UpdateContactForm } from "../UpdateContactForm/UpdateContactForm";
 import { useState } from "react";
 import css from "./ContactItem.module.css";
 import { DeleteContact } from "../DeleteContact/DeleteContact";
+import { MdEdit } from "react-icons/md";
+import { AiOutlineDelete } from "react-icons/ai";
+import { PiPhoneLight } from "react-icons/pi";
 
 export const ContactItem = ({ contact }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -47,13 +50,16 @@ export const ContactItem = ({ contact }) => {
 
   return (
     <div className={css.contactWrapper}>
-      <p>{`name: ${contact.name}`}</p>
-      <p>{`number: ${contact.number}`}</p>
-
-      <div>
-        <Button onClick={handleClickEditModal}>Update</Button>
-        <Button onClick={handleClickDeleteModal}>Delete</Button>
+      <div className={css.contactInfo}>
+        <p>{`name: ${contact.name}`}</p>
+        {/* <p>{`number: ${contact.number}`}</p> */}
+        <p className={css.contact}>
+          <PiPhoneLight size="40" /> {contact.number}
+        </p>
       </div>
+      {/* <p>
+        <PiPhoneLight size="40" /> {contact.number}
+      </p> */}
 
       <ModalComponent closeModal={onCloseEditModal} modalIsOpen={modalIsOpen}>
         <UpdateContactForm contact={contact} onCloseModal={onCloseEditModal} />
@@ -65,6 +71,20 @@ export const ContactItem = ({ contact }) => {
       >
         <DeleteContact contact={contact} closeModal={onCloseDeleteModal} />
       </ModalComponent>
+
+      <ul className={css.btnList}>
+        <li className={css.btnItem}>
+          <Button className={css.btn} onClick={handleClickEditModal}>
+            <MdEdit />
+          </Button>
+        </li>
+        <li className={css.btnItem}>
+          <Button className={css.btn} onClick={handleClickDeleteModal}>
+            {" "}
+            <AiOutlineDelete />
+          </Button>
+        </li>
+      </ul>
     </div>
   );
 };
