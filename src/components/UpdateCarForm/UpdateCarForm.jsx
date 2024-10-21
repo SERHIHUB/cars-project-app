@@ -74,7 +74,7 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
   };
 
   return (
-    <div>
+    <Container className={css.container}>
       <form className={css.updateCarForm} onSubmit={handleSubmit(onSubmit)}>
         <label
           className={clsx(css.field, { [css.errorField]: errors.carModel })}
@@ -180,6 +180,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
 
         <input className={css.submit} type="submit" value="Select" />
       </form>
-    </div>
+    </Container>
   );
 };

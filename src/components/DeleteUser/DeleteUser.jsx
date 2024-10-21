@@ -1,14 +1,14 @@
 import { useDispatch } from "react-redux";
-import { deleteCar } from "../../redux/cars/operations";
+import { deleteUser } from "../../redux/users/operations";
 import { Button } from "../shared/components/Button/Button";
 import { Container } from "../shared/components/Container/Container";
-import css from "./DeleteCar.module.css";
+import css from "./DeleteUser.module.css";
 
-export const DeleteCar = ({ car, closeModal }) => {
+export const DeleteUser = ({ user, closeModal }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteCar(car._id));
+    dispatch(deleteUser(user._id));
     closeModal();
   };
 

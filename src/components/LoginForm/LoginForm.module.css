@@ -1,7 +1,18 @@
+.loginContainer {
+  text-align: center;
+}
+
 .loginForm {
+  width: 300px;
   display: flex;
   flex-direction: column;
   row-gap: 12px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) {
+    width: 400px;
+  }
 }
 
 .field {
@@ -9,17 +20,20 @@
   flex-direction: column;
   row-gap: 4px;
   position: relative;
+  text-align: start;
 }
 
 .input {
   height: 32px;
   border-radius: 12px;
+  border: none;
   padding-left: 8px;
+  background-color: #fcf7f7;
 }
 
 .eyeBtn {
   position: absolute;
-  top: 40px;
+  top: 38px;
   right: 16px;
   background-color: inherit;
   border: none;
@@ -31,6 +45,12 @@
   border-radius: 12px;
   cursor: pointer;
   margin-top: 8px;
+  margin-bottom: 24px;
+  background-image: linear-gradient(
+    120deg,
+    rgba(10, 99, 13, 0.3),
+    rgba(11, 65, 241, 0.3)
+  );
 }
 
 .errorField {

@@ -1,4 +1,4 @@
-import { Container } from "../../components/shared/components/Container/Container";
+import { Section } from "../../components/shared/components/Section/Section";
 import { useSelector } from "react-redux";
 import css from "./UpdatePasswordPage.module.css";
 import { selectResetStatus } from "../../redux/auth/selectors";
@@ -8,8 +8,8 @@ import { UpdateUserPasswordForm } from "../../components/UpdateUserPasswordForm/
 export const UpdatePasswordPage = () => {
   const isResetStatus = useSelector(selectResetStatus);
   return (
-    <Container>
+    <Section>
       {isResetStatus ? <UpdateUserPasswordForm /> : <ResetPasswordForm />}
-    </Container>
+    </Section>
   );
 };

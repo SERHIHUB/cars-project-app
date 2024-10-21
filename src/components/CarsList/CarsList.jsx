@@ -69,9 +69,6 @@ export const CarsList = () => {
           return (
             <li className={css.carItem} key={nanoid()}>
               <CarItem car={item} />
-              {/* <Link to={`/abonements/${item._id}`} state={location}>
-                {"Details"}
-              </Link> */}
             </li>
           );
         })}

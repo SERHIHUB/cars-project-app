@@ -17,10 +17,12 @@ export const ContactsPage = () => {
   }
 
   return (
-    <div>
+    <div className={css.contactWrapper}>
       <h2>Contacts page</h2>
       <ContactList />
-      <Button onClick={handleClickModal}>Add contact</Button>
+      <Button className={css.addContactBtn} onClick={handleClickModal}>
+        Add contact
+      </Button>
       <ModalComponent closeModal={onCloseModal} modalIsOpen={modalIsOpen}>
         <CreateContactForm onCloseModal={onCloseModal} />
       </ModalComponent>

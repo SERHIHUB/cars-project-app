@@ -31,7 +31,8 @@ export const ResetPasswordForm = () => {
   };
 
   return (
-    <Container>
+    <Container className={css.resetContainer}>
+      <h2>Забули пароль?</h2>
       <form className={css.updateUserForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={clsx(css.field, { [css.errorField]: errors.email })}>
           Email

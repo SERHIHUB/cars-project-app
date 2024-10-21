@@ -61,7 +61,7 @@ export const UpdateContactForm = ({ contact, onCloseModal }) => {
   };
 
   return (
-    <Container>
+    <Container className={css.container}>
       <form className={css.updateContactForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={clsx(css.field, { [css.errorField]: errors.name })}>
           Name
@@ -80,6 +80,7 @@ export const UpdateContactForm = ({ contact, onCloseModal }) => {
             render={({ field: { value, ...field } }) => {
               return (
                 <input
+                  className={css.input}
                   {...field}
                   {...register("name", { required: true })}
                   value={selectedName}
@@ -116,6 +117,7 @@ export const UpdateContactForm = ({ contact, onCloseModal }) => {
             render={({ field: { value, ...field } }) => {
               return (
                 <input
+                  className={css.input}
                   {...field}
                   {...register("number", { required: true })}
                   value={selectedNumber}

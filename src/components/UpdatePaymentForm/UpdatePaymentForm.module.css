@@ -1,0 +1,18 @@
+.paymentContainer {
+  width: 300px;
+  height: 160px;
+  background-image: none;
+  background-color: rgba(130, 125, 125, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paymentBtn {
+  width: 220px;
+  height: 60px;
+  border-radius: 16px;
+  background-color: #34b118;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+}

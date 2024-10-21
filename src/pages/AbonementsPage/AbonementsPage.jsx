@@ -33,10 +33,12 @@ export const AbonementsPage = () => {
   // }, [dispatch]);
 
   return (
-    <div>
+    <div className={css.carWrapper}>
       <h2>AbonementsPage</h2>
       <CarsList />
-      <Button onClick={handleClickModal}>Add abonement</Button>
+      <Button className={css.addCar} onClick={handleClickModal}>
+        Add abonement
+      </Button>
       <ModalComponent closeModal={onCloseModal} modalIsOpen={modalIsOpen}>
         <CreateCarForm onCloseModal={onCloseModal} />
       </ModalComponent>

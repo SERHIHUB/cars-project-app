@@ -13,8 +13,10 @@ export const DeleteContact = ({ contact, closeModal }) => {
   };
 
   return (
-    <Container>
-      <Button onClick={handleDelete}>DELETE</Button>
+    <Container className={css.deleteContainer}>
+      <Button onClick={handleDelete} className={css.deleteBtn}>
+        DELETE
+      </Button>
     </Container>
   );
 };
