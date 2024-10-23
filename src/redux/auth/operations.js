@@ -91,11 +91,11 @@ export const passwordReset = createAsyncThunk(
 
 export const verifyToken = createAsyncThunk(
   "auth/verifyToken",
-  async (confirmToken, thunkAPI) => {
+  async (token, thunkAPI) => {
     try {
-      const response = await instanse.post(`auth/verify/${confirmToken}`, {
+      const response = await instanse.get(`auth/verify/${token}`, {
         params: {
-          token: confirmToken,
+          token: token,
         },
       });
 
