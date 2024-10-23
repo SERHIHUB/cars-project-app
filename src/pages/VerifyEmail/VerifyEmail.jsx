@@ -11,7 +11,7 @@ export const VerifyEmail = () => {
 
   const handleClick = () => {
     console.log(verifytoken);
-    // dispatch(verifyToken(verifytoken));
+    dispatch(verifyToken(verifytoken));
   };
 
   return (
