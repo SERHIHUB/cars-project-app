@@ -24,6 +24,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import { Toaster } from "react-hot-toast";
 import { UserProfilePage } from "./pages/UserProfilePage/UserProfilePage";
 import { AdminPanel } from "./pages/AdminPanel/AdminPanel";
+import { VerifyEmail } from "./pages/VerifyEmail/VerifyEmail";
 
 // const WelcomePage = lazy(() => import("./pages/WelcomePage/WelcomePage"));
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -89,6 +90,13 @@ function App() {
             path="/login"
             element={
               <RestrictedRoute component={<LoginPage />} redirectTo="/" />
+            }
+          />
+
+          <Route
+            path="auth/verify/:verifytoken"
+            element={
+              <RestrictedRoute component={<VerifyEmail />} redirectTo="/" />
             }
           />
 

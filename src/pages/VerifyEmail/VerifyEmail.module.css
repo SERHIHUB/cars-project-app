@@ -1,0 +1,23 @@
+/* .container {} */
+
+.btnWrapper {
+  width: 300px;
+  background-color: dimgrey;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  width: 280px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background-color: rgb(187, 126, 244);
+  color: aqua;
+  font-size: 18px;
+  border: none;
+  font-weight: 600;
+}
