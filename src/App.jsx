@@ -82,7 +82,10 @@ function App() {
           <Route
             path="/register"
             element={
-              <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
+              <RestrictedRoute
+                component={<RegisterPage />}
+                redirectTo="/auth-verify/:verifytoken"
+              />
             }
           />
 
@@ -93,7 +96,7 @@ function App() {
             }
           />
 
-          <Route path="/auth/verify/:verifytoken" element={<VerifyEmail />} />
+          <Route path="/auth-verify/:verifytoken" element={<VerifyEmail />} />
 
           <Route path="/reset-password" element={<UpdatePasswordPage />} />
 
