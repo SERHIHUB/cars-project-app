@@ -37,7 +37,9 @@ export const CarItem = ({ car }) => {
   return (
     <div className={css.wrapper}>
       <div className={css.carPictureContainer}>
-        {car.carPhotoURL && <img src={car.carPhotoURL} alt="car" />}
+        {car.carPhotoURL && (
+          <img className={css.carPicture} src={car.carPhotoURL} alt="car" />
+        )}
       </div>
       <h3>{car.carModel}</h3>
       <p>{car.carNumber}</p>

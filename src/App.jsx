@@ -23,6 +23,7 @@ import { PrivateRoute } from "./PrivateRoute";
 
 import { Toaster } from "react-hot-toast";
 import { UserProfilePage } from "./pages/UserProfilePage/UserProfilePage";
+import { AdminPanel } from "./pages/AdminPanel/AdminPanel";
 
 // const WelcomePage = lazy(() => import("./pages/WelcomePage/WelcomePage"));
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -70,6 +71,11 @@ function App() {
             element={
               <PrivateRoute component={<UserProfilePage />} redirectTo="/" />
             }
+          />
+
+          <Route
+            path="/admin"
+            element={<PrivateRoute component={<AdminPanel />} redirectTo="/" />}
           />
 
           <Route

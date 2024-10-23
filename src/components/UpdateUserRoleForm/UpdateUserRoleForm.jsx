@@ -1,23 +1,39 @@
 import { Container } from "../shared/components/Container/Container";
 import { useForm } from "react-hook-form";
+import { updateUserFormSchema } from "../../validationSchemas/updateUserFormSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 import clsx from "clsx";
-import css from "./UpdateUserForm.module.css";
+import css from "./UpdateUserRoleForm.module.css";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../redux/users/operations";
 
-export const UpdateUserRoleForm = () => {
+export const UpdateUserRoleForm = ({ onCloseModal, user }) => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({});
+  } = useForm({
+    resolver: yupResolver(updateUserFormSchema),
+    mode: "onBlur",
+  });
 
   const onSubmit = (data) => {
+    const updateObj = {
+      userId: user._id,
+      body: data,
+    };
     console.log(data);
+    dispatch(updateUser(updateObj));
+
     reset();
+    onCloseModal();
   };
 
   return (
-    <Container>
+    <Container className={css.container}>
       <form className={css.updateUserForm} onSubmit={handleSubmit(onSubmit)}>
         <h4>Select users role.</h4>
 
@@ -30,7 +46,7 @@ export const UpdateUserRoleForm = () => {
           User
         </label>
 
-        <input className={css.submit} type="submit" value="Update users role" />
+        <input className={css.submit} type="submit" value="Update user role" />
       </form>
     </Container>
   );

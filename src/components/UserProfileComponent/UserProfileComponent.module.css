@@ -18,6 +18,10 @@
   color: rgb(239, 237, 237);
 }
 
+.information p {
+  text-transform: capitalize;
+}
+
 .btnList {
   display: flex;
   column-gap: 8px;

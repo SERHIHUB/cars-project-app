@@ -11,7 +11,7 @@
 }
 
 .updateUserForm {
-  width: 300px;
+  width: 240px;
   display: flex;
   flex-direction: column;
   row-gap: 12px;
@@ -20,33 +20,13 @@
   margin-right: auto;
 
   @media (min-width: 768px) {
-    width: 400px;
+    width: 300px;
   }
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  row-gap: 4px;
-  position: relative;
-  /* font-weight: 600; */
+.radioLabel {
+  padding-left: 20px;
 }
-
-.input {
-  height: 32px;
-  border-radius: 12px;
-  padding-left: 8px;
-  border: none;
-  background-color: #fcf7f7;
-}
-
-/* .eyeBtn {
-  position: absolute;
-  top: 40px;
-  right: 16px;
-  background-color: inherit;
-  border: none;
-} */
 
 .submit {
   height: 32px;
@@ -63,11 +43,7 @@
   );
 }
 
-.errorField {
-  color: #ff0000;
-}
-
-.inputError {
+/* .radioLabel {
   color: #ff0000;
   border-color: #ff0000;
-}
+} */
