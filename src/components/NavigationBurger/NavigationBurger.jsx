@@ -43,6 +43,11 @@ export const NavigationBurger = ({ onCloseModal }) => {
             Profile
           </NavLink>
         )}
+        {isLoggedIn && currentUser.role === "admin" && (
+          <NavLink to="/admin" className={linkActive} onClick={handleClick}>
+            Users
+          </NavLink>
+        )}
       </nav>
     </Container>
   );
