@@ -9,10 +9,10 @@ export const VerifyEmail = () => {
   const dispatch = useDispatch();
   const { verifytoken } = useParams();
 
-  //   const handleClick = () => {
-  //     console.log(verifytoken);
-  //     dispatch(verifyToken(verifytoken));
-  //   };
+  const handleClick = () => {
+    console.log(verifytoken);
+    // dispatch(verifyToken(verifytoken));
+  };
 
   return (
     <Container className={css.container}>

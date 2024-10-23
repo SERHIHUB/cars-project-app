@@ -93,12 +93,7 @@ function App() {
             }
           />
 
-          <Route
-            path="auth/verify/:verifytoken"
-            element={
-              <RestrictedRoute component={<VerifyEmail />} redirectTo="/" />
-            }
-          />
+          <Route path="auth/verify/:verifytoken" element={<VerifyEmail />} />
 
           <Route path="/reset-password" element={<UpdatePasswordPage />} />
 
