@@ -114,6 +114,20 @@ export const CreateCarForm = ({ onCloseModal }) => {
         </label>
 
         <label
+          className={clsx(css.field, { [css.errorField]: errors.contact })}
+        >
+          Contact
+          <input
+            className={clsx(css.input, { [css.inputError]: errors.contact })}
+            placeholder="Enter contact"
+            {...register("contact", { required: true })}
+          />
+          {errors.contact && (
+            <span className={css.errorsMessage}>{errors.contact.message}</span>
+          )}
+        </label>
+
+        {/* <label
           className={clsx(css.field, { [css.errorField]: errors.carPhotoURL })}
         >
           Photo
@@ -129,21 +143,7 @@ export const CreateCarForm = ({ onCloseModal }) => {
               {errors.carPhotoURL.message}
             </span>
           )}
-        </label>
-
-        <label
-          className={clsx(css.field, { [css.errorField]: errors.contact })}
-        >
-          Contact
-          <input
-            className={clsx(css.input, { [css.inputError]: errors.contact })}
-            placeholder="Enter contact"
-            {...register("contact", { required: true })}
-          />
-          {errors.contact && (
-            <span className={css.errorsMessage}>{errors.contact.message}</span>
-          )}
-        </label>
+        </label> */}
 
         <input className={css.submit} type="submit" value="Select" />
       </form>

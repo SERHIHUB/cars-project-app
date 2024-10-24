@@ -4,11 +4,13 @@ import clsx from "clsx";
 import css from "./NavigationBurger.module.css";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { Container } from "../shared/components/Container/Container";
+import { selectCurrentUser } from "../../redux/users/selectors";
 
 const linkActive = ({ isActive }) => clsx(css.nav, { [css.active]: isActive });
 
 export const NavigationBurger = ({ onCloseModal }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const currentUser = useSelector(selectCurrentUser);
 
   const handleClick = () => {
     onCloseModal();

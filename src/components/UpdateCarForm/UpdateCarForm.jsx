@@ -1,5 +1,5 @@
 import { Container } from "../shared/components/Container/Container";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import clsx from "clsx";
@@ -11,21 +11,50 @@ import { useState } from "react";
 export const UpdateCarForm = ({ onCloseModal, car }) => {
   const dispatch = useDispatch();
   // const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedModel, setSelectedModel] = useState(car.carModel);
+  const [selectedCarNumber, setSelectedCarNumber] = useState(car.carNumber);
+  const [selectedPrice, setSelectedPrice] = useState(car.price);
+  const [selectedPayment, setSelectedPayment] = useState(car.paymentDate);
+  const [selectedContact, setSelectedContact] = useState(
+    car.contact ? car.contact : ""
+  );
 
-  // ------------------------------
-  // const onChange = (event) => {
-  //   event.preventDefault();
+  const onChangeModel = (event) => {
+    event.preventDefault();
 
-  //   setSelectedFile(event.target.files[0]);
-  // };
-  // ------------------------------
+    setSelectedModel(event.target.value);
+  };
+
+  const onChangeCarNumber = (event) => {
+    event.preventDefault();
+
+    setSelectedCarNumber(event.target.value);
+  };
+
+  const onChangePrice = (event) => {
+    event.preventDefault();
+
+    setSelectedPrice(event.target.value);
+  };
+
+  const onChangePayment = (event) => {
+    event.preventDefault();
+
+    setSelectedPayment(event.target.value);
+  };
+
+  const onChangeContact = (event) => {
+    event.preventDefault();
+
+    setSelectedContact(event.target.value);
+  };
 
   const {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
-    // control,
   } = useForm({
     resolver: yupResolver(updateCarFormSchema),
     mode: "onBlur",
@@ -44,21 +73,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
         entry[1].toLowerCase().trim(),
       ])
     );
-
-    // const formData = new FormData();
-
-    // formData.append("carPhoto", selectedFile);
-
-    // ========= працює зміна властивостей ============
-    // const payload = {
-    //   carPhoto: formData,
-    // };
-
-    // const updateObj = {
-    //   carId: car._id,
-    //   body: newData,
-    // };
-    // =================================================
 
     const updateObj = {
       carId: car._id,
@@ -80,11 +94,29 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
           className={clsx(css.field, { [css.errorField]: errors.carModel })}
         >
           Model
-          <input
+          {/* <input
             className={clsx(css.input, { [css.inputError]: errors.carModel })}
             placeholder="Enter model"
             {...register("carModel", { required: true })}
+          /> */}
+          {/* ============================================ */}
+          <Controller
+            control={control}
+            name={"model"}
+            rules={{ required: "Recipe picture is required" }}
+            render={({ field: { value, ...field } }) => {
+              return (
+                <input
+                  className={css.input}
+                  {...field}
+                  {...register("model", { required: true })}
+                  value={selectedModel}
+                  onChange={onChangeModel}
+                />
+              );
+            }}
           />
+          {/* ============================================ */}
           {errors.carModel && (
             <span className={css.errorsMessage}>{errors.carModel.message}</span>
           )}
@@ -94,11 +126,29 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
           className={clsx(css.field, { [css.errorField]: errors.carNumber })}
         >
           Number
-          <input
+          {/* <input
             className={clsx(css.input, { [css.inputError]: errors.carNumber })}
             placeholder="Enter number"
             {...register("carNumber", { required: true })}
+          /> */}
+          {/* ============================================ */}
+          <Controller
+            control={control}
+            name={"carNumber"}
+            rules={{ required: "Recipe picture is required" }}
+            render={({ field: { value, ...field } }) => {
+              return (
+                <input
+                  className={css.input}
+                  {...field}
+                  {...register("carNumber", { required: true })}
+                  value={selectedCarNumber}
+                  onChange={onChangeCarNumber}
+                />
+              );
+            }}
           />
+          {/* ============================================ */}
           {errors.carNumber && (
             <span className={css.errorsMessage}>
               {errors.carNumber.message}
@@ -108,11 +158,29 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
 
         <label className={clsx(css.field, { [css.errorField]: errors.price })}>
           Price
-          <input
+          {/* <input
             className={clsx(css.input, { [css.inputError]: errors.price })}
             placeholder="Enter price"
             {...register("price", { required: true })}
+          /> */}
+          {/* ============================================ */}
+          <Controller
+            control={control}
+            name={"price"}
+            rules={{ required: "Recipe picture is required" }}
+            render={({ field: { value, ...field } }) => {
+              return (
+                <input
+                  className={css.input}
+                  {...field}
+                  {...register("price", { required: true })}
+                  value={selectedPrice}
+                  onChange={onChangePrice}
+                />
+              );
+            }}
           />
+          {/* ============================================ */}
           {errors.price && (
             <span className={css.errorsMessage}>{errors.price.message}</span>
           )}
@@ -122,13 +190,31 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
           className={clsx(css.field, { [css.errorField]: errors.paymentDate })}
         >
           Payment date
-          <input
+          {/* <input
             className={clsx(css.input, {
               [css.inputError]: errors.paymentDate,
             })}
             placeholder="Enter payment date"
             {...register("paymentDate", { required: true })}
+          /> */}
+          {/* ============================================ */}
+          <Controller
+            control={control}
+            name={"paymentDate"}
+            rules={{ required: "Recipe picture is required" }}
+            render={({ field: { value, ...field } }) => {
+              return (
+                <input
+                  className={css.input}
+                  {...field}
+                  {...register("paymentDate", { required: true })}
+                  value={selectedPayment}
+                  onChange={onChangePayment}
+                />
+              );
+            }}
           />
+          {/* ============================================ */}
           {errors.paymentDate && (
             <span className={css.errorsMessage}>
               {errors.paymentDate.message}
@@ -136,43 +222,33 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
           )}
         </label>
 
-        {/* <label
-          className={clsx(css.field, { [css.errorField]: errors.carPhoto })}
-        >
-          Photo
-          
-          <Controller
-            control={control}
-            name={"carPhoto"}
-            rules={{ required: "Recipe picture is required" }}
-            render={({ field: { value, ...field } }) => {
-              return (
-                <input
-                  {...field}
-                  value={value?.fileName}
-                  onChange={onChange}
-                  type="file"
-                  id="picture"
-                  accept="image/*"
-                />
-              );
-            }}
-          />
-          
-          {errors.carPhoto && (
-            <span className={css.errorsMessage}>{errors.carPhoto.message}</span>
-          )}
-        </label> */}
-
         <label
           className={clsx(css.field, { [css.errorField]: errors.contact })}
         >
           Contact
-          <input
+          {/* <input
             className={clsx(css.input, { [css.inputError]: errors.contact })}
             placeholder="Enter contact"
             {...register("contact")}
+          /> */}
+          {/* ============================================ */}
+          <Controller
+            control={control}
+            name={"contact"}
+            rules={{ required: "Recipe picture is required" }}
+            render={({ field: { value, ...field } }) => {
+              return (
+                <input
+                  className={css.input}
+                  {...field}
+                  {...register("contact", { required: true })}
+                  value={selectedContact}
+                  onChange={onChangeContact}
+                />
+              );
+            }}
           />
+          {/* ============================================ */}
           {errors.contact && (
             <span className={css.errorsMessage}>{errors.contact.message}</span>
           )}
