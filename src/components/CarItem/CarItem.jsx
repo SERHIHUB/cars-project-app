@@ -41,10 +41,11 @@ export const CarItem = ({ car }) => {
           <img className={css.carPicture} src={car.carPhotoURL} alt="car" />
         )}
       </div>
-      <h3>{car.carModel}</h3>
-      <p>{car.carNumber}</p>
-      <p>{car.price}</p>
-      <p>{car.paymentDate}</p>
+      <h3>{`Model: ${car.carModel}`}</h3>
+      <p>{`Number: ${car.carNumber.toUpperCase()}`}</p>
+      <p>{`Price: ${car.price}`}</p>
+      <p>{`Date of pay: ${car.paymentDate}`}</p>
+      <p>{`Contact: ${car.contact !== null ? car.contact : "_ _ _"}`}</p>
 
       <ul className={css.btnList}>
         <li className={css.btnItem}>
