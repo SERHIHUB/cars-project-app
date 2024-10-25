@@ -54,7 +54,14 @@ export const ContactItem = ({ contact }) => {
         <p>{`name: ${contact.name}`}</p>
         {/* <p>{`number: ${contact.number}`}</p> */}
         <p className={css.contact}>
-          <PiPhoneLight size="40" /> {contact.number}
+          <PiPhoneLight size="40" />
+          {contact.number !== null ? (
+            <a className={css.contactLink} href={`tel:${contact.number}`}>
+              {contact.number}
+            </a>
+          ) : (
+            "_ _ _"
+          )}
         </p>
       </div>
       {/* <p>

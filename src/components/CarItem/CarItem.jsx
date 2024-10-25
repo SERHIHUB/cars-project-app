@@ -1,4 +1,5 @@
 import { useState } from "react";
+import clsx from "clsx";
 import { ModalComponent } from "../shared/components/ModalComponent/ModalComponent";
 import css from "./CarItem.module.css";
 import { Button } from "../shared/components/Button/Button";
@@ -7,9 +8,13 @@ import { DeleteCar } from "../DeleteCar/DeleteCar";
 import { TbListDetails } from "react-icons/tb";
 import { AiOutlineDelete } from "react-icons/ai";
 
+// const textColor = document.querySelector("#car-title");
+
 export const CarItem = ({ car }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
+
+  // textColor.style.color = "red";
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
@@ -18,34 +23,37 @@ export const CarItem = ({ car }) => {
   function handleCloseModal() {
     setModalIsOpen(false);
   }
-  // @@@@@@@@@@@@@@@@     Модалка    @@@@@@@@@@@@@@@@@@@@@
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  // function openModal() {
-  //   setModalIsOpen(true);
-  // }
-
-  // const handleClickItem = () => {
-  //   openModal();
-  // };
-
-  // function onCloseModal() {
-  //   setModalIsOpen(false);
-  // }
-  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
   return (
-    <div className={css.wrapper}>
+    <div
+      // className={css.wrapper}
+      className={clsx(
+        css.wrapper,
+        car.isPaid ? css.greenShadow : css.redShadow
+      )}
+    >
       <div className={css.carPictureContainer}>
         {car.carPhotoURL && (
           <img className={css.carPicture} src={car.carPhotoURL} alt="car" />
         )}
       </div>
-      <h3>{`Model: ${car.carModel}`}</h3>
+      <h3
+        id="car-title"
+        className={clsx(car.isPaid ? css.greenText : css.redText)}
+      >{`Model: ${car.carModel}`}</h3>
       <p>{`Number: ${car.carNumber.toUpperCase()}`}</p>
       <p>{`Price: ${car.price}`}</p>
       <p>{`Date of pay: ${car.paymentDate}`}</p>
-      <p>{`Contact: ${car.contact !== null ? car.contact : "_ _ _"}`}</p>
+      {/* <p>{`Contact: ${car.contact !== null ? car.contact : "_ _ _"}`}</p> */}
+      <p>{`Contact: ${
+        car.contact !== null ? (
+          <a className={css.contactLink} href={`tel:${car.contact}`}>
+            {car.contact}
+          </a>
+        ) : (
+          "_ _ _"
+        )
+      }`}</p>
 
       <ul className={css.btnList}>
         <li className={css.btnItem}>

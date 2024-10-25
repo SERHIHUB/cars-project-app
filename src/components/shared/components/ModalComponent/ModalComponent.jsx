@@ -20,13 +20,16 @@ export const ModalComponent = ({
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+
+      maxHeight: "80vh",
+      overflow: "auto",
     },
   };
 
-  let subtitle;
+  // let subtitle;
 
   // function afterOpenModal() {
-  //   subtitle.style.color = "#f00";
+  // subtitle.style.color = "#f00";
   // }
 
   return (
