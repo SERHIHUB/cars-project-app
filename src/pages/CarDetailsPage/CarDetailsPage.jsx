@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { Container } from "../../components/shared/components/Container/Container";
 import css from "./CarDetailsPage.module.css";
+import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { selectCar } from "../../redux/cars/selectors";
 import { getOneCar } from "../../redux/cars/operations";
@@ -60,38 +61,46 @@ export const CarDetailsPage = () => {
 
   return (
     <Container>
-      <div>
-        <div className={css.carImag}></div>
+      <div className={css.carInfo}>
         <ul className={css.detailsList}>
           <li className={css.detailsItem}>
-            <p>Модель:</p>
-            <p>{car.carModel}</p>
+            <p
+              className={clsx(car.isPaid ? css.greenText : css.redText)}
+            >{`Модель: ${car.carModel}`}</p>
           </li>
           <li className={css.detailsItem}>
-            <p>Номер:</p>
-            <p>{car.carNumber}</p>
+            <p>{`Номер: ${car.carNumber}`}</p>
           </li>
           <li className={css.detailsItem}>
-            <p>Вартість:</p>
-            <p>{car.price}</p>
+            <p>{`Вартість: ${car.price}`}</p>
           </li>
           <li className={css.detailsItem}>
-            <p>Дата Оплати:</p>
-            <p>{car.paymentDate}</p>
+            <p>{`Дата оплати: ${car.paymentDate}`}</p>
           </li>
           <li className={css.detailsItem}>
-            <p>Тел:</p>
-            <p>{car.contact}</p>
+            <p>{`Тел: ${
+              car.contact !== null ? (
+                <a className={css.contactLink} href={`tel:${car.contact}`}>
+                  {car.contact}
+                </a>
+              ) : (
+                "_ _ _"
+              )
+            }`}</p>
           </li>
+          {/* <li className={css.detailsItem}>
+            <p>{`Оплачено: ${car.isPaid ? "Так" : "Ні"}`}</p>
+          </li> */}
           <li className={css.detailsItem}>
-            <p>Оплачено:</p>
-            <p>{car.isPaid ? "Так" : "Ні"}</p>
-          </li>
-          <li className={css.detailsItem}>
-            <p>Оплату відзначив:</p>
-            <p>{userName}</p>
+            <p>{`Оплату відзначив: ${userName}`}</p>
           </li>
         </ul>
+
+        <div className={css.carImag}>
+          {car.carPhotoURL && (
+            <img className={css.carPicture} src={car.carPhotoURL} alt="car" />
+          )}
+        </div>
       </div>
       <ModalComponent closeModal={onCloseModal} modalIsOpen={modalIsOpen}>
         <UpdateCarForm car={car} onCloseModal={onCloseModal} />

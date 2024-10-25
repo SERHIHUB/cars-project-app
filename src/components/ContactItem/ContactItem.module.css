@@ -21,8 +21,8 @@
 .contactInfo {
   display: flex;
   flex-direction: column;
-  /* flex-shrink: 0;
-  flex-grow: 1; */
+  row-gap: 12px;
+  align-items: center;
 }
 
 .contact {

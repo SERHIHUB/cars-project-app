@@ -102,14 +102,14 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
           {/* ============================================ */}
           <Controller
             control={control}
-            name={"model"}
+            name={"carModel"}
             rules={{ required: "Recipe picture is required" }}
             render={({ field: { value, ...field } }) => {
               return (
                 <input
                   className={css.input}
                   {...field}
-                  {...register("model", { required: true })}
+                  {...register("carModel", { required: true })}
                   value={selectedModel}
                   onChange={onChangeModel}
                 />

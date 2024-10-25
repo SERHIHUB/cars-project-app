@@ -25,6 +25,7 @@ import { Toaster } from "react-hot-toast";
 import { UserProfilePage } from "./pages/UserProfilePage/UserProfilePage";
 import { AdminPanel } from "./pages/AdminPanel/AdminPanel";
 import { VerifyEmail } from "./pages/VerifyEmail/VerifyEmail";
+import { Loader } from "./components/shared/components/Loader/Loader";
 
 // const WelcomePage = lazy(() => import("./pages/WelcomePage/WelcomePage"));
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));

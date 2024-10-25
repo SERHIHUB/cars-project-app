@@ -4,6 +4,8 @@
     rgba(26, 229, 185, 0.3),
     rgba(67, 2, 110, 0.454)
   );
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .wrapper {
