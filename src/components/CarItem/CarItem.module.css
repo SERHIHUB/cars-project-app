@@ -68,3 +68,14 @@
   padding-top: 8px;
   padding-bottom: 8px;
 }
+
+.notAccessBtn {
+  /* width: 280px; */
+  border: 1px solid red;
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: rgb(134, 19, 19);
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -8,59 +8,19 @@ import { Container } from "../../components/shared/components/Container/Containe
 import { UpdateAvatarForm } from "../../components/UpdateAvatarForm/UpdateAvatarForm";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../../redux/users/selectors";
-import { fetchUsers } from "../../redux/users/operations";
+import { fetchUsers, getCurrentUser } from "../../redux/users/operations";
 
 export const UserProfilePage = () => {
-  // const [modalNameIsOpen, setModalNameIsOpen] = useState(false);
-  // const [modalAvatarIsOpen, setModalAvatarIsOpen] = useState(false);
   const currentUser = useSelector(selectCurrentUser);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const handleOpenModalName = () => {
-  //   setModalNameIsOpen(true);
-  // };
-
-  // function onCloseModalName() {
-  //   setModalNameIsOpen(false);
-  // }
-
-  // const handleOpenModalAvatar = () => {
-  //   setModalAvatarIsOpen(true);
-  // };
-  // const onCloseModalAvatar = () => {
-  //   setModalAvatarIsOpen(false);
-  // };
-
-  // useEffect(() => {
-  //   dispatch(fetchUsers());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch, currentUser]);
 
   return (
     <Container>
       <UserProfileComponent currentUser={currentUser} />
-      {/* <ul className={css.btnList}>
-        <li className={css.btnItem}>
-          <Button onClick={handleOpenModalName}>Update name</Button>
-        </li>
-        <li className={css.btnItem}>
-          <Button onClick={handleOpenModalAvatar}>Update avatar</Button>
-        </li>
-      </ul>
-      <ModalComponent
-        closeModal={onCloseModalName}
-        modalIsOpen={modalNameIsOpen}
-      >
-        <UpdateUserForm onCloseModal={onCloseModalName} user={currentUser} />
-      </ModalComponent>
-      <ModalComponent
-        closeModal={onCloseModalAvatar}
-        modalIsOpen={modalAvatarIsOpen}
-      >
-        <UpdateAvatarForm
-          onCloseModal={onCloseModalAvatar}
-          user={currentUser}
-        />
-      </ModalComponent> */}
     </Container>
   );
 };

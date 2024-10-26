@@ -5,12 +5,16 @@ import clsx from "clsx";
 import css from "./UpdateUserForm.module.css";
 import { updateUserFormSchema } from "../../validationSchemas/updateUserFormSchema";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { updateUser } from "../../redux/users/operations";
+import { useState, useEffect } from "react";
+import { getCurrentUser, updateUser } from "../../redux/users/operations";
 
 export const UpdateUserForm = ({ onCloseModal, user }) => {
   const [selectedName, setSelectedName] = useState(user.name);
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getCurrentUser());
+  // }, [dispatch]);
 
   const onChangeName = (event) => {
     event.preventDefault();

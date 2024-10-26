@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import clsx from "clsx";
 import { ModalComponent } from "../shared/components/ModalComponent/ModalComponent";
 import css from "./CarItem.module.css";
@@ -7,12 +8,14 @@ import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { DeleteCar } from "../DeleteCar/DeleteCar";
 import { TbListDetails } from "react-icons/tb";
 import { AiOutlineDelete } from "react-icons/ai";
+import { selectCurrentUser } from "../../redux/users/selectors";
 
 // const textColor = document.querySelector("#car-title");
 
 export const CarItem = ({ car }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
+  const currentUser = useSelector(selectCurrentUser);
 
   // textColor.style.color = "red";
 
@@ -55,20 +58,24 @@ export const CarItem = ({ car }) => {
         )
       }`}</p>
 
-      <ul className={css.btnList}>
-        <li className={css.btnItem}>
-          <Button className={css.btn} onClick={handleOpenModal}>
-            <AiOutlineDelete />
-          </Button>
-        </li>
-        <li className={css.btnItem}>
-          <Button className={css.btn}>
-            <Link to={`/abonements/${car._id}`} state={location}>
-              <TbListDetails />
-            </Link>
-          </Button>
-        </li>
-      </ul>
+      {currentUser.role === "observer" ? (
+        <div className={css.notAccessBtn}>Тільки перегляд</div>
+      ) : (
+        <ul className={css.btnList}>
+          <li className={css.btnItem}>
+            <Button className={css.btn} onClick={handleOpenModal}>
+              <AiOutlineDelete />
+            </Button>
+          </li>
+          <li className={css.btnItem}>
+            <Button className={css.btn}>
+              <Link to={`/abonements/${car._id}`} state={location}>
+                <TbListDetails />
+              </Link>
+            </Button>
+          </li>
+        </ul>
+      )}
       <ModalComponent closeModal={handleCloseModal} modalIsOpen={modalIsOpen}>
         <DeleteCar car={car} closeModal={handleCloseModal} />
       </ModalComponent>

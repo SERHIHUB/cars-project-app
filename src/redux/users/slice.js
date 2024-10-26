@@ -12,6 +12,7 @@ const userSlice = createSlice({
   initialState: {
     items: [],
     user: {},
+    editUser: {},
     loading: false,
     error: false,
   },
@@ -59,7 +60,7 @@ const userSlice = createSlice({
         }
 
         state.items[userIndex] = action.payload;
-        state.user = action.payload;
+        state.editUser = action.payload;
         // console.log(state.user);
         // console.log(state.items);
       })

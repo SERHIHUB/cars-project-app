@@ -3,6 +3,7 @@
   padding-top: 16px;
   padding-left: 12px;
   padding-right: 12px;
+  padding-bottom: 4px;
   font-size: 24px;
   color: rgb(239, 237, 237);
 
@@ -55,4 +56,15 @@
   );
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+.notAccessBtn {
+  width: 280px;
+  border: 1px solid red;
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: rgb(134, 19, 19);
+  margin-left: auto;
+  margin-right: auto;
 }
