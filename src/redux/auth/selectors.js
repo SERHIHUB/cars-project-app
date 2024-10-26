@@ -9,3 +9,5 @@ export const selectResetStatus = (state) => state.auth.resetStatus;
 export const selectUserName = (state) => state.auth.user.name;
 
 export const selectLoading = (state) => state.auth.loading;
+
+// export const selectIsVerify = (state) => state.auth.user.verify;
