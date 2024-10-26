@@ -99,6 +99,7 @@ export const verifyToken = createAsyncThunk(
         },
       });
 
+      // console.log(response);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

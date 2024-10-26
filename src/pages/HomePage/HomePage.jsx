@@ -2,9 +2,11 @@ import { Section } from "../../components/shared/components/Section/Section";
 import css from "./HomePage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import { useEffect } from "react";
+import { useState } from "react";
+import Calendar from "react-calendar";
 
 export const HomePage = () => {
+  const [value, onChange] = useState(new Date());
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -22,6 +24,14 @@ export const HomePage = () => {
         існуючого, вказавши в полі &#171; Admin email &#187;, під час
         реєстрації, електронну пошту власника списку.
       </p>
+      <div className={css.dateContainer}>
+        <Calendar
+          className={css.calendar}
+          onChange={onChange}
+          value={value}
+          locale={"uk"}
+        />
+      </div>
     </Section>
   );
 };
