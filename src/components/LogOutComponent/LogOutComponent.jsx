@@ -12,7 +12,7 @@ export const LogOutComponent = ({ windowWidth }) => {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-  }, [dispatch]);
+  }, [dispatch, userName]);
 
   const handleLogOut = () => {
     dispatch(logOut());

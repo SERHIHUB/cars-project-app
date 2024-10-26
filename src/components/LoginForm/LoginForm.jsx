@@ -41,7 +41,7 @@ export const LoginForm = () => {
 
   return (
     <Container className={css.loginContainer}>
-      <h2>Увійти в обліковий запис</h2>
+      <h2 className={css.loginTitle}>Увійти в обліковий запис</h2>
       <form className={css.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={clsx(css.field, { [css.errorField]: errors.email })}>
           Email

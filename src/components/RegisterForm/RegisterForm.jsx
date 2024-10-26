@@ -59,99 +59,118 @@ export const RegisterForm = () => {
   return (
     <Container className={css.registerContainer}>
       {/* Зробити модалку для повідомлення */}
-      {registerStatus == 200 && (
-        <div>
+      {registerStatus == 200 ? (
+        <div className={css.confirmEmail}>
           <h2>Підтвердіть вашу пошту.</h2>
         </div>
+      ) : (
+        <>
+          <h2>Зараєструватися</h2>
+          <form className={css.registerForm} onSubmit={handleSubmit(onSubmit)}>
+            <label
+              className={clsx(css.field, { [css.errorField]: errors.userName })}
+            >
+              Name
+              <input
+                className={clsx(css.input, {
+                  [css.inputError]: errors.userName,
+                })}
+                placeholder="Enter your name"
+                {...register("userName", { required: true })}
+              />
+              {errors.userName && (
+                <span className={css.errorsMessage}>
+                  {errors.userName.message}
+                </span>
+              )}
+            </label>
+
+            <label
+              className={clsx(css.field, { [css.errorField]: errors.email })}
+            >
+              Email
+              <input
+                className={clsx(css.input, { [css.inputError]: errors.email })}
+                placeholder="Enter your email"
+                {...register("email", { required: true })}
+              />
+              {errors.email && (
+                <span className={css.errorsMessage}>
+                  {errors.email.message}
+                </span>
+              )}
+            </label>
+
+            <label
+              className={clsx(css.field, {
+                [css.errorField]: errors.ownerEmail,
+              })}
+            >
+              Admin email
+              <input
+                className={clsx(css.input, {
+                  [css.inputError]: errors.ownerEmail,
+                })}
+                placeholder="Enter admins email"
+                {...register("ownerEmail")}
+              />
+              {errors.ownerEmail && (
+                <span className={css.errorsMessage}>
+                  {errors.ownerEmail.message}
+                </span>
+              )}
+            </label>
+
+            <label
+              className={clsx(css.field, { [css.errorField]: errors.password })}
+            >
+              Password
+              <input
+                className={clsx(css.input, {
+                  [css.inputError]: errors.password,
+                })}
+                placeholder="Enter your password"
+                type={showPassword ? "text" : "password"}
+                {...register("password", { required: true })}
+              />
+              <Button onClick={handleShowPasswordBtn} className={css.eyeBtn}>
+                {showPassword ? <FiEyeOff /> : <FiEye />}
+              </Button>
+              {errors.password && (
+                <span className={css.errorsMessage}>
+                  {errors.password.message}
+                </span>
+              )}
+            </label>
+
+            <label
+              className={clsx(css.field, {
+                [css.errorField]: errors.confirmPassword,
+              })}
+            >
+              Repeat your password
+              <input
+                className={clsx(css.input, {
+                  [css.inputError]: errors.confirmPassword,
+                })}
+                placeholder="Repeat your password"
+                type={showPassword ? "text" : "password"}
+                {...register("confirmPassword", { required: true })}
+              />
+              <Button onClick={handleShowPasswordBtn} className={css.eyeBtn}>
+                {showPassword ? <FiEyeOff /> : <FiEye />}
+              </Button>
+              {errors.confirmPassword && (
+                <span className={css.errorsMessage}>
+                  {errors.confirmPassword.message}
+                </span>
+              )}
+            </label>
+
+            <input className={css.submit} type="submit" value="Sign Up" />
+          </form>
+        </>
       )}
-      <h2>Зараєструватися</h2>
-      <form className={css.registerForm} onSubmit={handleSubmit(onSubmit)}>
-        <label
-          className={clsx(css.field, { [css.errorField]: errors.userName })}
-        >
-          Name
-          <input
-            className={clsx(css.input, { [css.inputError]: errors.userName })}
-            placeholder="Enter your name"
-            {...register("userName", { required: true })}
-          />
-          {errors.userName && (
-            <span className={css.errorsMessage}>{errors.userName.message}</span>
-          )}
-        </label>
-
-        <label className={clsx(css.field, { [css.errorField]: errors.email })}>
-          Email
-          <input
-            className={clsx(css.input, { [css.inputError]: errors.email })}
-            placeholder="Enter your email"
-            {...register("email", { required: true })}
-          />
-          {errors.email && (
-            <span className={css.errorsMessage}>{errors.email.message}</span>
-          )}
-        </label>
-
-        <label
-          className={clsx(css.field, { [css.errorField]: errors.ownerEmail })}
-        >
-          Admin email
-          <input
-            className={clsx(css.input, { [css.inputError]: errors.ownerEmail })}
-            placeholder="Enter admins email"
-            {...register("ownerEmail")}
-          />
-          {errors.ownerEmail && (
-            <span className={css.errorsMessage}>
-              {errors.ownerEmail.message}
-            </span>
-          )}
-        </label>
-
-        <label
-          className={clsx(css.field, { [css.errorField]: errors.password })}
-        >
-          Password
-          <input
-            className={clsx(css.input, { [css.inputError]: errors.password })}
-            placeholder="Enter your password"
-            type={showPassword ? "text" : "password"}
-            {...register("password", { required: true })}
-          />
-          <Button onClick={handleShowPasswordBtn} className={css.eyeBtn}>
-            {showPassword ? <FiEyeOff /> : <FiEye />}
-          </Button>
-          {errors.password && (
-            <span className={css.errorsMessage}>{errors.password.message}</span>
-          )}
-        </label>
-
-        <label
-          className={clsx(css.field, {
-            [css.errorField]: errors.confirmPassword,
-          })}
-        >
-          Repeat your password
-          <input
-            className={clsx(css.input, {
-              [css.inputError]: errors.confirmPassword,
-            })}
-            placeholder="Repeat your password"
-            type={showPassword ? "text" : "password"}
-            {...register("confirmPassword", { required: true })}
-          />
-          <Button onClick={handleShowPasswordBtn} className={css.eyeBtn}>
-            {showPassword ? <FiEyeOff /> : <FiEye />}
-          </Button>
-          {errors.confirmPassword && (
-            <span className={css.errorsMessage}>
-              {errors.confirmPassword.message}
-            </span>
-          )}
-        </label>
-
-        <input className={css.submit} type="submit" value="Sign Up" />
-      </form>
     </Container>
   );
 };

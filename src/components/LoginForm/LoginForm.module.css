@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.loginTitle {
+  color: antiquewhite;
+}
+
 .loginForm {
   width: 300px;
   display: flex;

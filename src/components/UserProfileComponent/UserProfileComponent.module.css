@@ -1,8 +1,10 @@
 .wrapper {
   padding-top: 16px;
+  padding-bottom: 4px;
 }
 
 .avatarContainer {
+  border: 2px solid antiquewhite;
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -10,6 +12,18 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 16px;
+}
+
+.notAvatar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 92px;
+  font-weight: 700;
+  color: antiquewhite;
+  text-transform: uppercase;
 }
 
 .information {
@@ -45,4 +59,15 @@
   );
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+.notAccessBtn {
+  width: 280px;
+  border: 1px solid red;
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: rgb(134, 19, 19);
+  margin-left: auto;
+  margin-right: auto;
 }

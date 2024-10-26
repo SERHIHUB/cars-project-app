@@ -18,7 +18,7 @@ export const ContactsPage = () => {
 
   return (
     <div className={css.contactWrapper}>
-      <h2>Contacts page</h2>
+      {/* <h2>Contacts page</h2> */}
       <ContactList />
       <Button className={css.addContactBtn} onClick={handleClickModal}>
         Add contact

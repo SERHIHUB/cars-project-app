@@ -13,6 +13,8 @@ export const UserItem = ({ user }) => {
   const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false);
   const dispatch = useDispatch();
 
+  const notAvatar = user.name.slice(0, 2);
+
   const handleOpenModalRole = () => {
     setModalRoleIsOpen(true);
   };
@@ -32,9 +34,14 @@ export const UserItem = ({ user }) => {
     <div className={css.wrapper}>
       <div>
         <div className={css.avatarContainer}>
-          {user.avatarURL && <img src={user.avatarURL} />}
+          {user.avatarURL ? (
+            <img src={user.avatarURL} />
+          ) : (
+            <div className={css.notAvatar}>{notAvatar}</div>
+          )}
         </div>
         <p className={css.userInfo}>{`Name: ${user.name}`}</p>
+        <p className={css.userInfo}>{`Email: ${user.email}`}</p>
         <p className={css.userInfo}>{`Role: ${user.role}`}</p>
       </div>
 
@@ -56,7 +63,7 @@ export const UserItem = ({ user }) => {
         closeModal={onCloseModalDelete}
         modalIsOpen={modalDeleteIsOpen}
       >
-        <DeleteUser onCloseModal={onCloseModalDelete} user={user} />
+        <DeleteUser closeModal={onCloseModalDelete} user={user} />
       </ModalComponent>
       <ModalComponent
         closeModal={onCloseModalRole}

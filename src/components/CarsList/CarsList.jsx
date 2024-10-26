@@ -15,6 +15,7 @@ import { useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { ModalComponent } from "../shared/components/ModalComponent/ModalComponent";
 import { DeleteCar } from "../DeleteCar/DeleteCar";
+import { getCurrentUser } from "../../redux/users/operations";
 
 export const CarsList = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ export const CarsList = () => {
 
   useEffect(() => {
     dispatch(fetchCars({ page: currentPage, perPage: perPage }));
+    // dispatch(getCurrentUser());
   }, [dispatch, page]);
 
   return (
