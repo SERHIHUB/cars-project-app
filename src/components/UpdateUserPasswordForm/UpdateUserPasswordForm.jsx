@@ -10,10 +10,13 @@ import { updateUserPasswordFormSchema } from "../../validationSchemas/updateUser
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { passwordReset } from "../../redux/auth/operations";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 
 export const UpdateUserPasswordForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const [params, setParams] = useSearchParams();
+  const token = params.get("token");
 
   const {
     register,
@@ -26,7 +29,7 @@ export const UpdateUserPasswordForm = () => {
   });
 
   const onSubmit = ({ password }) => {
-    const data = { password };
+    const data = { password, token };
 
     console.log(data);
 

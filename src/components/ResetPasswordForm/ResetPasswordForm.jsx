@@ -10,12 +10,15 @@ import {
   passwordResetRequest,
 } from "../../redux/auth/operations";
 import { selectRequestResetStatus } from "../../redux/auth/selectors";
+import toast from "react-hot-toast";
 
 export const ResetPasswordForm = () => {
   const dispatch = useDispatch();
   // const statusResetRequest = useSelector(selectRequestResetStatus);
 
   // console.log(statusResetRequest);
+
+  const notify = () => toast("Лист з посиланням відправлено на вказану пошту!");
 
   const {
     register,
@@ -35,6 +38,7 @@ export const ResetPasswordForm = () => {
     dispatch(passwordResetRequest(newData));
     // Лист з посиланням для скидання паролю успішно доходить, після деплою треба додати хост в db
     reset();
+    notify();
   };
 
   return (

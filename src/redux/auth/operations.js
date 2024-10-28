@@ -16,9 +16,9 @@ const clearAuthHeader = () => {
 export const registerUser = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
-    const { email, password } = credentials;
+    // const { email, password } = credentials;
     try {
-      console.log("response");
+      // console.log("response");
       const response = await instanse.post("auth/register", credentials);
 
       // деструктурувати credentials, взяти email та password
@@ -60,8 +60,8 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 export const passwordResetRequest = createAsyncThunk(
   "auth/resetPasswordRequest",
   async (body, thunkAPI) => {
-    console.log(body);
-    const { email } = body;
+    // console.log(body);
+    // const { email } = body;
     try {
       const response = await instanse.post("auth/request-reset-password", body);
 
@@ -74,15 +74,12 @@ export const passwordResetRequest = createAsyncThunk(
 
 export const passwordReset = createAsyncThunk(
   "auth/resetPassword",
-  async (credentials, thunkAPI) => {
-    console.log(credentials);
+  async (body, thunkAPI) => {
+    // console.log(body);
     try {
-      const response = await instanse.post(
-        "auth/request-reset-password",
-        credentials
-      );
+      const response = await instanse.post("auth/reset-password", body);
 
-      return response;
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

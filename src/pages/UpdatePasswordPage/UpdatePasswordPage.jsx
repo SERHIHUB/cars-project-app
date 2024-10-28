@@ -7,17 +7,15 @@ import {
 } from "../../redux/auth/selectors";
 import { ResetPasswordForm } from "../../components/ResetPasswordForm/ResetPasswordForm";
 import { UpdateUserPasswordForm } from "../../components/UpdateUserPasswordForm/UpdateUserPasswordForm";
+import toast from "react-hot-toast";
 
 export const UpdatePasswordPage = () => {
   const statusResetRequest = useSelector(selectRequestResetStatus);
   const isResetStatus = useSelector(selectResetStatus);
+
   return (
     <Section>
-      {statusResetRequest == "200" ? (
-        <UpdateUserPasswordForm />
-      ) : (
-        <ResetPasswordForm />
-      )}
+      <ResetPasswordForm />
     </Section>
   );
 };

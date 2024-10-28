@@ -78,7 +78,7 @@ const authSlice = createSlice({
       .addCase(passwordReset.fulfilled, (state, action) => {
         state.loading = false;
         state.resetStatus = action.payload.status;
-        console.log(action.payload);
+        // console.log(action.payload.status);
       })
       .addCase(passwordReset.rejected, (state) => {
         state.loading = false;
