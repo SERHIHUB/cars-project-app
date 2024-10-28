@@ -4,6 +4,9 @@ export const selectStatus = (state) => state.auth.status;
 
 export const selectToken = (state) => state.auth.token;
 
+export const selectRequestResetStatus = (state) =>
+  state.auth.requestResetStatus;
+
 export const selectResetStatus = (state) => state.auth.resetStatus;
 
 export const selectUserName = (state) => state.auth.user.name;

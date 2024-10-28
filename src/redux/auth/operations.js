@@ -59,12 +59,11 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 
 export const passwordResetRequest = createAsyncThunk(
   "auth/resetPasswordRequest",
-  async (userEmail, thunkAPI) => {
+  async (body, thunkAPI) => {
+    console.log(body);
+    const { email } = body;
     try {
-      const response = await instanse.post(
-        "auth/request-reset-password",
-        userEmail
-      );
+      const response = await instanse.post("auth/request-reset-password", body);
 
       return response.data;
     } catch (error) {
@@ -76,6 +75,7 @@ export const passwordResetRequest = createAsyncThunk(
 export const passwordReset = createAsyncThunk(
   "auth/resetPassword",
   async (credentials, thunkAPI) => {
+    console.log(credentials);
     try {
       const response = await instanse.post(
         "auth/request-reset-password",

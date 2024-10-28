@@ -18,7 +18,7 @@ const authSlice = createSlice({
     thema: "light",
     isLoggedIn: false,
     isRefreshing: false,
-    // requestResetStatus: null,
+    requestResetStatus: null,
     resetStatus: null,
     loading: false,
     error: false,
@@ -62,15 +62,27 @@ const authSlice = createSlice({
         state.error = false;
       })
       .addCase(passwordResetRequest.fulfilled, (state, action) => {
+        state.loading = false;
         state.requestResetStatus = action.payload.status;
+        console.log(action.payload);
       })
       .addCase(passwordResetRequest.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(passwordReset.fulfilled, (state) => {
-        // console.log(state);
-        // console.log(action.payload);
+      .addCase(passwordReset.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+        state.requestResetStatus = null;
+      })
+      .addCase(passwordReset.fulfilled, (state, action) => {
+        state.loading = false;
+        state.resetStatus = action.payload.status;
+        console.log(action.payload);
+      })
+      .addCase(passwordReset.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
       })
       .addCase(verifyToken.fulfilled, (state) => {
         // console.log(state);
