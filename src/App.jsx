@@ -26,6 +26,7 @@ import { UserProfilePage } from "./pages/UserProfilePage/UserProfilePage";
 import { AdminPanel } from "./pages/AdminPanel/AdminPanel";
 import { VerifyEmail } from "./pages/VerifyEmail/VerifyEmail";
 import { Loader } from "./components/shared/components/Loader/Loader";
+import { UpdateUserPasswordPage } from "./pages/UpdateUserPasswordPage/UpdateUserPasswordPage";
 
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 // const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
@@ -99,6 +100,11 @@ function App() {
           <Route path="/auth-verify/:verifytoken" element={<VerifyEmail />} />
 
           <Route path="/reset-password" element={<UpdatePasswordPage />} />
+
+          <Route
+            path="/auth/reset-password"
+            element={<UpdateUserPasswordPage />}
+          />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
