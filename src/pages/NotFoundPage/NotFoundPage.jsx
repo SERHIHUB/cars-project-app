@@ -3,8 +3,11 @@ import css from "./NotFoundPage.module.css";
 
 export const NotFoundPage = () => {
   return (
-    <Section>
-      <h2>NotFoundPage</h2>
+    <Section className={css.section}>
+      <div className={css.wrapper}>
+        <h2 className={css.title}>404</h2>
+        <p>Page not found!</p>
+      </div>
     </Section>
   );
 };
