@@ -135,7 +135,7 @@ export const CarDetailsPage = () => {
             <MdEdit />
           </Button>
 
-          <Button className={css.payment} onClick={handleClickPayment}>
+          <Button className={css.detailsBtn} onClick={handleClickPayment}>
             <BsCashCoin />
           </Button>
 

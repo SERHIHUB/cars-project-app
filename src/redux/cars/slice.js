@@ -88,9 +88,10 @@ const carSlice = createSlice({
       .addCase(deleteCar.fulfilled, (state, action) => {
         state.loading = false;
         console.log(action.payload);
-        // state.items = state.items.filter(
-        //   (item) => item._id !== action.payload.id
-        // );
+        state.items = state.items.filter(
+          (item) => item._id !== action.payload._id
+        );
+        // console.log(state.items);
       })
       .addCase(deleteCar.rejected, (state) => {
         state.loading = false;

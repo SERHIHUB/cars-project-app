@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import { ModalComponent } from "../shared/components/ModalComponent/ModalComponent";
 import css from "./CarItem.module.css";
@@ -9,15 +9,38 @@ import { DeleteCar } from "../DeleteCar/DeleteCar";
 import { TbListDetails } from "react-icons/tb";
 import { AiOutlineDelete } from "react-icons/ai";
 import { selectCurrentUser } from "../../redux/users/selectors";
+import { updateCar } from "../../redux/cars/operations";
+import { useEffect } from "react";
 
 // const textColor = document.querySelector("#car-title");
 
 export const CarItem = ({ car }) => {
+  const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
   const currentUser = useSelector(selectCurrentUser);
+  // ____________________________________
+  const now = new Date();
+  const currentMonth = now.getMonth() + 1;
 
-  // textColor.style.color = "red";
+  const isPaidValue = () => {
+    if (currentMonth <= car.isPaidMonth) return;
+    if (car.isPaid === false) return;
+
+    const payload = {
+      carId: car._id,
+      body: {
+        isPaid: false,
+      },
+    };
+
+    dispatch(updateCar(payload));
+  };
+
+  useEffect(() => {
+    return isPaidValue();
+  }, [currentMonth]);
+  // ____________________________________
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
@@ -46,7 +69,10 @@ export const CarItem = ({ car }) => {
       >{`Model: ${car.carModel}`}</h3>
       <p>{`Number: ${car.carNumber.toUpperCase()}`}</p>
       <p>{`Price: ${car.price}`}</p>
-      <p>{`Date of pay: ${car.paymentDate}`}</p>
+      <p>{`Paid month: ${car.isPaidMonth}`}</p>
+      <p
+        className={clsx(car.isPaid ? css.greenText : css.redText)}
+      >{`Date of pay: ${car.paymentDate}`}</p>
       {/* <p>{`Contact: ${car.contact !== null ? car.contact : "_ _ _"}`}</p> */}
       <p>{`Contact: ${
         car.contact !== null ? (

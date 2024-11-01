@@ -13,12 +13,14 @@ import { DeleteUser } from "../DeleteUser/DeleteUser";
 import { IoImageOutline } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
-
-export const UserProfileComponent = ({ currentUser }) => {
+// { currentUser }
+export const UserProfileComponent = () => {
   const [modalNameIsOpen, setModalNameIsOpen] = useState(false);
   const [modalAvatarIsOpen, setModalAvatarIsOpen] = useState(false);
   const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false);
   const dispatch = useDispatch();
+
+  const currentUser = useSelector(selectCurrentUser);
 
   const notAvatar = currentUser.name.slice(0, 2);
 
@@ -47,9 +49,9 @@ export const UserProfileComponent = ({ currentUser }) => {
   // const currentUser = useSelector(selectCurrentUser);
   // console.log(currentUser);
 
-  // useEffect(() => {
-  //   dispatch(fetchUsers());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
 
   return (
     <Container className={css.wrapper}>

@@ -14,13 +14,14 @@ export const UserProfilePage = () => {
   const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCurrentUser());
-  }, [dispatch, currentUser]);
+  // useEffect(() => {
+  //   dispatch(getCurrentUser());
+  // }, [dispatch, currentUser]);
 
   return (
     <Section>
-      <UserProfileComponent currentUser={currentUser} />
+      {/* <UserProfileComponent currentUser={currentUser} /> */}
+      <UserProfileComponent />
     </Section>
   );
 };
