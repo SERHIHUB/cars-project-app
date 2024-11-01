@@ -7,6 +7,7 @@ import { fetchCars } from "../../redux/cars/operations";
 import { getCurrentUser } from "../../redux/users/operations";
 import css from "./AbonementsPage.module.css";
 import { CreateCarForm } from "../../components/CreateCarForm/CreateCarForm";
+import { Section } from "../../components/shared/components/Section/Section";
 
 export const AbonementsPage = () => {
   const dispatch = useDispatch();
@@ -33,15 +34,17 @@ export const AbonementsPage = () => {
   // }, [dispatch]);
 
   return (
-    <div className={css.carWrapper}>
-      <h2>AbonementsPage</h2>
+    <Section className={css.carWrapper}>
+      {/* <h2>AbonementsPage</h2> */}
       <CarsList />
-      <Button className={css.addCar} onClick={handleClickModal}>
-        Add abonement
-      </Button>
+      <div className={css.btnWrapper}>
+        <Button className={css.addCar} onClick={handleClickModal}>
+          Add abonement
+        </Button>
+      </div>
       <ModalComponent closeModal={onCloseModal} modalIsOpen={modalIsOpen}>
         <CreateCarForm onCloseModal={onCloseModal} />
       </ModalComponent>
-    </div>
+    </Section>
   );
 };

@@ -4,7 +4,7 @@ import { ModalComponent } from "../../components/shared/components/ModalComponen
 import { UserProfileComponent } from "../../components/UserProfileComponent/UserProfileComponent";
 import { UpdateUserForm } from "../../components/UpdateUserForm/UpdateUserForm";
 import css from "./UserProfilePage.module.css";
-import { Container } from "../../components/shared/components/Container/Container";
+import { Section } from "../../components/shared/components/Section/Section";
 import { UpdateAvatarForm } from "../../components/UpdateAvatarForm/UpdateAvatarForm";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../../redux/users/selectors";
@@ -19,8 +19,8 @@ export const UserProfilePage = () => {
   }, [dispatch, currentUser]);
 
   return (
-    <Container>
+    <Section>
       <UserProfileComponent currentUser={currentUser} />
-    </Container>
+    </Section>
   );
 };

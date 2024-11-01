@@ -2,6 +2,11 @@
   padding-bottom: 20px;
 }
 
+.btnWrapper {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
 .addContactBtn {
   width: 100%;
   font-size: 18px;
@@ -18,5 +23,6 @@
 
   @media (min-width: 768px) {
     width: 180px;
+    margin-left: 4px;
   }
 }

@@ -65,7 +65,7 @@ export const CarsList = () => {
   }, [dispatch, page]);
 
   return (
-    <Container>
+    <Container className={css.container}>
       <ul className={css.carsList}>
         {cars.map((item) => {
           return (

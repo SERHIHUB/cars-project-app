@@ -134,7 +134,7 @@ export const RegisterForm = () => {
                 {...register("password", { required: true })}
               />
               <Button onClick={handleShowPasswordBtn} className={css.eyeBtn}>
-                {showPassword ? <FiEyeOff /> : <FiEye />}
+                {showPassword ? <FiEyeOff size="24" /> : <FiEye size="24" />}
               </Button>
               {errors.password && (
                 <span className={css.errorsMessage}>
@@ -158,7 +158,7 @@ export const RegisterForm = () => {
                 {...register("confirmPassword", { required: true })}
               />
               <Button onClick={handleShowPasswordBtn} className={css.eyeBtn}>
-                {showPassword ? <FiEyeOff /> : <FiEye />}
+                {showPassword ? <FiEyeOff size="24" /> : <FiEye size="24" />}
               </Button>
               {errors.confirmPassword && (
                 <span className={css.errorsMessage}>

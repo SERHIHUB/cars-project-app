@@ -52,7 +52,7 @@ export const UserProfileComponent = ({ currentUser }) => {
   // }, [dispatch]);
 
   return (
-    <div className={css.wrapper}>
+    <Container className={css.wrapper}>
       <div className={css.avatarContainer}>
         {currentUser.avatarURL ? (
           <img src={currentUser.avatarURL} />
@@ -111,6 +111,6 @@ export const UserProfileComponent = ({ currentUser }) => {
       >
         <DeleteUser onCloseModal={onCloseModalDelete} user={currentUser} />
       </ModalComponent>
-    </div>
+    </Container>
   );
 };

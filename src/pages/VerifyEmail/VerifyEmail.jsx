@@ -1,27 +1,29 @@
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import { Navigate } from "react-router-dom";
 import { Button } from "../../components/shared/components/Button/Button";
 import { Container } from "../../components/shared/components/Container/Container";
 import { verifyToken } from "../../redux/auth/operations";
 import css from "./VerifyEmail.module.css";
 // import { selectIsVerify } from "../../redux/auth/selectors";
-import { useEffect } from "react";
-import { useState } from "react";
+// import { useEffect } from "react";
+// import { useState } from "react";
 
 export const VerifyEmail = () => {
   const dispatch = useDispatch();
   const { verifytoken } = useParams();
-  const [isRedirect, setIsRedirect] = useState(false);
+  // const [isRedirect, setIsRedirect] = useState(false);
+  // const token = verifytoken ? verifytoken : "";
   // const isVerify = useSelector(selectIsVerify);
 
   // console.log(isVerify);
 
   const handleClick = () => {
-    console.log(verifytoken);
+    if (!verifytoken) return;
+    // console.log(verifytoken);
     dispatch(verifyToken(verifytoken));
-    setIsRedirect(true);
+    // setIsRedirect(true);
   };
 
   // useEffect(() => {}, [dispatch]);

@@ -5,6 +5,7 @@ import { selectUsers } from "../../redux/users/selectors";
 import { UserItem } from "../UserItem/UserItem";
 import { nanoid } from "nanoid";
 import css from "./UserList.module.css";
+import { Container } from "../shared/components/Container/Container";
 
 export const UserList = () => {
   const dispatch = useDispatch();
@@ -15,16 +16,16 @@ export const UserList = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <ul>
+    <Container className={css.container}>
+      <ul className={css.usersList}>
         {users.map((item) => {
           return (
-            <li key={nanoid()}>
+            <li className={css.usersItem} key={nanoid()}>
               <UserItem user={item} />
             </li>
           );
         })}
       </ul>
-    </div>
+    </Container>
   );
 };
