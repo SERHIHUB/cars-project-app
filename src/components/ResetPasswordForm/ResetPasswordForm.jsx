@@ -1,15 +1,15 @@
 import { updateUserEmailFormSchema } from "../../validationSchemas/updateUserFormSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import { Container } from "../shared/components/Container/Container";
 import css from "./ResetPasswordForm.module.css";
 import {
-  passwordReset,
+  // passwordReset,
   passwordResetRequest,
 } from "../../redux/auth/operations";
-import { selectRequestResetStatus } from "../../redux/auth/selectors";
+// import { selectRequestResetStatus } from "../../redux/auth/selectors";
 import toast from "react-hot-toast";
 
 export const ResetPasswordForm = () => {
@@ -31,7 +31,7 @@ export const ResetPasswordForm = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data.email.toLowerCase());
+    // console.log(data.email.toLowerCase());
     const newData = {
       email: data.email.toLowerCase(),
     };
@@ -43,7 +43,7 @@ export const ResetPasswordForm = () => {
 
   return (
     <Container className={css.resetContainer}>
-      <h2>Забули пароль?</h2>
+      <h2 className={css.resetTitle}>Забули пароль?</h2>
       <form className={css.updateUserForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={clsx(css.field, { [css.errorField]: errors.email })}>
           Email

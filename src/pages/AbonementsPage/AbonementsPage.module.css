@@ -1,5 +1,16 @@
 .carWrapper {
   padding-bottom: 20px;
+  /* min-height: 100vh; */
+  /* background-image: linear-gradient(
+    to bottom,
+    rgba(8, 49, 12, 0.6),
+    rgba(11, 5, 46, 0.6)
+  ); */
+}
+
+.btnWrapper {
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .addCar {
@@ -18,5 +29,6 @@
 
   @media (min-width: 768px) {
     width: 180px;
+    margin-left: 4px;
   }
 }

@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { Section } from "../../components/shared/components/Section/Section";
 import { Container } from "../../components/shared/components/Container/Container";
 import css from "./CarDetailsPage.module.css";
 import clsx from "clsx";
@@ -60,86 +61,91 @@ export const CarDetailsPage = () => {
   }, [dispatch]);
 
   return (
-    <Container>
-      <div className={css.carInfo}>
-        <ul className={css.detailsList}>
-          <li className={css.detailsItem}>
-            <p
-              className={clsx(car.isPaid ? css.greenText : css.redText)}
-            >{`Модель: ${car.carModel}`}</p>
-          </li>
-          <li className={css.detailsItem}>
-            <p>{`Номер: ${car.carNumber}`}</p>
-          </li>
-          <li className={css.detailsItem}>
-            <p>{`Вартість: ${car.price}`}</p>
-          </li>
-          <li className={css.detailsItem}>
-            <p>{`Дата оплати: ${car.paymentDate}`}</p>
-          </li>
-          <li className={css.detailsItem}>
-            <p>{`Тел: ${
-              car.contact !== null ? (
-                <a className={css.contactLink} href={`tel:${car.contact}`}>
-                  {car.contact}
-                </a>
-              ) : (
-                "_ _ _"
-              )
-            }`}</p>
-          </li>
-          {/* <li className={css.detailsItem}>
+    <Section>
+      <Container>
+        <div className={css.carInfo}>
+          <ul className={css.detailsList}>
+            <li className={css.detailsItem}>
+              <p
+                className={clsx(car.isPaid ? css.greenText : css.redText)}
+              >{`Модель: ${car.carModel}`}</p>
+            </li>
+            <li className={css.detailsItem}>
+              <p>{`Номер: ${car.carNumber}`}</p>
+            </li>
+            <li className={css.detailsItem}>
+              <p>{`Вартість: ${car.price}`}</p>
+            </li>
+            <li className={css.detailsItem}>
+              <p>{`Дата оплати: ${car.paymentDate}`}</p>
+            </li>
+            <li className={css.detailsItem}>
+              <p>{`Тел: ${
+                car.contact !== null ? (
+                  <a className={css.contactLink} href={`tel:${car.contact}`}>
+                    {car.contact}
+                  </a>
+                ) : (
+                  "_ _ _"
+                )
+              }`}</p>
+            </li>
+            {/* <li className={css.detailsItem}>
             <p>{`Оплачено: ${car.isPaid ? "Так" : "Ні"}`}</p>
           </li> */}
-          <li className={css.detailsItem}>
-            <p>{`Оплату відзначив: ${userName}`}</p>
-          </li>
-        </ul>
+            <li className={css.detailsItem}>
+              <p>{`Оплату відзначив: ${userName}`}</p>
+            </li>
+          </ul>
 
-        <div className={css.carImag}>
-          {car.carPhotoURL && (
-            <img className={css.carPicture} src={car.carPhotoURL} alt="car" />
-          )}
+          <div className={css.carImag}>
+            {car.carPhotoURL && (
+              <img className={css.carPicture} src={car.carPhotoURL} alt="car" />
+            )}
+          </div>
         </div>
-      </div>
-      <ModalComponent closeModal={onCloseModal} modalIsOpen={modalIsOpen}>
-        <UpdateCarForm car={car} onCloseModal={onCloseModal} />
-      </ModalComponent>
+        <ModalComponent closeModal={onCloseModal} modalIsOpen={modalIsOpen}>
+          <UpdateCarForm car={car} onCloseModal={onCloseModal} />
+        </ModalComponent>
 
-      <ModalComponent
-        closeModal={onClosePictureModal}
-        modalIsOpen={openPictureModal}
-      >
-        <UpdateCarPictureForm car={car} onCloseModal={onClosePictureModal} />
-      </ModalComponent>
+        <ModalComponent
+          closeModal={onClosePictureModal}
+          modalIsOpen={openPictureModal}
+        >
+          <UpdateCarPictureForm car={car} onCloseModal={onClosePictureModal} />
+        </ModalComponent>
 
-      <ModalComponent closeModal={closePayment} modalIsOpen={openPaymentModal}>
-        <UpdataPaymentForm
-          lastPaidDate={car.lastPaidDate}
-          carId={car._id}
-          onCloseModal={closePayment}
-        />
-      </ModalComponent>
+        <ModalComponent
+          closeModal={closePayment}
+          modalIsOpen={openPaymentModal}
+        >
+          <UpdataPaymentForm
+            lastPaidDate={car.lastPaidDate}
+            carId={car._id}
+            onCloseModal={closePayment}
+          />
+        </ModalComponent>
 
-      <div className={css.detailsButtonsList}>
-        <Button className={css.detailsBtn} onClick={handleClickPicture}>
-          <IoImageOutline />
-        </Button>
+        <div className={css.detailsButtonsList}>
+          <Button className={css.detailsBtn} onClick={handleClickPicture}>
+            <IoImageOutline />
+          </Button>
 
-        <Button className={css.detailsBtn} onClick={handleClickItem}>
-          <MdEdit />
-        </Button>
+          <Button className={css.detailsBtn} onClick={handleClickItem}>
+            <MdEdit />
+          </Button>
 
-        <Button className={css.payment} onClick={handleClickPayment}>
-          <BsCashCoin />
-        </Button>
+          <Button className={css.payment} onClick={handleClickPayment}>
+            <BsCashCoin />
+          </Button>
 
-        <Button className={css.detailsBtn}>
-          <Link to={location.state}>
-            <RiArrowGoBackLine />
-          </Link>
-        </Button>
-      </div>
-    </Container>
+          <Button className={css.detailsBtn}>
+            <Link to={location.state}>
+              <RiArrowGoBackLine />
+            </Link>
+          </Button>
+        </div>
+      </Container>
+    </Section>
   );
 };

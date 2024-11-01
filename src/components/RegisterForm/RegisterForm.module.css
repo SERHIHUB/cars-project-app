@@ -1,5 +1,6 @@
 .registerContainer {
   text-align: center;
+  height: 100vh;
 }
 
 .confirmEmail {
@@ -42,7 +43,7 @@
 
 .eyeBtn {
   position: absolute;
-  top: 38px;
+  top: 32px;
   right: 16px;
   background-color: inherit;
   border: none;

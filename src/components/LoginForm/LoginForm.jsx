@@ -66,7 +66,7 @@ export const LoginForm = () => {
             {...register("password", { required: true })}
           />
           <Button onClick={handleShowPasswordBtn} className={css.eyeBtn}>
-            {showPassword ? <FiEyeOff /> : <FiEye />}
+            {showPassword ? <FiEyeOff size="24" /> : <FiEye size="24" />}
           </Button>
           {errors.password && (
             <span className={css.errorsMessage}>{errors.password.message}</span>
