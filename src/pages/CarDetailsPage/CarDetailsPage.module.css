@@ -14,8 +14,14 @@
 }
 
 .carImag {
-  width: 160px;
-  height: 110px;
+  width: 180px;
+  height: 160px;
+}
+
+.carPicture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .detailsButtonsList {
@@ -29,7 +35,7 @@
 }
 
 .detailsBtn {
-  width: 150px;
+  width: 140px;
   font-size: 18px;
   border-radius: 8px;
   border: none;
@@ -40,10 +46,14 @@
   );
   padding-top: 8px;
   padding-bottom: 8px;
+
+  @media (min-width: 768px) {
+    width: 150px;
+  }
 }
 
-.payment {
-  width: 150px;
+/* .payment {
+  width: 140px;
   font-size: 18px;
   border-radius: 8px;
   border: none;
@@ -54,4 +64,8 @@
   );
   padding-top: 8px;
   padding-bottom: 8px;
-}
+
+  @media (min-width: 768px) {
+    width: 150px;
+  }
+} */

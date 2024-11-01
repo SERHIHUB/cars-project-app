@@ -17,35 +17,16 @@ import { useEffect } from "react";
 export const CarItem = ({ car }) => {
   const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const [isPaid, setIsPaid] = useState(true);
   const location = useLocation();
   const currentUser = useSelector(selectCurrentUser);
   // ____________________________________
   const now = new Date();
-  const currentDate = now.getDate();
   const currentMonth = now.getMonth() + 1;
 
   const isPaidValue = () => {
     if (currentMonth <= car.isPaidMonth) return;
     if (car.isPaid === false) return;
 
-    // const payload = {
-    //   carId: car._id,
-    //   body: {
-    //     isPaid: false,
-    //   },
-    // };
-
-    // console.log(payload);
-    // dispatch(updateCar(payload));
-  };
-
-  // useEffect(() => {
-  //   return isPaidValue();
-  // }, [currentMonth]);
-  // ____________________________________
-
-  const handleButton = () => {
     const payload = {
       carId: car._id,
       body: {
@@ -53,25 +34,13 @@ export const CarItem = ({ car }) => {
       },
     };
 
-    console.log("payload!!!");
     dispatch(updateCar(payload));
   };
 
-  // console.log(car.isPaidMonth);
-  // console.log(currentMonth);
-  // useEffect(() => {}, []);
-  // if (currentDate <= 5) {
-  //   const payload = {
-  //     carId: car._id,
-  //     body: {
-  //       lastPaidDate: car.lastPaidDate,
-  //     },
-  //   };
-  // dispatch(updateCar(payload));
-  //   console.log("isPaid");
-  // }
-
-  // textColor.style.color = "red";
+  useEffect(() => {
+    return isPaidValue();
+  }, [currentMonth]);
+  // ____________________________________
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
@@ -101,7 +70,9 @@ export const CarItem = ({ car }) => {
       <p>{`Number: ${car.carNumber.toUpperCase()}`}</p>
       <p>{`Price: ${car.price}`}</p>
       <p>{`Paid month: ${car.isPaidMonth}`}</p>
-      <p>{`Date of pay: ${car.paymentDate}`}</p>
+      <p
+        className={clsx(car.isPaid ? css.greenText : css.redText)}
+      >{`Date of pay: ${car.paymentDate}`}</p>
       {/* <p>{`Contact: ${car.contact !== null ? car.contact : "_ _ _"}`}</p> */}
       <p>{`Contact: ${
         car.contact !== null ? (
@@ -131,9 +102,6 @@ export const CarItem = ({ car }) => {
           </li>
         </ul>
       )}
-      <Button className={css.btn} onClick={handleButton}>
-        BUTTON
-      </Button>
       <ModalComponent closeModal={handleCloseModal} modalIsOpen={modalIsOpen}>
         <DeleteCar car={car} closeModal={handleCloseModal} />
       </ModalComponent>

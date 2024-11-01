@@ -68,10 +68,10 @@ const contactSlice = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
-        // state.items = state.items.filter(
-        //   (item) => item._id !== action.payload.id
-        // );
+        // console.log(action.payload);
+        state.items = state.items.filter(
+          (item) => item._id !== action.payload._id
+        );
       })
       .addCase(deleteContact.rejected, (state) => {
         state.loading = false;

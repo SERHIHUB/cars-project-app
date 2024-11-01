@@ -4,11 +4,12 @@ import { useEffect } from "react";
 import css from "./LogOutComponent.module.css";
 import { logOut } from "../../redux/auth/operations";
 import { getCurrentUser } from "../../redux/users/operations";
-import { selectUserName } from "../../redux/auth/selectors";
+import { selectIsLoggedIn, selectUserName } from "../../redux/auth/selectors";
 
 export const LogOutComponent = ({ windowWidth }) => {
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -20,11 +21,11 @@ export const LogOutComponent = ({ windowWidth }) => {
 
   return (
     <div className={css.wrapper}>
-      {windowWidth >= 768 && <p>{`Welcome ${userName}`}</p>}
+      {windowWidth >= 768 && <p>{userName && `Welcome ${userName}`}</p>}
       <Button onClick={handleLogOut} className={css.btn}>
         Log out
       </Button>
-      {windowWidth < 768 && <p>{`Welcome ${userName}`}</p>}
+      {windowWidth < 768 && <p>{userName && `Welcome ${userName}`}</p>}
     </div>
   );
 };

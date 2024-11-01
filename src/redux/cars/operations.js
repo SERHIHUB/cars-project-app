@@ -85,6 +85,10 @@ export const deleteCar = createAsyncThunk(
   async (carId, thunkAPI) => {
     try {
       const response = await instanse.delete(`cars/${carId}`);
+
+      // console.log(response.data.data);
+
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

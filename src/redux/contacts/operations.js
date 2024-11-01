@@ -50,7 +50,9 @@ export const deleteContact = createAsyncThunk(
   "contacts/delete",
   async (contactId, thunkAPI) => {
     try {
-      await instanse.delete(`contacts/${contactId}`);
+      const response = await instanse.delete(`contacts/${contactId}`);
+
+      return response.data.data;
     } catch (error) {
       toast.error(error.status == 404 && "Цього контакту вже не існує!");
       return thunkAPI.rejectWithValue(error);
