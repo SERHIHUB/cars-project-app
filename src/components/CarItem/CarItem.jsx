@@ -50,6 +50,8 @@ export const CarItem = ({ car }) => {
     setModalIsOpen(false);
   }
 
+  // console.log(car.contact);
+
   return (
     <div
       // className={css.wrapper}
@@ -74,7 +76,7 @@ export const CarItem = ({ car }) => {
         className={clsx(car.isPaid ? css.greenText : css.redText)}
       >{`Date of pay: ${car.paymentDate}`}</p>
       {/* <p>{`Contact: ${car.contact !== null ? car.contact : "_ _ _"}`}</p> */}
-      <p>{`Contact: ${
+      {/* <p>{`Contact: ${
         car.contact !== null ? (
           <a className={css.contactLink} href={`tel:${car.contact}`}>
             {car.contact}
@@ -82,7 +84,13 @@ export const CarItem = ({ car }) => {
         ) : (
           "_ _ _"
         )
-      }`}</p>
+      }`}</p> */}
+
+      {car.contact ? (
+        <p>{`Contact: ${car.contact}`}</p>
+      ) : (
+        <p>{`Contact: _ _ _`}</p>
+      )}
 
       {currentUser.role === "observer" ? (
         <div className={css.notAccessBtn}>Тільки перегляд</div>

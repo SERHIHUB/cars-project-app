@@ -60,6 +60,8 @@ export const CarDetailsPage = () => {
     dispatch(getOneCar(carId));
   }, [dispatch]);
 
+  // console.log(car.contact);
+
   return (
     <Section>
       <Container>
@@ -71,7 +73,7 @@ export const CarDetailsPage = () => {
               >{`Модель: ${car.carModel}`}</p>
             </li>
             <li className={css.detailsItem}>
-              <p>{`Номер: ${car.carNumber}`}</p>
+              <p>{`Номер: ${car.carNumber.toUpperCase()}`}</p>
             </li>
             <li className={css.detailsItem}>
               <p>{`Вартість: ${car.price}`}</p>
@@ -80,7 +82,7 @@ export const CarDetailsPage = () => {
               <p>{`Дата оплати: ${car.paymentDate}`}</p>
             </li>
             <li className={css.detailsItem}>
-              <p>{`Тел: ${
+              {/* <p>{`Тел: ${
                 car.contact !== null ? (
                   <a className={css.contactLink} href={`tel:${car.contact}`}>
                     {car.contact}
@@ -88,7 +90,12 @@ export const CarDetailsPage = () => {
                 ) : (
                   "_ _ _"
                 )
-              }`}</p>
+              }`}</p> */}
+              {car.contact ? (
+                <p>{`Тел: ${car.contact}`}</p>
+              ) : (
+                <p>{`Тел: _ _ _`}</p>
+              )}
             </li>
             {/* <li className={css.detailsItem}>
             <p>{`Оплачено: ${car.isPaid ? "Так" : "Ні"}`}</p>

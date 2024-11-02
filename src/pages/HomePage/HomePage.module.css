@@ -1,9 +1,10 @@
 .section {
   padding-top: 16px 8px;
   text-align: center;
-  background-image: none;
-  background-color: rgb(246, 243, 238);
+  /* background-image: none; */
+  /* background-color: rgb(246, 243, 238); */
   height: 100vh;
+  color: antiquewhite;
 }
 
 .content {
@@ -25,6 +26,7 @@
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 20px;
+  text-align: center;
 
   @media (min-width: 768px) {
     width: 400px;
@@ -33,4 +35,63 @@
 
 .calendar {
   border: 1px solid rgb(54, 13, 238);
+}
+
+.decorWrapper {
+  padding-top: 20px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.calendarBtn {
+  width: 160px;
+  height: 60px;
+  border-radius: 8px;
+  border: none;
+  font-size: 24px;
+  margin-top: 40px;
+  box-shadow: 2px 2px 4px rgb(206, 19, 239), -2px -2px 4px rgb(206, 19, 239);
+  background-image: linear-gradient(
+    120deg,
+    rgba(16, 187, 25, 0.3),
+    rgba(77, 85, 240, 0.3)
+  );
+}
+
+.topElement {
+  width: 100px;
+  height: 160px;
+  border: 3px solid #fff;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgb(19, 92, 239), -2px -2px 4px rgb(19, 92, 239);
+  background-image: url("../../images/headlight.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bottomLeftElement {
+  width: 148px;
+  height: 100px;
+  border: 3px solid #fff;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgb(19, 92, 239), -2px -2px 4px rgb(19, 92, 239);
+  background-image: url("../../images/speed.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bottomRightElement {
+  width: 148px;
+  height: 100px;
+  border: 3px solid #fff;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgb(19, 92, 239), -2px -2px 4px rgb(19, 92, 239);
+  background-image: url("../../images/selector.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
