@@ -8,11 +8,14 @@ import clsx from "clsx";
 import css from "./LoginForm.module.css";
 import { Button } from "../shared/components/Button/Button";
 import { signInFormSchema } from "../../validationSchemas/authFormSchemas";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
+// import { selectIsLoggedIn } from "../../redux/auth/selectors";
+// import { Loader } from "../shared/components/Loader/Loader";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  // const loading = useSelector(selectIsLoggedIn);
   const [showPassword, setShowPassword] = useState(false);
 
   const {

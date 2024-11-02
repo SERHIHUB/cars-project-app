@@ -13,4 +13,6 @@ export const selectUserName = (state) => state.auth.user.name;
 
 export const selectLoading = (state) => state.auth.loading;
 
+export const selectIsRefreshing = (state) => state.auth.isRefreshing;
+
 // export const selectIsVerify = (state) => state.auth.user.verify;

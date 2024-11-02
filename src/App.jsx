@@ -15,7 +15,7 @@ import { Navigation } from "./components/Navigation/Navigation";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { UpdatePasswordPage } from "./pages/UpdatePasswordPage/UpdatePasswordPage";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoggedIn } from "./redux/auth/selectors";
+import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
 import { Layout } from "./components/Layout/Layout";
 import { useEffect } from "react";
 import { refreshUser } from "./redux/auth/operations";
@@ -36,14 +36,17 @@ import { getCurrentUser } from "./redux/users/operations";
 
 function App() {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isRefreshing = useSelector(selectIsRefreshing);
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(refreshUser());
     // dispatch(getCurrentUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <>
       <Layout>
         <Routes>

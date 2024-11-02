@@ -10,8 +10,8 @@ export const LoginPage = () => {
 
   return (
     <Section>
-      <LoginForm />
       {loading && <Loader />}
+      <LoginForm />
     </Section>
   );
 };
