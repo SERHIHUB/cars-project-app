@@ -79,7 +79,12 @@ export const CarDetailsPage = () => {
             </li>
             <li className={css.detailsItem}>
               {car.contact ? (
-                <p>{`Тел: ${car.contact}`}</p>
+                <p>
+                  Тел:{" "}
+                  <a className={css.contactLink} href={`tel:${car.contact}`}>
+                    {car.contact}
+                  </a>
+                </p>
               ) : (
                 <p>{`Тел: _ _ _`}</p>
               )}

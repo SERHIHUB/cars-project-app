@@ -43,7 +43,9 @@ export const LoginForm = () => {
       <h2 className={css.loginTitle}>Увійти в обліковий запис</h2>
       <form className={css.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={clsx(css.field, { [css.errorField]: errors.email })}>
-          Email
+          <p>
+            Email<sup className={css.starField}>*</sup>
+          </p>
           <input
             className={clsx(css.input, { [css.inputError]: errors.email })}
             placeholder="Enter your email"
@@ -57,7 +59,9 @@ export const LoginForm = () => {
         <label
           className={clsx(css.field, { [css.errorField]: errors.password })}
         >
-          Password
+          <p>
+            Password<sup className={css.starField}>*</sup>
+          </p>
           <input
             className={clsx(css.input, { [css.inputError]: errors.password })}
             placeholder="Enter your password"

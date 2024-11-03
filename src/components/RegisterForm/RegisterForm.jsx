@@ -62,7 +62,9 @@ export const RegisterForm = () => {
             <label
               className={clsx(css.field, { [css.errorField]: errors.userName })}
             >
-              Name
+              <p>
+                Name<sup className={css.starField}>*</sup>
+              </p>
               <input
                 className={clsx(css.input, {
                   [css.inputError]: errors.userName,
@@ -80,7 +82,9 @@ export const RegisterForm = () => {
             <label
               className={clsx(css.field, { [css.errorField]: errors.email })}
             >
-              Email
+              <p>
+                Email<sup className={css.starField}>*</sup>
+              </p>
               <input
                 className={clsx(css.input, { [css.inputError]: errors.email })}
                 placeholder="Enter your email"
@@ -116,7 +120,9 @@ export const RegisterForm = () => {
             <label
               className={clsx(css.field, { [css.errorField]: errors.password })}
             >
-              Password
+              <p>
+                Password<sup className={css.starField}>*</sup>
+              </p>
               <input
                 className={clsx(css.input, {
                   [css.inputError]: errors.password,
@@ -140,7 +146,9 @@ export const RegisterForm = () => {
                 [css.errorField]: errors.confirmPassword,
               })}
             >
-              Repeat your password
+              <p>
+                Repeat your password<sup className={css.starField}>*</sup>
+              </p>
               <input
                 className={clsx(css.input, {
                   [css.inputError]: errors.confirmPassword,

@@ -32,6 +32,11 @@
   font-weight: 600;
 }
 
+.starField {
+  font-size: 18px;
+  color: rgb(211, 6, 6);
+}
+
 .input {
   height: 32px;
   border-radius: 12px;
