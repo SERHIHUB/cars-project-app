@@ -8,7 +8,8 @@ import { selectUserName } from "../../redux/auth/selectors";
 
 export const LogOutComponent = ({ windowWidth }) => {
   const dispatch = useDispatch();
-  const userName = useSelector(selectUserName);
+  const currentUserName = useSelector(selectUserName);
+  const userName = currentUserName ? currentUserName : "";
 
   useEffect(() => {
     dispatch(getCurrentUser());
