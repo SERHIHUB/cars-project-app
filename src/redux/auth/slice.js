@@ -50,6 +50,7 @@ const authSlice = createSlice({
       .addCase(logIn.rejected, (state) => {
         state.loading = false;
         state.error = true;
+        state.isLoggedIn = false;
       })
       .addCase(logOut.fulfilled, (state) => {
         state.token = null;
@@ -64,7 +65,6 @@ const authSlice = createSlice({
       .addCase(passwordResetRequest.fulfilled, (state, action) => {
         state.loading = false;
         state.requestResetStatus = action.payload.status;
-        console.log(action.payload);
       })
       .addCase(passwordResetRequest.rejected, (state) => {
         state.loading = false;
@@ -78,16 +78,13 @@ const authSlice = createSlice({
       .addCase(passwordReset.fulfilled, (state, action) => {
         state.loading = false;
         state.resetStatus = action.payload.status;
-        // console.log(action.payload.status);
       })
       .addCase(passwordReset.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(verifyToken.fulfilled, (state) => {
-        // console.log(state);
-        // console.log(action.payload);
-      })
+      // .addCase(verifyToken.fulfilled, (state) => {
+      // })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })

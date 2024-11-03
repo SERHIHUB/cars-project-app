@@ -1,8 +1,7 @@
-// import { useState } from 'react'
+
 // import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-// import { WelcomePage } from "./pages/WelcomePage/WelcomePage";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { RegisterPage } from "./pages/RegisterPage/RegisterPage";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
@@ -15,7 +14,7 @@ import { Navigation } from "./components/Navigation/Navigation";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { UpdatePasswordPage } from "./pages/UpdatePasswordPage/UpdatePasswordPage";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
+import { selectIsRefreshing } from "./redux/auth/selectors";
 import { Layout } from "./components/Layout/Layout";
 import { useEffect } from "react";
 import { refreshUser } from "./redux/auth/operations";
@@ -27,7 +26,6 @@ import { AdminPanel } from "./pages/AdminPanel/AdminPanel";
 import { VerifyEmail } from "./pages/VerifyEmail/VerifyEmail";
 import { Loader } from "./components/shared/components/Loader/Loader";
 import { UpdateUserPasswordPage } from "./pages/UpdateUserPasswordPage/UpdateUserPasswordPage";
-import { getCurrentUser } from "./redux/users/operations";
 
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 // const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
@@ -37,11 +35,9 @@ import { getCurrentUser } from "./redux/users/operations";
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(refreshUser());
-    // dispatch(getCurrentUser());
   }, [dispatch]);
 
   return isRefreshing ? (

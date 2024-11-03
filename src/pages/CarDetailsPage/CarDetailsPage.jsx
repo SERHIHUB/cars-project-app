@@ -26,7 +26,6 @@ export const CarDetailsPage = () => {
   const car = useSelector(selectCar);
   const userName = useSelector(selectName);
 
-  // @@@@@@@@@@@@@@@@     Модалка    @@@@@@@@@@@@@@@@@@@@@
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
   const [openPictureModal, setOpenPictureModal] = useState(false);
@@ -54,13 +53,10 @@ export const CarDetailsPage = () => {
   function onClosePictureModal() {
     setOpenPictureModal(false);
   }
-  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
   useEffect(() => {
     dispatch(getOneCar(carId));
   }, [dispatch]);
-
-  // console.log(car.contact);
 
   return (
     <Section>
@@ -73,7 +69,7 @@ export const CarDetailsPage = () => {
               >{`Модель: ${car.carModel}`}</p>
             </li>
             <li className={css.detailsItem}>
-              <p>{`Номер: ${car.carNumber.toUpperCase()}`}</p>
+              <p>{`Номер: ${car.carNumber && car.carNumber.toUpperCase()}`}</p>
             </li>
             <li className={css.detailsItem}>
               <p>{`Вартість: ${car.price}`}</p>
@@ -82,24 +78,12 @@ export const CarDetailsPage = () => {
               <p>{`Дата оплати: ${car.paymentDate}`}</p>
             </li>
             <li className={css.detailsItem}>
-              {/* <p>{`Тел: ${
-                car.contact !== null ? (
-                  <a className={css.contactLink} href={`tel:${car.contact}`}>
-                    {car.contact}
-                  </a>
-                ) : (
-                  "_ _ _"
-                )
-              }`}</p> */}
               {car.contact ? (
                 <p>{`Тел: ${car.contact}`}</p>
               ) : (
                 <p>{`Тел: _ _ _`}</p>
               )}
             </li>
-            {/* <li className={css.detailsItem}>
-            <p>{`Оплачено: ${car.isPaid ? "Так" : "Ні"}`}</p>
-          </li> */}
             <li className={css.detailsItem}>
               <p>{`Оплату відзначив: ${userName}`}</p>
             </li>

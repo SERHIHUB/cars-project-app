@@ -15,10 +15,6 @@ export const ContactItem = ({ contact }) => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
   const currentUser = useSelector(selectCurrentUser);
 
-  // function openEditModal() {
-  //   setModalIsOpen(true);
-  // }
-
   const handleClickEditModal = () => {
     setModalIsOpen(true);
   };
@@ -35,27 +31,10 @@ export const ContactItem = ({ contact }) => {
     setDeleteModalIsOpen(false);
   }
 
-  // const openOptionsModal = () => {
-  //   setOptionsModalIsOpen(true);
-  // };
-
-  // const handleClickOptionModal = () => {
-  //   openOptionsModal();
-  // };
-
-  // const closeOptionsModal = () => {
-  //   setOptionsModalIsOpen(false);
-  // };
-
-  // const handleClickDeleteContact () => {
-  //   console.log("DELETE")
-  // }
-
   return (
     <div className={css.contactWrapper}>
       <div className={css.contactInfo}>
         <p>{`name: ${contact.name}`}</p>
-        {/* <p>{`number: ${contact.number}`}</p> */}
         <p className={css.contact}>
           <PiPhoneLight size="40" />
           {contact.number !== null ? (
@@ -67,9 +46,6 @@ export const ContactItem = ({ contact }) => {
           )}
         </p>
       </div>
-      {/* <p>
-        <PiPhoneLight size="40" /> {contact.number}
-      </p> */}
 
       <ModalComponent closeModal={onCloseEditModal} modalIsOpen={modalIsOpen}>
         <UpdateContactForm contact={contact} onCloseModal={onCloseEditModal} />

@@ -51,21 +51,3 @@
     width: 150px;
   }
 }
-
-/* .payment {
-  width: 140px;
-  font-size: 18px;
-  border-radius: 8px;
-  border: none;
-  background-image: linear-gradient(
-    120deg,
-    rgba(2, 6, 14, 0.3),
-    rgba(41, 4, 252, 0.3)
-  );
-  padding-top: 8px;
-  padding-bottom: 8px;
-
-  @media (min-width: 768px) {
-    width: 150px;
-  }
-} */

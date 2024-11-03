@@ -10,7 +10,7 @@ import { Button } from "../../components/shared/components/Button/Button";
 export const HomePage = () => {
   const [value, onChange] = useState(new Date());
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const handleClickCalendar = () => {
@@ -21,15 +21,9 @@ export const HomePage = () => {
     setModalIsOpen(false);
   }
 
-  // console.log(isLoggedIn);
-
-  // useEffect(() => {
-  //   dispatch(getUser());
-  // }, [dispatch]);
-
   return (
     <Section className={css.section}>
-      {isLoggedIn ?? (
+      {!isLoggedIn && (
         <>
           <h1>Вітаю!</h1>
           <p className={css.content}>
@@ -39,14 +33,6 @@ export const HomePage = () => {
           </p>
         </>
       )}
-      {/* <div className={css.dateContainer}>
-        <Calendar
-          className={css.calendar}
-          onChange={onChange}
-          value={value}
-          locale={"uk"}
-        />
-      </div> */}
 
       <div className={css.decorWrapper}>
         <Button className={css.calendarBtn} onClick={handleClickCalendar}>

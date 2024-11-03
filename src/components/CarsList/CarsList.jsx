@@ -9,20 +9,19 @@ import {
 import { CarItem } from "../CarItem/CarItem";
 import { Container } from "../shared/components/Container/Container";
 import css from "./CarsList.module.css";
-import { Button } from "../shared/components/Button/Button";
+// import { Button } from "../shared/components/Button/Button";
 import { PaginationComponent } from "../PaginationComponent/PaginationComponent";
 import { useState } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { ModalComponent } from "../shared/components/ModalComponent/ModalComponent";
-import { DeleteCar } from "../DeleteCar/DeleteCar";
-import { getCurrentUser } from "../../redux/users/operations";
+import { useLocation, useSearchParams } from "react-router-dom";
+// import { ModalComponent } from "../shared/components/ModalComponent/ModalComponent";
+// import { DeleteCar } from "../DeleteCar/DeleteCar";
+// import { getCurrentUser } from "../../redux/users/operations";
 
 export const CarsList = () => {
   const dispatch = useDispatch();
   const cars = useSelector(selectAllCars);
   const paginationInfo = useSelector(selectPaginationInfo);
   const [page, setPage] = useState(1);
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
   const [params, setParams] = useSearchParams();
   const currentPage = params.get("page") ?? page;
@@ -49,19 +48,8 @@ export const CarsList = () => {
     setPage(itemNumber);
   };
 
-  // const handleOpenModal = () => {
-  //   setModalIsOpen(true);
-  // };
-
-  // function handleCloseModal() {
-  //   setModalIsOpen(false);
-  // }
-
-  // const newPaginationInfo = { ...paginationInfo, page: page };
-
   useEffect(() => {
     dispatch(fetchCars({ page: currentPage, perPage: perPage }));
-    // dispatch(getCurrentUser());
   }, [dispatch, page]);
 
   return (

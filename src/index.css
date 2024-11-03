@@ -30,7 +30,6 @@ li {
 }
 
 a {
-  /* color: currentColor; */
   text-decoration: none;
   list-style: none;
 }
@@ -46,8 +45,6 @@ img {
 }
 
 body {
-  /* background: var(--background); */
-  /* height: 100vh; */
   overflow: hidden;
   overflow-y: auto;
 }

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import { ModalComponent } from "../shared/components/ModalComponent/ModalComponent";
@@ -12,14 +12,12 @@ import { selectCurrentUser } from "../../redux/users/selectors";
 import { updateCar } from "../../redux/cars/operations";
 import { useEffect } from "react";
 
-// const textColor = document.querySelector("#car-title");
-
 export const CarItem = ({ car }) => {
   const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
   const currentUser = useSelector(selectCurrentUser);
-  // ____________________________________
+
   const now = new Date();
   const currentMonth = now.getMonth() + 1;
 
@@ -40,7 +38,6 @@ export const CarItem = ({ car }) => {
   useEffect(() => {
     return isPaidValue();
   }, [currentMonth]);
-  // ____________________________________
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
@@ -50,11 +47,8 @@ export const CarItem = ({ car }) => {
     setModalIsOpen(false);
   }
 
-  // console.log(car.contact);
-
   return (
     <div
-      // className={css.wrapper}
       className={clsx(
         css.wrapper,
         car.isPaid ? css.greenShadow : css.redShadow
@@ -71,20 +65,9 @@ export const CarItem = ({ car }) => {
       >{`Model: ${car.carModel}`}</h3>
       <p>{`Number: ${car.carNumber.toUpperCase()}`}</p>
       <p>{`Price: ${car.price}`}</p>
-      <p>{`Paid month: ${car.isPaidMonth}`}</p>
       <p
         className={clsx(car.isPaid ? css.greenText : css.redText)}
       >{`Date of pay: ${car.paymentDate}`}</p>
-      {/* <p>{`Contact: ${car.contact !== null ? car.contact : "_ _ _"}`}</p> */}
-      {/* <p>{`Contact: ${
-        car.contact !== null ? (
-          <a className={css.contactLink} href={`tel:${car.contact}`}>
-            {car.contact}
-          </a>
-        ) : (
-          "_ _ _"
-        )
-      }`}</p> */}
 
       {car.contact ? (
         <p>{`Contact: ${car.contact}`}</p>
