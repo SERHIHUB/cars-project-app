@@ -4,12 +4,11 @@ import { useEffect } from "react";
 import css from "./LogOutComponent.module.css";
 import { logOut } from "../../redux/auth/operations";
 import { getCurrentUser } from "../../redux/users/operations";
-import { selectIsLoggedIn, selectUserName } from "../../redux/auth/selectors";
+import { selectUserName } from "../../redux/auth/selectors";
 
 export const LogOutComponent = ({ windowWidth }) => {
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(getCurrentUser());

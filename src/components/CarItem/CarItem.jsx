@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { ModalComponent } from "../shared/components/ModalComponent/ModalComponent";
 import css from "./CarItem.module.css";
 import { Button } from "../shared/components/Button/Button";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { DeleteCar } from "../DeleteCar/DeleteCar";
 import { TbListDetails } from "react-icons/tb";
 import { AiOutlineDelete } from "react-icons/ai";

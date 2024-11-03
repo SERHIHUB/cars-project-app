@@ -25,7 +25,6 @@ const carSlice = createSlice({
       })
       .addCase(createCar.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
         state.items.push(action.payload.data);
       })
       .addCase(createCar.rejected, (state) => {
@@ -41,7 +40,6 @@ const carSlice = createSlice({
 
         state.items = action.payload.cars;
         state.paginationInfo = action.payload.paginationInformation;
-        // console.log(state.paginationInfo);
       })
       .addCase(fetchCars.rejected, (state) => {
         state.loading = false;
@@ -65,12 +63,10 @@ const carSlice = createSlice({
       })
       .addCase(updateCar.fulfilled, (state, action) => {
         state.loading = false;
-        // console.log(action.payload);
         const carIndex = state.items.findIndex(
           (item) => item._id === action.payload._id
         );
         if (carIndex === -1) {
-          // Додати тост
           toast.error("Автомобіль не знайдено!");
           return;
         }
@@ -87,11 +83,10 @@ const carSlice = createSlice({
       })
       .addCase(deleteCar.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
+
         state.items = state.items.filter(
           (item) => item._id !== action.payload._id
         );
-        // console.log(state.items);
       })
       .addCase(deleteCar.rejected, (state) => {
         state.loading = false;

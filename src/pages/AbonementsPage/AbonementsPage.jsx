@@ -1,10 +1,7 @@
 import { useState } from "react";
-// import { useSelector, useDispatch } from "react-redux";
 import { CarsList } from "../../components/CarsList/CarsList";
 import { Button } from "../../components/shared/components/Button/Button";
 import { ModalComponent } from "../../components/shared/components/ModalComponent/ModalComponent";
-// import { fetchCars } from "../../redux/cars/operations";
-// import { getCurrentUser } from "../../redux/users/operations";
 import css from "./AbonementsPage.module.css";
 import { CreateCarForm } from "../../components/CreateCarForm/CreateCarForm";
 import { Section } from "../../components/shared/components/Section/Section";

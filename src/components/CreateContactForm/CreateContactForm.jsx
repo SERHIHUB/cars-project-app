@@ -21,11 +21,6 @@ export const CreateContactForm = ({ onCloseModal }) => {
   });
 
   const onSubmit = (data) => {
-    // for (const key in data) {
-    //   if (data[key] === "" || data[key] === undefined) {
-    //     delete data[key];
-    //   }
-    // }
 
     let newData = Object.fromEntries(
       Object.entries(data).map((entry) => [
@@ -74,22 +69,6 @@ export const CreateContactForm = ({ onCloseModal }) => {
             <span className={css.errorsMessage}>{errors.number.message}</span>
           )}
         </label>
-
-        {/* <label
-          className={clsx(css.field, { [css.errorField]: errors.department })}
-        >
-          Department
-          <input
-            className={clsx(css.input, { [css.inputError]: errors.department })}
-            placeholder="Enter department"
-            {...register("department", { required: true })}
-          />
-          {errors.department && (
-            <span className={css.errorsMessage}>
-              {errors.department.message}
-            </span>
-          )}
-        </label> */}
 
         <input className={css.submit} type="submit" value="Select" />
       </form>

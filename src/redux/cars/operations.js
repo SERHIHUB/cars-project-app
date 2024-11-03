@@ -25,8 +25,7 @@ export const fetchCars = createAsyncThunk(
           perPage,
         },
       });
-      // console.log(response.data.data);
-
+      
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -39,7 +38,6 @@ export const getOneCar = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await instanse.get(`cars/${id}`);
-      // console.log(response.data);
 
       return response.data.data;
     } catch (error) {
@@ -47,24 +45,6 @@ export const getOneCar = createAsyncThunk(
     }
   }
 );
-
-// ========== працює оплата ===============================================
-// export const updateCar = createAsyncThunk(
-//   "cars/editCar",
-//   async ({ carId, body }, thunkAPI) => {
-//     console.log(body);
-//     try {
-//       const response = await instanse.patch(`cars/${carId}`, body);
-//       console.log(response.data);
-
-//       return response.data.data;
-//     } catch (error) {
-//       toast.error(error.status == 409 && "Цей автомобіль оплачений!");
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// );
-// =========================================================================
 
 export const updateCar = createAsyncThunk(
   "cars/editCar",
@@ -85,8 +65,6 @@ export const deleteCar = createAsyncThunk(
   async (carId, thunkAPI) => {
     try {
       const response = await instanse.delete(`cars/${carId}`);
-
-      // console.log(response.data.data);
 
       return response.data.data;
     } catch (error) {

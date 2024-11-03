@@ -42,15 +42,8 @@ export const RegisterForm = () => {
         };
     dispatch(registerUser(data));
 
-    // console.log(data);
     reset();
   };
-
-  // confirmPassword: "1234";
-  // email: "egor@email.com";
-  // ownerEmail: "serhii@email.com";
-  // password: "1234";
-  // userName: "fdfdfd";
 
   const handleShowPasswordBtn = () => {
     setShowPassword(!showPassword);
@@ -58,7 +51,6 @@ export const RegisterForm = () => {
 
   return (
     <Container className={css.registerContainer}>
-      {/* Зробити модалку для повідомлення */}
       {registerStatus == 200 ? (
         <div className={css.confirmEmail}>
           <h2>Підтвердіть вашу пошту.</h2>
