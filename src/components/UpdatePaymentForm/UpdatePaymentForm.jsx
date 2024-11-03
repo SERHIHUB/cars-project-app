@@ -1,7 +1,4 @@
 import { Container } from "../shared/components/Container/Container";
-// import { useForm } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
-// import clsx from "clsx";
 import css from "./UpdatePaymentForm.module.css";
 import { Button } from "../shared/components/Button/Button";
 import { useDispatch } from "react-redux";
@@ -18,7 +15,6 @@ export const UpdataPaymentForm = ({ onCloseModal, carId, lastPaidDate }) => {
   const onSubmit = () => {
     const updateObject = {
       carId: carId,
-      // isPaid: true,
       body: payload,
     };
     dispatch(updateCar(updateObject));

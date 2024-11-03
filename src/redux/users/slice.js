@@ -49,20 +49,16 @@ const userSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, action) => {
         state.loading = false;
 
-        // console.log(action.payload);
-        // console.log(state.items);
         const userIndex = state.items.findIndex(
           (item) => item._id === action.payload._id
         );
         if (userIndex === -1) {
-          toast.error("Користувача не знайдено!(slice-55)");
+          toast.error("Користувача не знайдено!");
           return;
         }
 
         state.items[userIndex] = action.payload;
         state.editUser = action.payload;
-        // console.log(state.user);
-        // console.log(state.items);
       })
       .addCase(updateUser.rejected, (state) => {
         state.loading = false;

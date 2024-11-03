@@ -1,6 +1,6 @@
 import { Section } from "../../components/shared/components/Section/Section";
 import css from "./HomePage.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { useState } from "react";
 import Calendar from "react-calendar";
@@ -10,7 +10,6 @@ import { Button } from "../../components/shared/components/Button/Button";
 export const HomePage = () => {
   const [value, onChange] = useState(new Date());
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const handleClickCalendar = () => {

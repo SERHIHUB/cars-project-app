@@ -8,5 +8,3 @@ export const Container = ({ children, className }) => {
     </div>
   );
 };
-
-// export default Container;

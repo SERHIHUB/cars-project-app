@@ -9,24 +9,19 @@ import {
 import { CarItem } from "../CarItem/CarItem";
 import { Container } from "../shared/components/Container/Container";
 import css from "./CarsList.module.css";
-// import { Button } from "../shared/components/Button/Button";
 import { PaginationComponent } from "../PaginationComponent/PaginationComponent";
 import { useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
-// import { ModalComponent } from "../shared/components/ModalComponent/ModalComponent";
-// import { DeleteCar } from "../DeleteCar/DeleteCar";
-// import { getCurrentUser } from "../../redux/users/operations";
+import { useSearchParams } from "react-router-dom";
 
 export const CarsList = () => {
   const dispatch = useDispatch();
   const cars = useSelector(selectAllCars);
   const paginationInfo = useSelector(selectPaginationInfo);
   const [page, setPage] = useState(1);
-  const location = useLocation();
   const [params, setParams] = useSearchParams();
   const currentPage = params.get("page") ?? page;
 
-  const perPage = 3;
+  const perPage = 12;
 
   const changePage = (newPage) => {
     params.set("page", newPage);

@@ -32,11 +32,8 @@ export const updateContact = createAsyncThunk(
   "contacts/edit",
   async (payload, thunkAPI) => {
     const { contactId, body } = payload;
-    console.log(contactId);
-    console.log(body);
     try {
       const response = await instanse.patch(`contacts/${contactId}`, body);
-      console.log(response.data);
 
       return response.data.data;
     } catch (error) {

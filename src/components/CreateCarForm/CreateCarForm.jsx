@@ -7,16 +7,6 @@ import { createCarFormSchema } from "../../validationSchemas/createCarFormSchema
 import { useDispatch } from "react-redux";
 import { createCar } from "../../redux/cars/operations";
 
-// const deleteProperty = (obj) => {
-//   const objLength = obj.length;
-
-//   for (let i = 0; i <= objLength; i++) {
-//     if (obj[i] === "") {
-//       delete obj[i];
-//     }
-//   }
-// };
-
 export const CreateCarForm = ({ onCloseModal }) => {
   const dispatch = useDispatch();
 
@@ -126,24 +116,6 @@ export const CreateCarForm = ({ onCloseModal }) => {
             <span className={css.errorsMessage}>{errors.contact.message}</span>
           )}
         </label>
-
-        {/* <label
-          className={clsx(css.field, { [css.errorField]: errors.carPhotoURL })}
-        >
-          Photo
-          <input
-            className={clsx(css.input, {
-              [css.inputError]: errors.carPhotoURL,
-            })}
-            placeholder="Select photo"
-            {...register("carPhotoURL", { required: true })}
-          />
-          {errors.carPhotoURL && (
-            <span className={css.errorsMessage}>
-              {errors.carPhotoURL.message}
-            </span>
-          )}
-        </label> */}
 
         <input className={css.submit} type="submit" value="Select" />
       </form>

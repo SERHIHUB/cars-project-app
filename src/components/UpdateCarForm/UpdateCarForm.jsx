@@ -10,7 +10,6 @@ import { useState } from "react";
 
 export const UpdateCarForm = ({ onCloseModal, car }) => {
   const dispatch = useDispatch();
-  // const [selectedFile, setSelectedFile] = useState(null);
   const [selectedModel, setSelectedModel] = useState(car.carModel);
   const [selectedCarNumber, setSelectedCarNumber] = useState(car.carNumber);
   const [selectedPrice, setSelectedPrice] = useState(car.price);
@@ -79,8 +78,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
       body: newData,
     };
 
-    console.log(updateObj);
-
     dispatch(updateCar(updateObj));
 
     reset();
@@ -90,16 +87,11 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
   return (
     <Container className={css.container}>
       <form className={css.updateCarForm} onSubmit={handleSubmit(onSubmit)}>
+
         <label
           className={clsx(css.field, { [css.errorField]: errors.carModel })}
         >
           Model
-          {/* <input
-            className={clsx(css.input, { [css.inputError]: errors.carModel })}
-            placeholder="Enter model"
-            {...register("carModel", { required: true })}
-          /> */}
-          {/* ============================================ */}
           <Controller
             control={control}
             name={"carModel"}
@@ -116,7 +108,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
               );
             }}
           />
-          {/* ============================================ */}
           {errors.carModel && (
             <span className={css.errorsMessage}>{errors.carModel.message}</span>
           )}
@@ -126,12 +117,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
           className={clsx(css.field, { [css.errorField]: errors.carNumber })}
         >
           Number
-          {/* <input
-            className={clsx(css.input, { [css.inputError]: errors.carNumber })}
-            placeholder="Enter number"
-            {...register("carNumber", { required: true })}
-          /> */}
-          {/* ============================================ */}
           <Controller
             control={control}
             name={"carNumber"}
@@ -148,7 +133,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
               );
             }}
           />
-          {/* ============================================ */}
           {errors.carNumber && (
             <span className={css.errorsMessage}>
               {errors.carNumber.message}
@@ -158,12 +142,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
 
         <label className={clsx(css.field, { [css.errorField]: errors.price })}>
           Price
-          {/* <input
-            className={clsx(css.input, { [css.inputError]: errors.price })}
-            placeholder="Enter price"
-            {...register("price", { required: true })}
-          /> */}
-          {/* ============================================ */}
           <Controller
             control={control}
             name={"price"}
@@ -180,7 +158,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
               );
             }}
           />
-          {/* ============================================ */}
           {errors.price && (
             <span className={css.errorsMessage}>{errors.price.message}</span>
           )}
@@ -190,14 +167,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
           className={clsx(css.field, { [css.errorField]: errors.paymentDate })}
         >
           Payment date
-          {/* <input
-            className={clsx(css.input, {
-              [css.inputError]: errors.paymentDate,
-            })}
-            placeholder="Enter payment date"
-            {...register("paymentDate", { required: true })}
-          /> */}
-          {/* ============================================ */}
           <Controller
             control={control}
             name={"paymentDate"}
@@ -214,7 +183,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
               );
             }}
           />
-          {/* ============================================ */}
           {errors.paymentDate && (
             <span className={css.errorsMessage}>
               {errors.paymentDate.message}
@@ -226,12 +194,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
           className={clsx(css.field, { [css.errorField]: errors.contact })}
         >
           Contact
-          {/* <input
-            className={clsx(css.input, { [css.inputError]: errors.contact })}
-            placeholder="Enter contact"
-            {...register("contact")}
-          /> */}
-          {/* ============================================ */}
           <Controller
             control={control}
             name={"contact"}
@@ -248,7 +210,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
               );
             }}
           />
-          {/* ============================================ */}
           {errors.contact && (
             <span className={css.errorsMessage}>{errors.contact.message}</span>
           )}

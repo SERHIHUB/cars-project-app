@@ -6,17 +6,12 @@ import clsx from "clsx";
 import { Container } from "../shared/components/Container/Container";
 import css from "./ResetPasswordForm.module.css";
 import {
-  // passwordReset,
   passwordResetRequest,
 } from "../../redux/auth/operations";
-// import { selectRequestResetStatus } from "../../redux/auth/selectors";
 import toast from "react-hot-toast";
 
 export const ResetPasswordForm = () => {
   const dispatch = useDispatch();
-  // const statusResetRequest = useSelector(selectRequestResetStatus);
-
-  // console.log(statusResetRequest);
 
   const notify = () => toast("Лист з посиланням відправлено на вказану пошту!");
 
@@ -31,12 +26,10 @@ export const ResetPasswordForm = () => {
   });
 
   const onSubmit = (data) => {
-    // console.log(data.email.toLowerCase());
     const newData = {
       email: data.email.toLowerCase(),
     };
     dispatch(passwordResetRequest(newData));
-    // Лист з посиланням для скидання паролю успішно доходить, після деплою треба додати хост в db
     reset();
     notify();
   };

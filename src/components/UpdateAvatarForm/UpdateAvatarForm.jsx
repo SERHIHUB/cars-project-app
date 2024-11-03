@@ -39,7 +39,6 @@ export const UpdateAvatarForm = ({ onCloseModal, user }) => {
       userId: user._id,
       body: formData,
     };
-    console.log("avatar");
     dispatch(updateUser(updateObj));
 
     reset();

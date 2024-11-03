@@ -26,17 +26,10 @@ export const ModalComponent = ({
     },
   };
 
-  // let subtitle;
-
-  // function afterOpenModal() {
-  // subtitle.style.color = "#f00";
-  // }
-
   return (
     <div className={clsx(css.container, { [className]: className })}>
       <Modal
         isOpen={modalIsOpen}
-        // onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
@@ -47,7 +40,6 @@ export const ModalComponent = ({
           </Button>
         </div>
         {children}
-        {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
       </Modal>
     </div>
   );

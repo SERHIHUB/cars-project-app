@@ -25,9 +25,7 @@ export const UpdateUserRoleForm = ({ onCloseModal, user }) => {
       userId: user._id,
       body: data,
     };
-    console.log(data);
     dispatch(updateUser(updateObj));
-
     reset();
     onCloseModal();
   };

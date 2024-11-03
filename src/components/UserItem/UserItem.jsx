@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Button } from "../shared/components/Button/Button";
 import { MdEdit } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -11,7 +10,6 @@ import { UpdateUserRoleForm } from "../UpdateUserRoleForm/UpdateUserRoleForm";
 export const UserItem = ({ user }) => {
   const [modalRoleIsOpen, setModalRoleIsOpen] = useState(false);
   const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false);
-  const dispatch = useDispatch();
 
   const notAvatar = user.name.slice(0, 2);
 

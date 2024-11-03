@@ -29,7 +29,6 @@
   flex-direction: column;
   row-gap: 4px;
   position: relative;
-  /* font-weight: 600; */
 }
 
 .input {
@@ -39,14 +38,6 @@
   border: none;
   background-color: #fcf7f7;
 }
-
-/* .eyeBtn {
-  position: absolute;
-  top: 40px;
-  right: 16px;
-  background-color: inherit;
-  border: none;
-} */
 
 .submit {
   height: 32px;
