@@ -21,7 +21,6 @@ export const CreateContactForm = ({ onCloseModal }) => {
   });
 
   const onSubmit = (data) => {
-
     let newData = Object.fromEntries(
       Object.entries(data).map((entry) => [
         entry[0],
@@ -39,7 +38,9 @@ export const CreateContactForm = ({ onCloseModal }) => {
     <Container className={css.container}>
       <form className={css.createContactForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={clsx(css.field, { [css.errorField]: errors.name })}>
-          Name
+          <p>
+            Name<sup className={css.starField}>*</sup>
+          </p>
           <input
             className={clsx(css.input, {
               [css.inputError]: errors.name,
@@ -57,11 +58,14 @@ export const CreateContactForm = ({ onCloseModal }) => {
             [css.errorField]: errors.number,
           })}
         >
-          Number
+          <p>
+            Number<sup className={css.starField}>*</sup>
+          </p>
           <input
             className={clsx(css.input, {
               [css.inputError]: errors.number,
             })}
+            type="tel"
             placeholder="Enter number"
             {...register("number", { required: true })}
           />

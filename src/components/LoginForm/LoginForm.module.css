@@ -25,6 +25,11 @@
   text-align: start;
 }
 
+.starField {
+  font-size: 18px;
+  color: rgb(211, 6, 6);
+}
+
 .input {
   height: 32px;
   border-radius: 12px;
@@ -35,7 +40,7 @@
 
 .eyeBtn {
   position: absolute;
-  top: 32px;
+  top: 40px;
   right: 16px;
   background-color: inherit;
   border: none;

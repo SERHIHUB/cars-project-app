@@ -69,12 +69,6 @@ export const CarItem = ({ car }) => {
         className={clsx(car.isPaid ? css.greenText : css.redText)}
       >{`Date of pay: ${car.paymentDate}`}</p>
 
-      {car.contact ? (
-        <p>{`Contact: ${car.contact}`}</p>
-      ) : (
-        <p>{`Contact: _ _ _`}</p>
-      )}
-
       {currentUser.role === "observer" ? (
         <div className={css.notAccessBtn}>Тільки перегляд</div>
       ) : (

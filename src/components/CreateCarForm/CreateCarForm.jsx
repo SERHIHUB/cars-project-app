@@ -46,7 +46,9 @@ export const CreateCarForm = ({ onCloseModal }) => {
         <label
           className={clsx(css.field, { [css.errorField]: errors.carModel })}
         >
-          Model
+          <p>
+            Model<sup className={css.starField}>*</sup>
+          </p>
           <input
             className={clsx(css.input, { [css.inputError]: errors.carModel })}
             placeholder="Enter model"
@@ -60,7 +62,9 @@ export const CreateCarForm = ({ onCloseModal }) => {
         <label
           className={clsx(css.field, { [css.errorField]: errors.carNumber })}
         >
-          Number
+          <p>
+            Number<sup className={css.starField}>*</sup>
+          </p>
           <input
             className={clsx(css.input, { [css.inputError]: errors.carNumber })}
             placeholder="Enter number"
@@ -74,7 +78,9 @@ export const CreateCarForm = ({ onCloseModal }) => {
         </label>
 
         <label className={clsx(css.field, { [css.errorField]: errors.price })}>
-          Price
+          <p>
+            Price<sup className={css.starField}>*</sup>
+          </p>
           <input
             className={clsx(css.input, { [css.inputError]: errors.price })}
             placeholder="Enter price"
@@ -88,7 +94,9 @@ export const CreateCarForm = ({ onCloseModal }) => {
         <label
           className={clsx(css.field, { [css.errorField]: errors.paymentDate })}
         >
-          Payment date
+          <p>
+            Payment date<sup className={css.starField}>*</sup>
+          </p>
           <input
             className={clsx(css.input, {
               [css.inputError]: errors.paymentDate,
@@ -109,6 +117,7 @@ export const CreateCarForm = ({ onCloseModal }) => {
           Contact
           <input
             className={clsx(css.input, { [css.inputError]: errors.contact })}
+            type="tel"
             placeholder="Enter contact"
             {...register("contact", { required: true })}
           />
