@@ -37,6 +37,9 @@ export const logIn = createAsyncThunk(
 
       return response.data.data;
     } catch (error) {
+      toast.error(
+        error.status == 401 && "Вказана не правильна пошта або пароль."
+      );
       return thunkAPI.rejectWithValue(error);
     }
   }

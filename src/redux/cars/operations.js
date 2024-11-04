@@ -20,12 +20,13 @@ export const createCar = createAsyncThunk(
 
 export const fetchCars = createAsyncThunk(
   "cars/fetchAllCars",
-  async ({ page, perPage }, thunkAPI) => {
+  async ({ page, perPage, paid }, thunkAPI) => {
     try {
       const response = await instanse.get("cars", {
         params: {
           page,
           perPage,
+          paid,
         },
       });
 
