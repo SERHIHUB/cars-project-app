@@ -5,9 +5,7 @@ import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import { Container } from "../shared/components/Container/Container";
 import css from "./ResetPasswordForm.module.css";
-import {
-  passwordResetRequest,
-} from "../../redux/auth/operations";
+import { passwordResetRequest } from "../../redux/auth/operations";
 import toast from "react-hot-toast";
 
 export const ResetPasswordForm = () => {

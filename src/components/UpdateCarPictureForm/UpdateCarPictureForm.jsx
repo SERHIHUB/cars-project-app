@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import clsx from "clsx";
+import { Container } from "../shared/components/Container/Container";
 import { updateCarFormSchema } from "../../validationSchemas/updateCarFormSchema";
 import { updateCar } from "../../redux/cars/operations";
 import { useState } from "react";
@@ -48,12 +49,12 @@ export const UpdateCarPictureForm = ({ onCloseModal, car }) => {
   };
 
   return (
-    <div>
+    <Container className={css.container}>
       <form className={css.updateCarForm} onSubmit={handleSubmit(onSubmit)}>
         <label
           className={clsx(css.field, { [css.errorField]: errors.carPhoto })}
         >
-          Photo
+          Select file...
           <Controller
             control={control}
             name={"carPhoto"}
@@ -61,6 +62,7 @@ export const UpdateCarPictureForm = ({ onCloseModal, car }) => {
             render={({ field: { value, ...field } }) => {
               return (
                 <input
+                  style={{ display: "none" }}
                   {...field}
                   value={value?.fileName}
                   onChange={onChange}
@@ -76,8 +78,8 @@ export const UpdateCarPictureForm = ({ onCloseModal, car }) => {
           )}
         </label>
 
-        <input className={css.submit} type="submit" value="Select photo" />
+        <input className={css.submit} type="submit" value="Add file" />
       </form>
-    </div>
+    </Container>
   );
 };

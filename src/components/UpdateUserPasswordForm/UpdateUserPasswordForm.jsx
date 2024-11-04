@@ -10,12 +10,7 @@ import { updateUserPasswordFormSchema } from "../../validationSchemas/updateUser
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { passwordReset } from "../../redux/auth/operations";
-import {
-  NavLink,
-  useParams,
-  useSearchParams,
-  Navigate,
-} from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
 import { selectResetStatus } from "../../redux/auth/selectors";
 
 export const UpdateUserPasswordForm = () => {
@@ -37,8 +32,6 @@ export const UpdateUserPasswordForm = () => {
 
   const onSubmit = ({ password }) => {
     const data = { password, token };
-
-    console.log(data);
 
     dispatch(passwordReset(data));
 
@@ -99,7 +92,7 @@ export const UpdateUserPasswordForm = () => {
 
       {resetStatus == 200 && (
         <NavLink to="/login">
-          <Button>Ok</Button>
+          <Button className={css.btnOk}>Ok</Button>
         </NavLink>
       )}
     </Container>

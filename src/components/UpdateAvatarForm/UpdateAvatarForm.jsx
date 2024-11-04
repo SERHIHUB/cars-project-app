@@ -6,6 +6,7 @@ import { useState } from "react";
 import css from "./UpdateAvatarForm.module.css";
 import { updateUser } from "../../redux/users/operations";
 import { updateUserFormSchema } from "../../validationSchemas/updateUserFormSchema";
+import { Container } from "../shared/components/Container/Container";
 
 export const UpdateAvatarForm = ({ onCloseModal, user }) => {
   const dispatch = useDispatch();
@@ -47,12 +48,12 @@ export const UpdateAvatarForm = ({ onCloseModal, user }) => {
   };
 
   return (
-    <div>
+    <Container className={css.container}>
       <form className={css.updateAvatarForm} onSubmit={handleSubmit(onSubmit)}>
         <label
           className={clsx(css.field, { [css.errorField]: errors.avatarURL })}
         >
-          Photo
+          Select file...
           <Controller
             control={control}
             name={"avatar"}
@@ -60,6 +61,7 @@ export const UpdateAvatarForm = ({ onCloseModal, user }) => {
             render={({ field: { value, ...field } }) => {
               return (
                 <input
+                  style={{ display: "none" }}
                   {...field}
                   value={value?.fileName}
                   onChange={onChange}
@@ -79,6 +81,6 @@ export const UpdateAvatarForm = ({ onCloseModal, user }) => {
 
         <input className={css.submit} type="submit" value="Select photo" />
       </form>
-    </div>
+    </Container>
   );
 };
