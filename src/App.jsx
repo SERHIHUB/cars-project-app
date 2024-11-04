@@ -1,4 +1,3 @@
-
 // import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -98,7 +97,7 @@ function App() {
             }
           />
 
-          <Route path="/auth-verify/:verifytoken" element={<VerifyEmail />} />
+          <Route path="/auth/verify/:verifytoken" element={<VerifyEmail />} />
 
           <Route path="/reset-password" element={<UpdatePasswordPage />} />
 
