@@ -1,0 +1,55 @@
+.container {
+  background-image: none;
+  background-image: linear-gradient(
+      120deg,
+      rgba(230, 232, 230, 0.5),
+      rgba(185, 187, 194, 0.5)
+    ),
+    url("../../images/audi.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.updateCarForm {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  padding-top: 20px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) {
+    width: 400px;
+  }
+}
+
+.field {
+  width: 200px;
+  /* display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  position: relative; */
+  font-weight: 600;
+  padding-top: 8px;
+  padding-bottom: 4px;
+  text-align: center;
+  border: 2px solid #fcf7f7;
+  border-radius: 12px;
+}
+
+.submit {
+  width: 200px;
+  height: 32px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-bottom: 24px;
+  background-image: linear-gradient(
+    120deg,
+    rgba(10, 99, 13, 0.3),
+    rgba(11, 65, 241, 0.3)
+  );
+}
