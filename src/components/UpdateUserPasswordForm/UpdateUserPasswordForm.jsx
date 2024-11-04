@@ -7,16 +7,23 @@ import { Button } from "../shared/components/Button/Button";
 import clsx from "clsx";
 import css from "./UpdateUserPasswordForm.module.css";
 import { updateUserPasswordFormSchema } from "../../validationSchemas/updateUserFormSchema";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { passwordReset } from "../../redux/auth/operations";
-import { Link, useParams, useSearchParams, Navigate } from "react-router-dom";
+import {
+  NavLink,
+  useParams,
+  useSearchParams,
+  Navigate,
+} from "react-router-dom";
+import { selectResetStatus } from "../../redux/auth/selectors";
 
 export const UpdateUserPasswordForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [params, setParams] = useSearchParams();
   const token = params.get("token") ?? "";
+  const resetStatus = useSelector(selectResetStatus);
 
   const {
     register,
@@ -88,10 +95,13 @@ export const UpdateUserPasswordForm = () => {
         </label>
 
         <input className={css.submit} type="submit" value="Update" />
-        {/* <Link className={css.submitLink} to="/login">
-          <input className={css.submit} type="submit" value="Update" />
-        </Link> */}
       </form>
+
+      {resetStatus == 200 && (
+        <NavLink to="/login">
+          <Button>Ok</Button>
+        </NavLink>
+      )}
     </Container>
   );
 };

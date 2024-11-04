@@ -10,6 +10,9 @@ export const createCar = createAsyncThunk(
 
       return response.data;
     } catch (error) {
+      toast.error(
+        error.status == 409 && "Автомобіль з таким номером вже існує!"
+      );
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -25,7 +28,7 @@ export const fetchCars = createAsyncThunk(
           perPage,
         },
       });
-      
+
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -41,6 +44,7 @@ export const getOneCar = createAsyncThunk(
 
       return response.data.data;
     } catch (error) {
+      toast.error(error.status == 404 && "Автомобіль не знайдений!");
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -54,6 +58,7 @@ export const updateCar = createAsyncThunk(
 
       return response.data.data;
     } catch (error) {
+      toast.error(error.status == 404 && "Автомобіль не знайдений!");
       toast.error(error.status == 409 && "Цей автомобіль оплачений!");
       return thunkAPI.rejectWithValue(error);
     }
@@ -68,6 +73,7 @@ export const deleteCar = createAsyncThunk(
 
       return response.data.data;
     } catch (error) {
+      toast.error(error.status == 404 && "Автомобіль не знайдений!");
       return thunkAPI.rejectWithValue(error);
     }
   }

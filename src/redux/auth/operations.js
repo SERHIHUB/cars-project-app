@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 export const instanse = axios.create({
   baseURL: "https://car-project-db.onrender.com/",
@@ -31,9 +32,9 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await instanse.post("auth/login", credentials);
-      
+
       setAuthHeader(response.data.data.token);
-      
+
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -44,7 +45,7 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
     await instanse.post("auth/logout");
-    
+
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -54,7 +55,6 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 export const passwordResetRequest = createAsyncThunk(
   "auth/resetPasswordRequest",
   async (body, thunkAPI) => {
-   
     try {
       const response = await instanse.post("auth/request-reset-password", body);
 
@@ -68,7 +68,6 @@ export const passwordResetRequest = createAsyncThunk(
 export const passwordReset = createAsyncThunk(
   "auth/resetPassword",
   async (body, thunkAPI) => {
-    
     try {
       const response = await instanse.post("auth/reset-password", body);
 
@@ -104,7 +103,7 @@ export const refreshUser = createAsyncThunk(
     } = thunkAPI.getState();
     setAuthHeader(token);
     const response = await instanse.get(`users/current`);
-   
+
     return response.data;
   },
   {
@@ -115,4 +114,3 @@ export const refreshUser = createAsyncThunk(
     },
   }
 );
-

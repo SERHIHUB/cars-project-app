@@ -8,6 +8,7 @@ import {
   registerUser,
   verifyToken,
 } from "./operations";
+import toast from "react-hot-toast";
 
 const authSlice = createSlice({
   name: "auth",
@@ -46,6 +47,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.resetStatus = null;
       })
       .addCase(logIn.rejected, (state) => {
         state.loading = false;
@@ -78,6 +80,7 @@ const authSlice = createSlice({
       .addCase(passwordReset.fulfilled, (state, action) => {
         state.loading = false;
         state.resetStatus = action.payload.status;
+        toast("Ваш пароль змінено.");
       })
       .addCase(passwordReset.rejected, (state) => {
         state.loading = false;
