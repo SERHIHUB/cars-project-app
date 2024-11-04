@@ -10,6 +10,35 @@
   padding: 8px;
 }
 
+.filterBtnList {
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px 4px;
+}
+
+.filterBtnItem {
+  width: calc((100% - 16px) / 2);
+}
+
+.filterBtn {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  background-image: linear-gradient(
+    120deg,
+    rgba(16, 210, 81, 0.3),
+    rgba(82, 46, 239, 0.3)
+  );
+}
+
+.totalCars {
+  padding: 8px;
+  color: antiquewhite;
+}
+
 .carsList {
   padding: 16px 8px;
   display: flex;

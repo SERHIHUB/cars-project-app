@@ -12,6 +12,7 @@ import css from "./CarsList.module.css";
 import { PaginationComponent } from "../PaginationComponent/PaginationComponent";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Button } from "../shared/components/Button/Button";
 
 export const CarsList = () => {
   const dispatch = useDispatch();
@@ -43,12 +44,37 @@ export const CarsList = () => {
     setPage(itemNumber);
   };
 
+  const handlePaid = () => {
+    dispatch(fetchCars({ page: currentPage, perPage: perPage }));
+  };
+
+  const handleUnpaid = () => {
+    dispatch(fetchCars({ page: currentPage, perPage: perPage, paid: false }));
+  };
+
   useEffect(() => {
     dispatch(fetchCars({ page: currentPage, perPage: perPage }));
   }, [dispatch, page]);
 
   return (
     <Container className={css.container}>
+      <ul className={css.filterBtnList}>
+        <li className={css.filterBtnItem}>
+          <Button className={css.filterBtn} onClick={handlePaid}>
+            Всі
+          </Button>
+        </li>
+        <li className={css.filterBtnItem}>
+          <Button className={css.filterBtn} onClick={handleUnpaid}>
+            Неоплачені
+          </Button>
+        </li>
+      </ul>
+      {paginationInfo.totalItems && (
+        <div
+          className={css.totalCars}
+        >{`Кількість абонементів: ${paginationInfo.totalItems}`}</div>
+      )}
       <ul className={css.carsList}>
         {cars.map((item) => {
           return (
