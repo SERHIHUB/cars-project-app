@@ -53,7 +53,10 @@ export const RegisterForm = () => {
     <Container className={css.registerContainer}>
       {registerStatus == 200 ? (
         <div className={css.confirmEmail}>
-          <h2>Підтвердіть вашу пошту.</h2>
+          <h4>
+            На вказану пошту відправлено лист, для підтвердження перейдіть за
+            посиланням.
+          </h4>
         </div>
       ) : (
         <>
