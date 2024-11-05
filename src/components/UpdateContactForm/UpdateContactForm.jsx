@@ -37,11 +37,11 @@ export const UpdateContactForm = ({ contact, onCloseModal }) => {
   });
 
   const onSubmit = (data) => {
-    for (const key in data) {
-      if (data[key] === "" || data[key] === undefined) {
-        delete data[key];
-      }
-    }
+    // for (const key in data) {
+    //   if (data[key] === "" || data[key] === undefined) {
+    //     delete data[key];
+    //   }
+    // }
 
     let body = Object.fromEntries(
       Object.entries(data).map((entry) => [
@@ -58,7 +58,6 @@ export const UpdateContactForm = ({ contact, onCloseModal }) => {
   return (
     <Container className={css.container}>
       <form className={css.updateContactForm} onSubmit={handleSubmit(onSubmit)}>
-
         <label className={clsx(css.field, { [css.errorField]: errors.name })}>
           Name
           <Controller

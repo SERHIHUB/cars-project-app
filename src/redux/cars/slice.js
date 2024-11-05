@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   createCar,
   deleteCar,
@@ -19,48 +19,48 @@ const carSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(createCar.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(createCar.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(createCar.fulfilled, (state, action) => {
         state.loading = false;
         state.items.push(action.payload.data);
       })
-      .addCase(createCar.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(fetchCars.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(createCar.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
+      // .addCase(fetchCars.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.loading = false;
 
         state.items = action.payload.cars;
         state.paginationInfo = action.payload.paginationInformation;
       })
-      .addCase(fetchCars.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(getOneCar.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(fetchCars.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
+      // .addCase(getOneCar.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(getOneCar.fulfilled, (state, action) => {
         state.loading = false;
         state.item = action.payload;
       })
-      .addCase(getOneCar.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(updateCar.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(getOneCar.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
+      // .addCase(updateCar.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(updateCar.fulfilled, (state, action) => {
         state.loading = false;
         const carIndex = state.items.findIndex(
@@ -73,14 +73,14 @@ const carSlice = createSlice({
 
         state.items[carIndex] = action.payload;
       })
-      .addCase(updateCar.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(deleteCar.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(updateCar.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
+      // .addCase(deleteCar.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(deleteCar.fulfilled, (state, action) => {
         state.loading = false;
 
@@ -88,10 +88,36 @@ const carSlice = createSlice({
           (item) => item._id !== action.payload._id
         );
       })
-      .addCase(deleteCar.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      }),
+      // .addCase(deleteCar.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
+      .addMatcher(
+        isAnyOf(
+          createCar.pending,
+          fetchCars.pending,
+          getOneCar.pending,
+          updateCar.pending,
+          deleteCar.pending
+        ),
+        (state) => {
+          state.loading = true;
+          state.error = false;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          createCar.rejected,
+          fetchCars.rejected,
+          getOneCar.rejected,
+          updateCar.rejected,
+          deleteCar.rejected
+        ),
+        (state) => {
+          state.loading = false;
+          state.error = true;
+        }
+      ),
 });
 
 export const carReducer = carSlice.reducer;

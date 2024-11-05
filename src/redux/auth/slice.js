@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   logIn,
   logOut,
@@ -27,22 +27,22 @@ const authSlice = createSlice({
 
   extraReducers: (builder) =>
     builder
-      .addCase(registerUser.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(registerUser.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.status = action.payload.status;
       })
-      .addCase(registerUser.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(logIn.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(registerUser.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
+      // .addCase(logIn.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(logIn.fulfilled, (state, action) => {
         state.loading = false;
         state.token = action.payload.token;
@@ -60,18 +60,18 @@ const authSlice = createSlice({
         state.status = null;
         state.resetStatus = null;
       })
-      .addCase(passwordResetRequest.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(passwordResetRequest.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(passwordResetRequest.fulfilled, (state, action) => {
         state.loading = false;
         state.requestResetStatus = action.payload.status;
       })
-      .addCase(passwordResetRequest.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
+      // .addCase(passwordResetRequest.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
       .addCase(passwordReset.pending, (state) => {
         state.loading = true;
         state.error = false;
@@ -82,10 +82,10 @@ const authSlice = createSlice({
         state.resetStatus = action.payload.status;
         toast("Ваш пароль змінено.");
       })
-      .addCase(passwordReset.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
+      // .addCase(passwordReset.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
       // .addCase(verifyToken.fulfilled, (state) => {
       // })
       .addCase(refreshUser.pending, (state) => {
@@ -96,7 +96,29 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.token = action.payload.data.token;
         state.user = action.payload.data;
-      }),
+      })
+      .addMatcher(
+        isAnyOf(
+          registerUser.pending,
+          logIn.pending,
+          passwordResetRequest.pending
+        ),
+        (state) => {
+          state.loading = true;
+          state.error = false;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          registerUser.rejected,
+          passwordResetRequest.rejected,
+          passwordReset.rejected
+        ),
+        (state) => {
+          state.loading = false;
+          state.error = true;
+        }
+      ),
 });
 
 export const authReducer = authSlice.reducer;

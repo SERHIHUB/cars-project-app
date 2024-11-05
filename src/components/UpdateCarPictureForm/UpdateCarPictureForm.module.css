@@ -37,6 +37,9 @@
   text-align: center;
   border: 2px solid #fcf7f7;
   border-radius: 12px;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .submit {
@@ -52,4 +55,7 @@
     rgba(10, 99, 13, 0.3),
     rgba(11, 65, 241, 0.3)
   );
+
+  margin-left: auto;
+  margin-right: auto;
 }

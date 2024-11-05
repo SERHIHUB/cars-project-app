@@ -6,7 +6,7 @@ import css from "./UpdateUserForm.module.css";
 import { updateUserFormSchema } from "../../validationSchemas/updateUserFormSchema";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import {  updateUser } from "../../redux/users/operations";
+import { updateUser } from "../../redux/users/operations";
 
 export const UpdateUserForm = ({ onCloseModal, user }) => {
   const [selectedName, setSelectedName] = useState(user.name);
@@ -30,7 +30,6 @@ export const UpdateUserForm = ({ onCloseModal, user }) => {
   });
 
   const onSubmit = (data) => {
-
     const updateObj = {
       userId: user._id,
       body: data,
@@ -44,7 +43,6 @@ export const UpdateUserForm = ({ onCloseModal, user }) => {
   return (
     <Container className={css.container}>
       <form className={css.updateUserForm} onSubmit={handleSubmit(onSubmit)}>
-
         <label className={clsx(css.field, { [css.errorField]: errors.name })}>
           Name
           <Controller
