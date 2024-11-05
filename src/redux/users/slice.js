@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   deleteUser,
   fetchUsers,
@@ -18,63 +18,88 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(getCurrentUser.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(getCurrentUser.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
       })
-      .addCase(getCurrentUser.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(fetchUsers.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(getCurrentUser.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
+      // .addCase(fetchUsers.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload.users;
       })
-      .addCase(fetchUsers.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(updateUser.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(fetchUsers.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
+      // .addCase(updateUser.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.loading = false;
 
         const userIndex = state.items.findIndex(
           (item) => item._id === action.payload._id
         );
+
         if (userIndex === -1) {
           toast.error("Користувача не знайдено!");
           return;
         }
 
         state.items[userIndex] = action.payload;
-        state.editUser = action.payload;
+        // state.editUser = action.payload;
       })
-      .addCase(updateUser.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(deleteUser.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
+      // .addCase(updateUser.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
+      // .addCase(deleteUser.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = false;
+      // })
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.loading = false;
       })
-      .addCase(deleteUser.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      }),
+      // .addCase(deleteUser.rejected, (state) => {
+      //   state.loading = false;
+      //   state.error = true;
+      // })
+      .addMatcher(
+        isAnyOf(
+          getCurrentUser.pending,
+          fetchUsers.pending,
+          updateUser.pending,
+          deleteUser.pending
+        ),
+        (state) => {
+          state.loading = true;
+          state.error = false;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          getCurrentUser.rejected,
+          fetchUsers.rejected,
+          updateUser.rejected,
+          deleteUser.rejected
+        ),
+        (state) => {
+          state.loading = false;
+          state.error = true;
+        }
+      ),
 });
 
 export const userReducer = userSlice.reducer;

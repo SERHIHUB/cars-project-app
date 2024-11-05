@@ -17,6 +17,7 @@ export const UserProfileComponent = () => {
   const [modalNameIsOpen, setModalNameIsOpen] = useState(false);
   const [modalAvatarIsOpen, setModalAvatarIsOpen] = useState(false);
   const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false);
+  const [resetName, setResetName] = useState(false);
   const dispatch = useDispatch();
 
   const currentUser = useSelector(selectCurrentUser);
@@ -25,10 +26,12 @@ export const UserProfileComponent = () => {
 
   const handleOpenModalName = () => {
     setModalNameIsOpen(true);
+    setResetName(false);
   };
 
   function onCloseModalName() {
     setModalNameIsOpen(false);
+    setResetName(true);
   }
 
   const handleOpenModalAvatar = () => {
@@ -48,7 +51,7 @@ export const UserProfileComponent = () => {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-  }, [dispatch]);
+  }, [dispatch, currentUser]);
 
   return (
     <Container className={css.wrapper}>

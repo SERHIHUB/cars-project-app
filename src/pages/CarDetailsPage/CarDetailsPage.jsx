@@ -56,7 +56,7 @@ export const CarDetailsPage = () => {
 
   useEffect(() => {
     dispatch(getOneCar(carId));
-  }, [dispatch]);
+  }, [dispatch, car]);
 
   return (
     <Section>
@@ -90,7 +90,7 @@ export const CarDetailsPage = () => {
               )}
             </li>
             <li className={css.detailsItem}>
-              <p>{`Оплату відзначив: ${userName}`}</p>
+              <p>{`Оплату відзначив: ${userName && userName.toUpperCase()}`}</p>
             </li>
           </ul>
 
