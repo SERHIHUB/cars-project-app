@@ -4,6 +4,10 @@
   padding: 16px 8px;
   font-size: 18px;
   color: rgb(239, 237, 237);
+
+  display: flex;
+  flex-direction: column;
+  height: 90%;
 }
 
 .greenShadow {
@@ -34,6 +38,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.carDetails {
+  flex-grow: 1;
+}
+
+.modelName {
+  text-transform: capitalize;
 }
 
 .btnList {

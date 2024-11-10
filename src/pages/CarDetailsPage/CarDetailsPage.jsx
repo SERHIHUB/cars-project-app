@@ -6,7 +6,7 @@ import { Container } from "../../components/shared/components/Container/Containe
 import css from "./CarDetailsPage.module.css";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
-import { selectCar } from "../../redux/cars/selectors";
+import { selectCar, selectLoading } from "../../redux/cars/selectors";
 import { getOneCar } from "../../redux/cars/operations";
 import { Button } from "../../components/shared/components/Button/Button";
 import { ModalComponent } from "../../components/shared/components/ModalComponent/ModalComponent";
@@ -18,6 +18,7 @@ import { RiArrowGoBackLine } from "react-icons/ri";
 import { BsCashCoin } from "react-icons/bs";
 import { IoImageOutline } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
+import { Loader } from "../../components/shared/components/Loader/Loader";
 
 export const CarDetailsPage = () => {
   const dispatch = useDispatch();
@@ -25,10 +26,12 @@ export const CarDetailsPage = () => {
   const { carId } = useParams();
   const car = useSelector(selectCar);
   const userName = useSelector(selectName);
+  const loading = useSelector(selectLoading);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
   const [openPictureModal, setOpenPictureModal] = useState(false);
+  const [changeState, setChangeState] = useState(false);
 
   const handleClickItem = () => {
     setModalIsOpen(true);
@@ -36,6 +39,7 @@ export const CarDetailsPage = () => {
 
   function onCloseModal() {
     setModalIsOpen(false);
+    setChangeState(!changeState);
   }
 
   const handleClickPayment = () => {
@@ -44,6 +48,7 @@ export const CarDetailsPage = () => {
 
   function closePayment() {
     setOpenPaymentModal(false);
+    setChangeState(!changeState);
   }
 
   const handleClickPicture = () => {
@@ -52,21 +57,24 @@ export const CarDetailsPage = () => {
 
   function onClosePictureModal() {
     setOpenPictureModal(false);
+    setChangeState(!changeState);
   }
 
   useEffect(() => {
     dispatch(getOneCar(carId));
-  }, [dispatch, car]);
+  }, [dispatch, changeState]);
 
   return (
     <Section>
       <Container>
+        {loading && <Loader />}
         <div className={css.carInfo}>
           <ul className={css.detailsList}>
             <li className={css.detailsItem}>
-              <p
-                className={clsx(car.isPaid ? css.greenText : css.redText)}
-              >{`Модель: ${car.carModel}`}</p>
+              <p className={clsx(car.isPaid ? css.greenText : css.redText)}>
+                {"Модель: "}{" "}
+                <span className={css.carModel}>{car.carModel}</span>
+              </p>
             </li>
             <li className={css.detailsItem}>
               <p>{`Номер: ${car.carNumber && car.carNumber.toUpperCase()}`}</p>
@@ -90,7 +98,10 @@ export const CarDetailsPage = () => {
               )}
             </li>
             <li className={css.detailsItem}>
-              <p>{`Оплату відзначив: ${userName && userName.toUpperCase()}`}</p>
+              <p>
+                {"Оплату відзначив: "}
+                {userName && <span className={css.userName}>{userName}</span>}
+              </p>
             </li>
           </ul>
 
@@ -134,12 +145,11 @@ export const CarDetailsPage = () => {
           <Button className={css.detailsBtn} onClick={handleClickPayment}>
             <BsCashCoin />
           </Button>
-
-          <Button className={css.detailsBtn}>
-            <Link to={location.state}>
+          <Link to={location.state}>
+            <Button className={css.detailsBtn}>
               <RiArrowGoBackLine />
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </Container>
     </Section>

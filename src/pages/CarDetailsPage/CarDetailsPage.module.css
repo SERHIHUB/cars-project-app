@@ -24,6 +24,14 @@
   object-fit: cover;
 }
 
+.carModel {
+  text-transform: capitalize;
+}
+
+.userName {
+  text-transform: capitalize;
+}
+
 .detailsButtonsList {
   display: flex;
   flex-wrap: wrap;
