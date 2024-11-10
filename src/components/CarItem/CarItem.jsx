@@ -59,16 +59,19 @@ export const CarItem = ({ car }) => {
           <img className={css.carPicture} src={car.carPhotoURL} alt="car" />
         )}
       </div>
-      <h3
-        id="car-title"
-        className={clsx(car.isPaid ? css.greenText : css.redText)}
-      >{`Model: ${car.carModel}`}</h3>
-      <p>{`Number: ${car.carNumber.toUpperCase()}`}</p>
-      <p>{`Price: ${car.price}`}</p>
-      <p
-        className={clsx(car.isPaid ? css.greenText : css.redText)}
-      >{`Date of pay: ${car.paymentDate}`}</p>
-
+      <div className={css.carDetails}>
+        <h3
+          id="car-title"
+          className={clsx(car.isPaid ? css.greenText : css.redText)}
+        >
+          {"Model: "} <span className={css.modelName}>{car.carModel}</span>
+        </h3>
+        <p>{`Number: ${car.carNumber.toUpperCase()}`}</p>
+        <p>{`Price: ${car.price}`}</p>
+        <p
+          className={clsx(car.isPaid ? css.greenText : css.redText)}
+        >{`Date of pay: ${car.paymentDate}`}</p>
+      </div>
       {currentUser.role === "observer" ? (
         <div className={css.notAccessBtn}>Тільки перегляд</div>
       ) : (
@@ -79,11 +82,11 @@ export const CarItem = ({ car }) => {
             </Button>
           </li>
           <li className={css.btnItem}>
-            <Button className={css.btn}>
-              <Link to={`/abonements/${car._id}`} state={location}>
+            <Link to={`/abonements/${car._id}`} state={location}>
+              <Button className={css.btn}>
                 <TbListDetails />
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </li>
         </ul>
       )}

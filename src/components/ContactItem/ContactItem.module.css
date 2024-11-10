@@ -26,6 +26,10 @@
   align-items: center;
 }
 
+.contactName {
+  text-transform: capitalize;
+}
+
 .contact {
   display: flex;
   column-gap: 4px;

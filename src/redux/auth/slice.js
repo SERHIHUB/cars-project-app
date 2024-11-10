@@ -86,8 +86,9 @@ const authSlice = createSlice({
       //   state.loading = false;
       //   state.error = true;
       // })
-      // .addCase(verifyToken.fulfilled, (state) => {
-      // })
+      .addCase(verifyToken.fulfilled, (state) => {
+        state.loading = false;
+      })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
@@ -101,7 +102,8 @@ const authSlice = createSlice({
         isAnyOf(
           registerUser.pending,
           logIn.pending,
-          passwordResetRequest.pending
+          passwordResetRequest.pending,
+          verifyToken.pending
         ),
         (state) => {
           state.loading = true;
@@ -112,7 +114,8 @@ const authSlice = createSlice({
         isAnyOf(
           registerUser.rejected,
           passwordResetRequest.rejected,
-          passwordReset.rejected
+          passwordReset.rejected,
+          verifyToken.rejected
         ),
         (state) => {
           state.loading = false;

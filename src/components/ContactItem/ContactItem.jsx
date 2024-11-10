@@ -34,7 +34,10 @@ export const ContactItem = ({ contact }) => {
   return (
     <div className={css.contactWrapper}>
       <div className={css.contactInfo}>
-        <p>{`name: ${contact.name}`}</p>
+        <p>
+          {"name: "}
+          <span className={css.contactName}>{contact.name}</span>
+        </p>
         <p className={css.contact}>
           <PiPhoneLight size="40" />
           {contact.number !== null ? (
