@@ -54,6 +54,7 @@ export const CarsList = () => {
 
   useEffect(() => {
     dispatch(fetchCars({ page: currentPage, perPage: perPage }));
+    window.scrollTo(0, 0);
   }, [dispatch, page]);
 
   return (

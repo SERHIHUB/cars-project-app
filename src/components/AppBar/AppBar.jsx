@@ -10,6 +10,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { Button } from "../shared/components/Button/Button";
 import { ModalComponent } from "../shared/components/ModalComponent/ModalComponent";
 import { NavigationBurger } from "../NavigationBurger/NavigationBurger";
+import { Loader } from "../shared/components/Loader/Loader";
 
 export const AppBar = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
