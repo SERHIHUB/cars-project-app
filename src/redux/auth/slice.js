@@ -55,6 +55,7 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(logOut.fulfilled, (state) => {
+        state.loading = false;
         state.token = null;
         state.isLoggedIn = false;
         state.status = null;
@@ -102,6 +103,7 @@ const authSlice = createSlice({
         isAnyOf(
           registerUser.pending,
           logIn.pending,
+          logOut.pending,
           passwordResetRequest.pending,
           verifyToken.pending
         ),

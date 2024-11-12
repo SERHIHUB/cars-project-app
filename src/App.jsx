@@ -25,6 +25,7 @@ import { AdminPanel } from "./pages/AdminPanel/AdminPanel";
 import { VerifyEmail } from "./pages/VerifyEmail/VerifyEmail";
 import { Loader } from "./components/shared/components/Loader/Loader";
 import { UpdateUserPasswordPage } from "./pages/UpdateUserPasswordPage/UpdateUserPasswordPage";
+import { ScrollToTop } from "./components/ScrollToTop/ScrollToTop";
 
 // const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 // const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
@@ -44,6 +45,7 @@ function App() {
   ) : (
     <>
       <Layout>
+        {/* <ScrollToTop /> */}
         <Routes>
           <Route path="/" element={<HomePage />} />
 
