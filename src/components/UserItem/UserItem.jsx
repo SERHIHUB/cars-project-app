@@ -6,6 +6,7 @@ import css from "./UserItem.module.css";
 import { ModalComponent } from "../shared/components/ModalComponent/ModalComponent";
 import { DeleteUser } from "../DeleteUser/DeleteUser";
 import { UpdateUserRoleForm } from "../UpdateUserRoleForm/UpdateUserRoleForm";
+import toast from "react-hot-toast";
 
 export const UserItem = ({ user }) => {
   const [modalRoleIsOpen, setModalRoleIsOpen] = useState(false);
@@ -16,6 +17,7 @@ export const UserItem = ({ user }) => {
   const handleOpenModalRole = () => {
     setModalRoleIsOpen(true);
   };
+
   const onCloseModalRole = () => {
     setModalRoleIsOpen(false);
   };
@@ -26,6 +28,10 @@ export const UserItem = ({ user }) => {
 
   const onCloseModalDelete = () => {
     setModalDeleteIsOpen(false);
+  };
+
+  const handleMessage = () => {
+    toast("Ви не можете змінити свої права доступу.");
   };
 
   return (
@@ -51,9 +57,15 @@ export const UserItem = ({ user }) => {
         </li>
 
         <li className={css.btnItem}>
-          <Button className={css.btn} onClick={handleOpenModalRole}>
-            <MdEdit />
-          </Button>
+          {user.role === "admin" ? (
+            <Button className={css.btn} onClick={handleMessage}>
+              😜
+            </Button>
+          ) : (
+            <Button className={css.btn} onClick={handleOpenModalRole}>
+              <MdEdit />
+            </Button>
+          )}
         </li>
       </ul>
 
