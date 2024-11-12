@@ -87,7 +87,6 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
   return (
     <Container className={css.container}>
       <form className={css.updateCarForm} onSubmit={handleSubmit(onSubmit)}>
-
         <label
           className={clsx(css.field, { [css.errorField]: errors.carModel })}
         >
@@ -127,7 +126,7 @@ export const UpdateCarForm = ({ onCloseModal, car }) => {
                   className={css.input}
                   {...field}
                   {...register("carNumber", { required: true })}
-                  value={selectedCarNumber}
+                  value={selectedCarNumber && selectedCarNumber.toUpperCase()}
                   onChange={onChangeCarNumber}
                 />
               );
