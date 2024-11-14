@@ -69,27 +69,23 @@ export const UserProfileComponent = () => {
         <p>{`thema: ${currentUser.thema}`}</p>
       </div>
 
-      {currentUser.role === "observer" ? (
-        <div className={css.notAccessBtn}>Тільки перегляд</div>
-      ) : (
-        <ul className={css.btnList}>
-          <li className={css.btnItem}>
-            <Button className={css.btn} onClick={handleOpenModalDelete}>
-              <AiOutlineDelete />
-            </Button>
-          </li>
-          <li className={css.btnItem}>
-            <Button className={css.btn} onClick={handleOpenModalAvatar}>
-              <IoImageOutline />
-            </Button>
-          </li>
-          <li className={css.btnItem}>
-            <Button className={css.btn} onClick={handleOpenModalName}>
-              <MdEdit />
-            </Button>
-          </li>
-        </ul>
-      )}
+      <ul className={css.btnList}>
+        <li className={css.btnItem}>
+          <Button className={css.btn} onClick={handleOpenModalDelete}>
+            <AiOutlineDelete />
+          </Button>
+        </li>
+        <li className={css.btnItem}>
+          <Button className={css.btn} onClick={handleOpenModalAvatar}>
+            <IoImageOutline />
+          </Button>
+        </li>
+        <li className={css.btnItem}>
+          <Button className={css.btn} onClick={handleOpenModalName}>
+            <MdEdit />
+          </Button>
+        </li>
+      </ul>
 
       <ModalComponent
         closeModal={onCloseModalName}
