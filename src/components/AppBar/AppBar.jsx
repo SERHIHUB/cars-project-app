@@ -47,7 +47,7 @@ export const AppBar = () => {
         )}
         {windowWidth < 768 && (
           <Button className={css.menuBtn} onClick={handleOpenModal}>
-            <RxHamburgerMenu />
+            <RxHamburgerMenu size={26} />
           </Button>
         )}
       </div>
