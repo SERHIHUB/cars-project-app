@@ -19,10 +19,12 @@ export const CarItem = ({ car }) => {
   const currentUser = useSelector(selectCurrentUser);
 
   const now = new Date();
+  const currentDate = now.getDate();
   const currentMonth = now.getMonth() + 1;
 
   const isPaidValue = () => {
-    if (currentMonth <= car.isPaidMonth) return;
+    // if (currentMonth <= car.isPaidMonth) return;
+    if (currentMonth <= car.isPaidMonth && currentDate <= car.isPaid) return;
     if (car.isPaid === false) return;
 
     const payload = {
