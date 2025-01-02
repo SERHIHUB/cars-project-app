@@ -24,7 +24,7 @@ export const CarItem = ({ car }) => {
 
   const isPaidValue = () => {
     // if (currentMonth <= car.isPaidMonth) return;
-    if (currentMonth <= car.isPaidMonth && currentDate <= car.isPaid) return;
+    if (currentMonth <= car.isPaidMonth && currentDate < car.isPaid) return;
     if (car.isPaid === false) return;
 
     const payload = {
