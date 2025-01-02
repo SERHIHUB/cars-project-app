@@ -32,7 +32,7 @@ export const CarItem = ({ car }) => {
     const payload = {
       carId: car._id,
       body: {
-        isPaid: currentMonth <= car.isPaidMonth ? true : false,
+        isPaid: false,
       },
     };
 
