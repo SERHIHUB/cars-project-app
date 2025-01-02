@@ -22,6 +22,8 @@ export const CarItem = ({ car }) => {
   const currentDate = now.getDate();
   const currentMonth = now.getMonth() + 1;
 
+  console.log(`current Month: ${currentMonth}`);
+
   const isPaidValue = () => {
     // if (currentMonth <= car.isPaidMonth) return;
     if (currentMonth <= car.isPaidMonth && currentDate < car.isPaid) return;
