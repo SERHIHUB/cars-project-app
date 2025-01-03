@@ -25,24 +25,26 @@ export const CarItem = ({ car }) => {
   // console.log(`current Month: ${currentMonth}`);
 
   const isPaidValue = () => {
-    let payload;
+    // let payload;
 
-    if (currentMonth <= car.isPaidMonth && !car.isPaid) {
-      payload = {
-        carId: car._id,
-        body: {
-          isPaid: true,
-        },
-      };
+    // if (currentMonth <= car.isPaidMonth && !car.isPaid) {
+    //   payload = {
+    //     carId: car._id,
+    //     body: {
+    //       isPaid: true,
+    //     },
+    //   };
 
-      dispatch(updateCar(payload));
+    //   dispatch(updateCar(payload));
 
+    //   return;
+    // }
+    if (currentMonth <= car.isPaidMonth && car.paymentDate < currentDate)
       return;
-    }
-    if (currentMonth <= car.isPaidMonth) return;
+    // if (currentMonth <= car.isPaidMonth) return;
     if (car.isPaid === false) return;
 
-    payload = {
+    const payload = {
       carId: car._id,
       body: {
         isPaid: false,
