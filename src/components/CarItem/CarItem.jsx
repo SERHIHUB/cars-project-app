@@ -34,6 +34,10 @@ export const CarItem = ({ car }) => {
           isPaid: true,
         },
       };
+
+      dispatch(updateCar(payload));
+
+      return;
     }
     if (currentMonth <= car.isPaidMonth) return;
     if (car.isPaid === false) return;
