@@ -39,7 +39,7 @@ export const CarItem = ({ car }) => {
 
     //   return;
     // }
-    if (currentMonth <= car.isPaidMonth && car.paymentDate < currentDate)
+    if (currentMonth <= car.isPaidMonth && car.paymentDate > currentDate)
       return;
     // if (currentMonth <= car.isPaidMonth) return;
     if (car.isPaid === false) return;
