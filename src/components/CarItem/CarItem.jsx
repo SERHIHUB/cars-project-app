@@ -25,10 +25,20 @@ export const CarItem = ({ car }) => {
   // console.log(`current Month: ${currentMonth}`);
 
   const isPaidValue = () => {
+    let payload;
+
+    if (currentMonth <= car.isPaidMonth && !car.isPaid) {
+      payload = {
+        carId: car._id,
+        body: {
+          isPaid: true,
+        },
+      };
+    }
     if (currentMonth <= car.isPaidMonth) return;
     if (car.isPaid === false) return;
 
-    const payload = {
+    payload = {
       carId: car._id,
       body: {
         isPaid: false,
